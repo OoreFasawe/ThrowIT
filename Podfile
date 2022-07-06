@@ -13,6 +13,7 @@ target 'ThrowIT' do
 
   target 'ThrowITTests' do
     inherit! :search_paths
+    # Pods for testing
   end
 
   target 'ThrowITUITests' do
