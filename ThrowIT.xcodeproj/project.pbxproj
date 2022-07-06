@@ -12,7 +12,6 @@
 		5DB6EE0B1210C3CA5DD8385F /* Pods_ThrowIT_ThrowITUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB1B3952B57CF4942AAFBB1 /* Pods_ThrowIT_ThrowITUITests.framework */; };
 		891EF8AB286E519000F5947E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AA286E519000F5947E /* AppDelegate.m */; };
 		891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AD286E519000F5947E /* SceneDelegate.m */; };
-		891EF8B1286E519000F5947E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8B0286E519000F5947E /* ViewController.m */; };
 		891EF8B4286E519000F5947E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891EF8B2286E519000F5947E /* Main.storyboard */; };
 		891EF8B6286E519000F5947E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 891EF8B5286E519000F5947E /* Assets.xcassets */; };
 		891EF8B9286E519000F5947E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891EF8B7286E519000F5947E /* LaunchScreen.storyboard */; };
@@ -20,6 +19,9 @@
 		891EF8C6286E519100F5947E /* ThrowITTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8C5286E519100F5947E /* ThrowITTests.m */; };
 		891EF8D0286E519100F5947E /* ThrowITUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8CF286E519100F5947E /* ThrowITUITests.m */; };
 		891EF8D2286E519100F5947E /* ThrowITUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8D1286E519100F5947E /* ThrowITUITestsLaunchTests.m */; };
+		891EF8E5287551DD00F5947E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8E4287551DD00F5947E /* SignUpViewController.m */; };
+		891EF8E82875530400F5947E /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8E72875530400F5947E /* TimelineViewController.m */; };
+		891EF8EB287554D300F5947E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8EA287554D300F5947E /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +53,6 @@
 		891EF8AA286E519000F5947E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		891EF8AC286E519000F5947E /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		891EF8AD286E519000F5947E /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		891EF8AF286E519000F5947E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		891EF8B0286E519000F5947E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		891EF8B3286E519000F5947E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		891EF8B5286E519000F5947E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		891EF8B8286E519000F5947E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +63,12 @@
 		891EF8CB286E519100F5947E /* ThrowITUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThrowITUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		891EF8CF286E519100F5947E /* ThrowITUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrowITUITests.m; sourceTree = "<group>"; };
 		891EF8D1286E519100F5947E /* ThrowITUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrowITUITestsLaunchTests.m; sourceTree = "<group>"; };
+		891EF8E3287551DD00F5947E /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		891EF8E4287551DD00F5947E /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		891EF8E62875530400F5947E /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		891EF8E72875530400F5947E /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		891EF8E9287554D300F5947E /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		891EF8EA287554D300F5947E /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B0E3BBE3ED6DF4C50E02AB9B /* Pods_ThrowITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB9BC1CE556041F1B28E2FB /* Pods-ThrowIT-ThrowITUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT-ThrowITUITests.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowITTests.debug.xcconfig"; path = "Target Support Files/Pods-ThrowITTests/Pods-ThrowITTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,9 +131,8 @@
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
-				891EF8AF286E519000F5947E /* ViewController.h */,
-				891EF8B0286E519000F5947E /* ViewController.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
+				891EF8E2287550C200F5947E /* ViewControllers */,
 				891EF8B5286E519000F5947E /* Assets.xcassets */,
 				891EF8B7286E519000F5947E /* LaunchScreen.storyboard */,
 				891EF8BA286E519000F5947E /* Info.plist */,
@@ -153,6 +158,19 @@
 			path = ThrowITUITests;
 			sourceTree = "<group>";
 		};
+		891EF8E2287550C200F5947E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				891EF8E9287554D300F5947E /* LoginViewController.h */,
+				891EF8EA287554D300F5947E /* LoginViewController.m */,
+				891EF8E62875530400F5947E /* TimelineViewController.h */,
+				891EF8E72875530400F5947E /* TimelineViewController.m */,
+				891EF8E3287551DD00F5947E /* SignUpViewController.h */,
+				891EF8E4287551DD00F5947E /* SignUpViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		C27060469BBE3ECD3B7A3DC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +191,6 @@
 				F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */,
 				584BACFC47ABA239F40F88A7 /* Pods-ThrowITTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -415,10 +432,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				891EF8B1286E519000F5947E /* ViewController.m in Sources */,
+				891EF8E5287551DD00F5947E /* SignUpViewController.m in Sources */,
 				891EF8AB286E519000F5947E /* AppDelegate.m in Sources */,
+				891EF8EB287554D300F5947E /* LoginViewController.m in Sources */,
 				891EF8BC286E519000F5947E /* main.m in Sources */,
 				891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */,
+				891EF8E82875530400F5947E /* TimelineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
