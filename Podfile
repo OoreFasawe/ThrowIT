@@ -10,6 +10,7 @@ target 'ThrowIT' do
 	pod 'DateTools'
 	pod "Parse"
 	pod "Parse/UI"
+	pod 'CHTCollectionViewWaterfallLayout/ObjC'
 
   target 'ThrowITTests' do
     inherit! :search_paths

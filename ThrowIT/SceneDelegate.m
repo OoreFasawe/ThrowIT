@@ -16,14 +16,14 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-//    PFUser *user = [PFUser currentUser];
-//        if (user != nil) {
-//            NSLog(@"Welcome back %@ 😀", user.username);
-//
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            UIViewController *timelineViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimelineViewController"];
-//            self.window.rootViewController = timelineViewController;
-//        }
+    PFUser *user = [PFUser currentUser];
+        if (user != nil) {
+            NSLog(@"Welcome back %@ 😀", user.username);
+
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TimelineTabBarController"];
+            self.window.rootViewController = timelineTabBarController;
+        }
 }
 
 
