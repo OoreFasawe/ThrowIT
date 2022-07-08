@@ -1,0 +1,66 @@
+//
+//  Party.m
+//  ThrowIT
+//
+//  Created by Oore Fasawe on 7/7/22.
+//
+
+#import "Party.h"
+
+@implementation Party
+
+@dynamic partyID;
+@dynamic name;
+@dynamic partyDescription;
+@dynamic startTime;
+@dynamic endTime;
+@dynamic school;
+@dynamic partyThrower;
+@dynamic numberAttending;
+@dynamic isGoing;
+@dynamic maybe;
+@dynamic backgroundImage;
+@dynamic isPublic;
+
+
++ (nonnull NSString *)parseClassName {
+    return @"Party";
+}
+
++ (void) postNewParty:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+
+    
+    Party *newParty = [Party new];
+    newParty.name = partyName;
+    newParty.partyDescription = partyDescription;
+    newParty.startTime=startTime;
+    newParty.endTime=endTime;
+    newParty.school = school;
+    newParty.numberAttending= @(0);
+    newParty.isGoing=NO;
+    newParty.maybe=NO;
+    newParty.backgroundImage = [self getPFFileFromImage:backgroundImage];
+    newParty.isPublic=NO;
+    Thrower *myThrower = [Thrower new];
+    newParty.partyThrower = myThrower;
+    
+    [newParty saveInBackgroundWithBlock: completion];
+
+}
+
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
+
+    // check if image is not nil
+    if (!image) {
+        return nil;
+    }
+
+    NSData *imageData = UIImagePNGRepresentation(image);
+    if (!imageData) {
+        return nil;
+    }
+    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+}
+
+
+@end

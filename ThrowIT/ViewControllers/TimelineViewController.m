@@ -9,6 +9,8 @@
 #import "SceneDelegate.h"
 #import "partyCell.h"
 #import "TopPartyCell.h"
+#import "Party.h"
+#import "Thrower.h"
 #import <Parse/Parse.h>
 
 @interface TimelineViewController ()
@@ -20,18 +22,7 @@
 
 @implementation TimelineViewController
 
--(void)setUpcollectionViewWithCHTCollectionViewWaterfallLayout{
-    CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
 
-//        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-//        layout.headerHeight = 15;
-//        layout.footerHeight = 10;
-    layout.minimumColumnSpacing = 5;
-    layout.minimumInteritemSpacing = 5;
-    layout.columnCount = 2;
-
-    self.collectionView.collectionViewLayout = layout;
-}
 
 
 - (void)viewDidLoad {
@@ -52,6 +43,25 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+//    [Party postNewParty:@"Beta Vegas" withDescription:@"Best party on campus" withStartTime:nil withEndTime:nil withSchoolName:@"mySchool" withBackGroundImage:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+//        if(!error){
+//            NSLog(@"Party added to database successfully");
+//        }
+//        else{
+//            NSLog(@"Try again, getting there");
+//        }
+//            
+//    }];
+//    
+//    [Thrower postNewThrower:@"Beta" withSchool:@"mySchool" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+//        if(!error){
+//            NSLog(@"Thrower added to database successfully");
+//        }
+//        else{
+//            NSLog(@"Try again, getting there");
+//        }
+//    }];
+//    
     
     // Do any additional setup after loading the view.
     
@@ -96,6 +106,10 @@
     return 10;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -106,11 +120,26 @@
   TopPartyCell *topPartyCell =
   (TopPartyCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"TopPartyCell" forIndexPath:indexPath];
   
+    topPartyCell.partyNameLabel.text = @"Beta Vegas";
+    
   return topPartyCell;
 }
 
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout
+
+-(void)setUpcollectionViewWithCHTCollectionViewWaterfallLayout{
+    CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
+
+//        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+//        layout.headerHeight = 15;
+//        layout.footerHeight = 10;
+    layout.minimumColumnSpacing = 5;
+    layout.minimumInteritemSpacing = 5;
+    layout.columnCount = 2;
+
+    self.collectionView.collectionViewLayout = layout;
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.topPartyCellSizes[indexPath.item] CGSizeValue];
 }

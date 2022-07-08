@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TopPartyCell : UICollectionViewCell
+@property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
 
 @end
 

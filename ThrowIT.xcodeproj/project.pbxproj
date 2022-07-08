@@ -24,6 +24,8 @@
 		891EF8EB287554D300F5947E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8EA287554D300F5947E /* LoginViewController.m */; };
 		898244E728762FCC00744255 /* PartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244E628762FCC00744255 /* PartyCell.m */; };
 		898244ED28775E6400744255 /* TopPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244EC28775E6400744255 /* TopPartyCell.m */; };
+		898244F028779F9300744255 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244EF28779F9300744255 /* Party.m */; };
+		898244F328779FF300744255 /* Thrower.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244F228779FF300744255 /* Thrower.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,10 @@
 		898244E628762FCC00744255 /* PartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyCell.m; sourceTree = "<group>"; };
 		898244EB28775E6400744255 /* TopPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TopPartyCell.h; path = Models/TopPartyCell.h; sourceTree = "<group>"; };
 		898244EC28775E6400744255 /* TopPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TopPartyCell.m; path = Models/TopPartyCell.m; sourceTree = "<group>"; };
+		898244EE28779F9300744255 /* Party.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
+		898244EF28779F9300744255 /* Party.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
+		898244F128779FF300744255 /* Thrower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thrower.h; sourceTree = "<group>"; };
+		898244F228779FF300744255 /* Thrower.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thrower.m; sourceTree = "<group>"; };
 		B0E3BBE3ED6DF4C50E02AB9B /* Pods_ThrowITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB9BC1CE556041F1B28E2FB /* Pods-ThrowIT-ThrowITUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT-ThrowITUITests.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowITTests.debug.xcconfig"; path = "Target Support Files/Pods-ThrowITTests/Pods-ThrowITTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +191,10 @@
 		891EF8EF28760ECF00F5947E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				898244EE28779F9300744255 /* Party.h */,
+				898244EF28779F9300744255 /* Party.m */,
+				898244F128779FF300744255 /* Thrower.h */,
+				898244F228779FF300744255 /* Thrower.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -450,8 +460,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898244F028779F9300744255 /* Party.m in Sources */,
 				891EF8E5287551DD00F5947E /* SignUpViewController.m in Sources */,
 				891EF8AB286E519000F5947E /* AppDelegate.m in Sources */,
+				898244F328779FF300744255 /* Thrower.m in Sources */,
 				891EF8EB287554D300F5947E /* LoginViewController.m in Sources */,
 				891EF8BC286E519000F5947E /* main.m in Sources */,
 				898244ED28775E6400744255 /* TopPartyCell.m in Sources */,
