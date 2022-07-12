@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
+@property (nonatomic, strong) NSMutableArray *partyList;
 
 @end
 
@@ -42,6 +43,7 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    [self fetchThrowerParties];
     
 }
 - (IBAction)logoutUser:(id)sender {
@@ -67,21 +69,42 @@
 }
 */
 
+-(void)fetchThrowerParties{
+    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
+        if (!error){
+            self.partyList = (NSMutableArray *)partyList;
+            [self.collectionView reloadData];
+            [self.tableView reloadData];
+        }
+        else{
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
 
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:@"PartyCell"];
     
-    partyCell.partyName.text = @"Beta Vegas";
-    partyCell.partyTime.text = @"5:00 pm";
-    partyCell.partyGoingCount.text = @"100";
-    partyCell.partyRating.text = @"5.0";
+    Party *party = self.partyList[indexPath.row + 3];
+    
+    
+    partyCell.partyName.text = party.name;
+    partyCell.partyTime.text = party.partyDescription;
+    partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%@", party.numberAttending];
+    partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
+    partyCell.partyDescription.text= party.partyDescription;
+    partyCell.party = party;
     
     return partyCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.partyList.count - 3;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -96,9 +119,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   TopPartyCell *topPartyCell =
-  (TopPartyCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"TopPartyCell" forIndexPath:indexPath];
-  
-    topPartyCell.partyNameLabel.text = @"Beta Vegas";
+    (TopPartyCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"TopPartyCell" forIndexPath:indexPath];
+    Party *party = self.partyList[indexPath.item];
+    
+    topPartyCell.partyNameLabel.text = party.name;
+    topPartyCell.partyDescriptionLabel.text = party.partyDescription;
+    topPartyCell.topParty = party;
     
   return topPartyCell;
 }

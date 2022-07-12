@@ -6,11 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Party.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TopPartyCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
+@property (strong, nonatomic) Party *topParty;
+@property (strong, nonatomic) IBOutlet UILabel *partyDescriptionLabel;
+
 
 @end
 

@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Party.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyTime;
 @property (strong, nonatomic) IBOutlet UILabel *partyGoingCount;
 @property (strong, nonatomic) IBOutlet UILabel *partyRating;
-
+@property (strong, nonatomic) IBOutlet UILabel *partyDescription;
+@property (strong, nonatomic) Party *party;
 @end
 
 NS_ASSUME_NONNULL_END

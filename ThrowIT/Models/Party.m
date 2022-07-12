@@ -21,6 +21,7 @@
 @dynamic maybe;
 @dynamic backgroundImage;
 @dynamic isPublic;
+@dynamic rating;
 
 
 + (nonnull NSString *)parseClassName {

@@ -260,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqa-Gp-uSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711.682242990654" y="696.54427645788337"/>
+            <point key="canvasLocation" x="1712" y="803"/>
         </scene>
         <!--Your Parties-->
         <scene sceneID="fCb-cr-97e">
@@ -356,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb7-4k-czD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711.682242990654" y="1413.8228941684665"/>
+            <point key="canvasLocation" x="1712" y="1490"/>
         </scene>
         <!--Create Party View Controller-->
         <scene sceneID="sX6-8T-Tp6">
@@ -416,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klu-93-b2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3595.7943925233644" y="1413.8228941684665"/>
+            <point key="canvasLocation" x="3596" y="1490"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2uV-ps-G7O">
@@ -517,10 +517,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HzX-E0-XzU">
-                                <rect key="frame" x="8" y="96" width="412" height="739"/>
+                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Wtv-q0-MQv">
-                                    <rect key="frame" x="0.0" y="0.0" width="412" height="203"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="203"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JvJ-r1-7n2">
@@ -537,8 +537,15 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPe-lp-m9r">
-                                                        <rect key="frame" x="15" y="15" width="105" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-bE-8iA">
+                                                        <rect key="frame" x="8" y="44" width="112" height="76"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPe-lp-m9r">
+                                                        <rect key="frame" x="8" y="15" width="105" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
@@ -548,17 +555,19 @@
                                             </collectionViewCellContentView>
                                             <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                             <connections>
+                                                <outlet property="partyDescriptionLabel" destination="8qy-bE-8iA" id="OYB-CS-h4T"/>
                                                 <outlet property="partyNameLabel" destination="jPe-lp-m9r" id="gRF-bw-EHv"/>
+                                                <segue destination="Zk2-eP-YQZ" kind="show" id="s2E-pg-iGe"/>
                                             </connections>
                                         </collectionViewCell>
                                     </cells>
                                 </collectionView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PartyCell" rowHeight="106" id="iJP-sD-fAv" customClass="PartyCell">
-                                        <rect key="frame" x="0.0" y="247.66666603088379" width="412" height="106"/>
+                                        <rect key="frame" x="0.0" y="247.66666603088379" width="428" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iJP-sD-fAv" id="Ugx-vf-K6a">
-                                            <rect key="frame" x="0.0" y="0.0" width="412" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlC-3g-wJ6">
@@ -589,14 +598,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQd-Tk-xLn">
+                                                    <rect key="frame" x="20" y="40" width="388" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <connections>
-                                            <outlet property="partyGoingCount" destination="dTE-Ea-tP1" id="dkD-Ka-UjB"/>
+                                            <outlet property="partyDescription" destination="fQd-Tk-xLn" id="BHf-8d-Tqf"/>
+                                            <outlet property="partyGoingCount" destination="dTE-Ea-tP1" id="njj-0i-aHX"/>
                                             <outlet property="partyName" destination="mlC-3g-wJ6" id="Shu-Gx-DqN"/>
                                             <outlet property="partyRating" destination="Lp1-ip-iWu" id="ULo-ZL-ipk"/>
                                             <outlet property="partyTime" destination="gqu-AZ-BeF" id="fJb-fw-9bo"/>
+                                            <segue destination="Zk2-eP-YQZ" kind="show" id="ww1-hf-2xj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -605,10 +623,10 @@
                         <viewLayoutGuide key="safeArea" id="A7l-ee-nXc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HzX-E0-XzU" firstAttribute="top" secondItem="A7l-ee-nXc" secondAttribute="top" constant="8" id="J7t-MK-UjX"/>
-                            <constraint firstItem="A7l-ee-nXc" firstAttribute="bottom" secondItem="HzX-E0-XzU" secondAttribute="bottom" constant="8" id="o3i-84-2Br"/>
-                            <constraint firstItem="HzX-E0-XzU" firstAttribute="leading" secondItem="A7l-ee-nXc" secondAttribute="leading" constant="8" id="rLc-Uv-awi"/>
-                            <constraint firstItem="A7l-ee-nXc" firstAttribute="trailing" secondItem="HzX-E0-XzU" secondAttribute="trailing" constant="8" id="vdF-Jo-gtg"/>
+                            <constraint firstItem="HzX-E0-XzU" firstAttribute="top" secondItem="A7l-ee-nXc" secondAttribute="top" id="J7t-MK-UjX"/>
+                            <constraint firstItem="A7l-ee-nXc" firstAttribute="bottom" secondItem="HzX-E0-XzU" secondAttribute="bottom" id="o3i-84-2Br"/>
+                            <constraint firstItem="HzX-E0-XzU" firstAttribute="leading" secondItem="A7l-ee-nXc" secondAttribute="leading" id="rLc-Uv-awi"/>
+                            <constraint firstItem="A7l-ee-nXc" firstAttribute="trailing" secondItem="HzX-E0-XzU" secondAttribute="trailing" id="vdF-Jo-gtg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Party Feed " id="GYH-li-EyC">
@@ -631,7 +649,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s53-Zs-es2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2696" y="-568"/>
+            <point key="canvasLocation" x="2763.0841121495328" y="-568.25053995680355"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="M33-1g-7yT">
+            <objects>
+                <viewController id="Zk2-eP-YQZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="97U-SE-HRn">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ZhC-9l-zFZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bGk-0K-4hl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ux-lS-mZs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3562" y="-565"/>
         </scene>
         <!--Parties-->
         <scene sceneID="daK-jZ-Sxb">
@@ -706,7 +740,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXR-rZ-Wc4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811.68224299065412" y="696.54427645788337"/>
+            <point key="canvasLocation" x="812" y="803"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Ig-oj-S8Q">
@@ -724,7 +758,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1r8-Io-Kok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811.68224299065412" y="1414.4708423326135"/>
+            <point key="canvasLocation" x="812" y="1490"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jOA-XT-Qq2">
@@ -743,9 +777,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ks-dM-qQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2695.7943925233644" y="1413.8228941684665"/>
+            <point key="canvasLocation" x="2696" y="1490"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="s2E-pg-iGe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

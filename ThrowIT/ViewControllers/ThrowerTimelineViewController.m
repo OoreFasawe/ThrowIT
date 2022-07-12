@@ -43,6 +43,7 @@
 
 -(void)fetchThrowerParties{
     PFQuery *query = [PFQuery queryWithClassName:@"Party"];
+    [query orderByDescending:@"createdAt"];
     [query whereKey:@"partyThrower" equalTo:[PFUser currentUser]];
     query.limit = 20;
 
@@ -81,6 +82,7 @@
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%@", party.numberAttending];
     throwerPartyCell.partyDescription.text = party.partyDescription;
+    throwerPartyCell.party = party;
     
     return throwerPartyCell;
 }
