@@ -53,6 +53,12 @@
     self.view.window.rootViewController
     = loginViewController;
 }
+- (IBAction)goToThrowerSignUp:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *throwerSignUpViewController = [storyboard instantiateViewControllerWithIdentifier:@"ThrowerSignUpViewController"];
+    self.view.window.rootViewController
+    = throwerSignUpViewController;
+}
 /*
 #pragma mark - Navigation
 

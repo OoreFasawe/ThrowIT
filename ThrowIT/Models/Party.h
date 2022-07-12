@@ -9,7 +9,6 @@
 #import "Thrower.h"
 #import <Parse/Parse.h>
 
-//#import "Thrower.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Party : PFObject <PFSubclassing>
