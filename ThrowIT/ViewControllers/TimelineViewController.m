@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
 @property (nonatomic, strong) NSMutableArray *partyList;
+@property (strong,nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -44,6 +45,9 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self fetchThrowerParties];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
 }
 - (IBAction)logoutUser:(id)sender {
@@ -77,6 +81,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
+            [self.refreshControl endRefreshing];
             [self.collectionView reloadData];
             [self.tableView reloadData];
         }
