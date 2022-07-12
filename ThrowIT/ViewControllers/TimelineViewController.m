@@ -43,28 +43,6 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-//    [Party postNewParty:@"Beta Vegas" withDescription:@"Best party on campus" withStartTime:nil withEndTime:nil withSchoolName:@"mySchool" withBackGroundImage:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-//        if(!error){
-//            NSLog(@"Party added to database successfully");
-//        }
-//        else{
-//            NSLog(@"Try again, getting there");
-//        }
-//            
-//    }];
-//    
-//    [Thrower postNewThrower:@"Beta" withSchool:@"mySchool" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-//        if(!error){
-//            NSLog(@"Thrower added to database successfully");
-//        }
-//        else{
-//            NSLog(@"Try again, getting there");
-//        }
-//    }];
-//    
-    
-    // Do any additional setup after loading the view.
-    
 }
 - (IBAction)logoutUser:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -123,6 +101,10 @@
     topPartyCell.partyNameLabel.text = @"Beta Vegas";
     
   return topPartyCell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
 

@@ -27,7 +27,7 @@
     return @"Party";
 }
 
-+ (void) postNewParty:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postNewParty:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion {
 
     
     Party *newParty = [Party new];
@@ -41,8 +41,7 @@
     newParty.maybe=NO;
     newParty.backgroundImage = [self getPFFileFromImage:backgroundImage];
     newParty.isPublic=NO;
-    Thrower *myThrower = [Thrower new];
-    newParty.partyThrower = myThrower;
+    newParty.partyThrower = [PFUser currentUser];
     
     [newParty saveInBackgroundWithBlock: completion];
 

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, strong) NSString *school;
-@property (nonatomic, strong) Thrower *partyThrower;
+@property (nonatomic, strong) PFUser *partyThrower;
 @property (nonatomic, strong) NSNumber *numberAttending;
 @property (nonatomic) BOOL isGoing;
 @property (nonatomic) BOOL maybe;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isPublic;
 
 
-+ (void) postNewParty: ( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate * _Nullable)endTime withSchoolName:(NSString *)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postNewParty: ( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate * _Nullable)endTime withSchoolName:(NSString * _Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 
