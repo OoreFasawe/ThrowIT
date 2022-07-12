@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
 @property (strong, nonatomic) Party *topParty;
 @property (strong, nonatomic) IBOutlet UILabel *partyDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *goingButton;
 
 
 @end

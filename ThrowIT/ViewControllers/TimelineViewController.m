@@ -6,9 +6,11 @@
 //
 
 #import "TimelineViewController.h"
+#import "DetailsViewController.h"
 #import "SceneDelegate.h"
 #import "partyCell.h"
 #import "TopPartyCell.h"
+#import "Attendance.h"
 #import "Party.h"
 #import "Thrower.h"
 #import <Parse/Parse.h>
@@ -29,22 +31,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    [self fetchThrowerParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
-    
     self.topPartyCellSizes = @[
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height)],
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.66 - 2.5)],
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.34 - 2.5)],
     ];
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 120;
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self fetchThrowerParties];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -63,15 +63,28 @@
     }];
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"toDetailsViewControllerForCollectionCell"]){
+        UICollectionViewCell *partyCell = sender;
+        NSIndexPath *myIndexPath = [self.collectionView indexPathForCell:partyCell];
+        // Pass the selected object to the new view controller.
+        Party *party = self.partyList[myIndexPath.item];
+        DetailsViewController *detailsController = [segue destinationViewController];
+        detailsController.party = party;
+    }
+    else if([[segue identifier] isEqualToString:@"toDetailsViewControllerForTableCell"]){
+        UITableViewCell *partyCell = sender;
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
+        // Pass the selected object to the new view controller.
+        Party *party = self.partyList[myIndexPath.row + 3];
+        DetailsViewController *detailsController = [segue destinationViewController];
+        detailsController.party = party;
+    }
 }
-*/
+
 
 -(void)fetchThrowerParties{
     PFQuery *query = [PFQuery queryWithClassName:@"Party"];
@@ -82,8 +95,9 @@
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
             [self.refreshControl endRefreshing];
-            [self.collectionView reloadData];
             [self.tableView reloadData];
+            [self.collectionView reloadData];
+            
         }
         else{
             NSLog(@"%@", error.localizedDescription);
@@ -103,6 +117,36 @@
     partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%@", party.numberAttending];
     partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription;
+
+    
+    PFQuery *goingQuery = [PFQuery queryWithClassName:@"Attendance"];
+    [goingQuery whereKey:@"party" equalTo:party];
+    [goingQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+    [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
+        if (!error){
+            Attendance *attendance;
+            //if there's not attendance object, create one
+            if(!attendanceList.count){
+                [partyCell.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
+            }
+            //if there's an attendance object, check it's attendance type
+            else{
+                attendance = attendanceList[0];
+                
+                //if attendancetype is going, change to maybe, if maybe delete;
+                if([attendance.attendanceType isEqualToString:@"Going"]){
+                    [partyCell.goingButton setTitle:@"Going" forState:UIControlStateNormal];
+                }
+                else{
+                    [partyCell.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+                }
+            }
+        }
+        else{
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
     partyCell.party = party;
     
     return partyCell;
@@ -124,11 +168,42 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   TopPartyCell *topPartyCell =
-    (TopPartyCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"TopPartyCell" forIndexPath:indexPath];
+    [self.collectionView dequeueReusableCellWithReuseIdentifier:@"TopPartyCell" forIndexPath:indexPath];
     Party *party = self.partyList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
+    
+    if(party){
+        PFQuery *goingQuery = [PFQuery queryWithClassName:@"Attendance"];
+        [goingQuery whereKey:@"party" equalTo:party];
+        [goingQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+        [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
+            if (!error){
+                Attendance *attendance;
+                //if there's not attendance object, create one
+                if(!attendanceList.count){
+                    [topPartyCell.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
+                }
+                //if there's an attendance object, check it's attendance type
+                else{
+                    attendance = attendanceList[0];
+
+                    //if attendancetype is going, change to maybe, if maybe delete;
+                    if([attendance.attendanceType isEqualToString:@"Going"]){
+                        [topPartyCell.goingButton setTitle:@"Going" forState:UIControlStateNormal];
+                    }
+                    else{
+                        [topPartyCell.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+                    }
+                }
+            }
+            else{
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
+    
     topPartyCell.topParty = party;
     
   return topPartyCell;

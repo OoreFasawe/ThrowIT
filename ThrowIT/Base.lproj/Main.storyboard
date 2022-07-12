@@ -318,6 +318,7 @@
                                             <outlet property="partyDate" destination="j1E-Cp-qut" id="46S-Bp-14b"/>
                                             <outlet property="partyDescription" destination="09U-9n-SqB" id="zYF-Aj-8NN"/>
                                             <outlet property="partyName" destination="Q0v-Gn-8uf" id="GxC-mO-yWl"/>
+                                            <segue destination="d6C-lo-USA" kind="show" identifier="toThrowerDetailsViewController" id="56u-3b-bdV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -357,6 +358,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb7-4k-czD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1712" y="1490"/>
+        </scene>
+        <!--Thrower Details View Controller-->
+        <scene sceneID="tNP-DU-W24">
+            <objects>
+                <viewController id="d6C-lo-USA" customClass="ThrowerDetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gDM-6Z-Yjn">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dki-i3-ath">
+                                <rect key="frame" x="20" y="88" width="202" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="G7t-Bw-Cby"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1Ev-es-eH4"/>
+                    <connections>
+                        <outlet property="partyNameLabel" destination="dki-i3-ath" id="qkA-s5-6R2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFi-d0-T4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2625.700934579439" y="1489.6328293736501"/>
         </scene>
         <!--Create Party View Controller-->
         <scene sceneID="sX6-8T-Tp6">
@@ -416,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klu-93-b2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3596" y="1490"/>
+            <point key="canvasLocation" x="2626" y="2244"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2uV-ps-G7O">
@@ -538,12 +567,25 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-bE-8iA">
-                                                        <rect key="frame" x="8" y="44" width="112" height="76"/>
+                                                        <rect key="frame" x="8" y="44" width="112" height="40"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6D-Aj-72B">
+                                                        <rect key="frame" x="8" y="90" width="105" height="36"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="didTapLike:" destination="SFg-xH-utz" eventType="touchUpInside" id="fei-q1-jYa"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPe-lp-m9r">
                                                         <rect key="frame" x="8" y="15" width="105" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -555,9 +597,10 @@
                                             </collectionViewCellContentView>
                                             <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                             <connections>
+                                                <outlet property="goingButton" destination="K6D-Aj-72B" id="CPk-Eg-W7Z"/>
                                                 <outlet property="partyDescriptionLabel" destination="8qy-bE-8iA" id="OYB-CS-h4T"/>
                                                 <outlet property="partyNameLabel" destination="jPe-lp-m9r" id="gRF-bw-EHv"/>
-                                                <segue destination="Zk2-eP-YQZ" kind="show" id="s2E-pg-iGe"/>
+                                                <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForCollectionCell" id="s2E-pg-iGe"/>
                                             </connections>
                                         </collectionViewCell>
                                     </cells>
@@ -605,16 +648,30 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnq-Oz-Yub">
+                                                    <rect key="frame" x="149" y="71" width="117" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                        <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="iJP-sD-fAv" eventType="touchUpInside" id="Db3-IS-yne"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <connections>
+                                            <outlet property="goingButton" destination="Bnq-Oz-Yub" id="Gmd-8Z-ZI5"/>
                                             <outlet property="partyDescription" destination="fQd-Tk-xLn" id="BHf-8d-Tqf"/>
                                             <outlet property="partyGoingCount" destination="dTE-Ea-tP1" id="njj-0i-aHX"/>
                                             <outlet property="partyName" destination="mlC-3g-wJ6" id="Shu-Gx-DqN"/>
                                             <outlet property="partyRating" destination="Lp1-ip-iWu" id="ULo-ZL-ipk"/>
                                             <outlet property="partyTime" destination="gqu-AZ-BeF" id="fJb-fw-9bo"/>
-                                            <segue destination="Zk2-eP-YQZ" kind="show" id="ww1-hf-2xj"/>
+                                            <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForTableCell" id="ww1-hf-2xj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -651,21 +708,33 @@
             </objects>
             <point key="canvasLocation" x="2763.0841121495328" y="-568.25053995680355"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="M33-1g-7yT">
             <objects>
-                <viewController id="Zk2-eP-YQZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsViewController" id="Zk2-eP-YQZ" customClass="DetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="97U-SE-HRn">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9f-7n-0lL">
+                                <rect key="frame" x="20" y="107" width="221" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ZhC-9l-zFZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="bGk-0K-4hl"/>
+                    <connections>
+                        <outlet property="partyNameLabel" destination="U9f-7n-0lL" id="PwU-0Y-dW0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ux-lS-mZs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3562" y="-565"/>
+            <point key="canvasLocation" x="3560.7476635514017" y="-565.01079913606918"/>
         </scene>
         <!--Parties-->
         <scene sceneID="daK-jZ-Sxb">
@@ -777,7 +846,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ks-dM-qQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2696" y="1490"/>
+            <point key="canvasLocation" x="1712" y="2244"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

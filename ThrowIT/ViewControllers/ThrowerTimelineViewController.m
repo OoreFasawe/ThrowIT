@@ -6,6 +6,7 @@
 //
 
 #import "ThrowerTimelineViewController.h"
+#import "ThrowerDetailsViewController.h"
 #import "CreatePartyViewController.h"
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
@@ -67,6 +68,14 @@
     CreatePartyViewController *createPartyViewController = (CreatePartyViewController*)navigationController.topViewController;
     createPartyViewController.delegate = self;
     }
+    else if([[segue identifier] isEqualToString:@"toThrowerDetailsViewController"]){
+        UITableViewCell *partyCell = sender;
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
+        // Pass the selected object to the new view controller.
+        Party *party = self.throwerPartyList[myIndexPath.row];
+        ThrowerDetailsViewController *throwerDetailsController = [segue destinationViewController];
+        throwerDetailsController.party = party;
+    }
 }
 #pragma mark - Navigation end
  
@@ -75,6 +84,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+     Party *party = self.throwerPartyList[indexPath.row];
+     [party deleteInBackground];
+     [self.throwerPartyList removeObjectAtIndex:indexPath.row];
+   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+ } else {
+     NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
+ }
+}
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:@"ThrowerPartyCell"];
     Party *party = self.throwerPartyList[indexPath.row];

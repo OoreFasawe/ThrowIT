@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyRating;
 @property (strong, nonatomic) IBOutlet UILabel *partyDescription;
 @property (strong, nonatomic) Party *party;
+@property (strong, nonatomic) IBOutlet UIButton *goingButton;
 @end
 
 NS_ASSUME_NONNULL_END
