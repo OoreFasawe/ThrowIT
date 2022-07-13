@@ -36,7 +36,7 @@
                 newParty.name = self.partyNameField.text;
                 newParty.partyDescription = self.partyDescriptionField.text;
 
-                newParty.numberAttending= @(0);
+                newParty.numberAttending= 0;
                 newParty.partyThrower = [PFUser currentUser];
                 [self.delegate didCreateParty:newParty];
             }
