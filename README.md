@@ -65,3 +65,32 @@ Throw It is an app that let’s users not only find, but also throw parties/even
      * DetailsViewController from cells
    * Profile View Controller
      * Settings View Controller
+
+## 4. Data Models
+ * Party
+    * NSString *partyID;
+    * NSString *name;
+    * NSString *partyDescription;
+    * NSDate *startTime;
+    * NSDate *endTime;
+    * NSString *school;
+    * PFUser *partyThrower;
+    * int numberAttending;
+    * BOOL isGoing;
+    * BOOL maybe;
+    * PFFileObject *backgroundImage;
+    * BOOL isPublic;
+    * int rating;
+
+ * Thrower
+    * NSString *throwerName;
+    * NSString *school;
+    * double throwerRating;
+    * BOOL verified;
+    * PFUser *thrower;
+	
+ * Attendance
+    * Party *party;
+    * PFUser *user;
+    * NSString *attendanceType;
+
