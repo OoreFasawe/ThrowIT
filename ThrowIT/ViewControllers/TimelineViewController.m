@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
 @property (nonatomic, strong) NSMutableArray *partyList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic)int goingListCount;
 
 @end
 
@@ -32,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self fetchThrowerParties];
+    [self fetchParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height)],
@@ -46,7 +47,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
 }
@@ -86,7 +87,7 @@
 }
 
 
--(void)fetchThrowerParties{
+-(void)fetchParties{
     PFQuery *query = [PFQuery queryWithClassName:@"Party"];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
@@ -113,8 +114,7 @@
     
     
     partyCell.partyName.text = party.name;
-    partyCell.partyTime.text = party.partyDescription;
-    partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%@", party.numberAttending];
+//    partyCell.partyTime.text = party.partyDescription;
     partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription;
 
@@ -125,7 +125,7 @@
     [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
         if (!error){
             Attendance *attendance;
-            //if there's not attendance object, create one
+            //if there's not an attendance object, create one
             if(!attendanceList.count){
                 [partyCell.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
             }
@@ -133,7 +133,7 @@
             else{
                 attendance = attendanceList[0];
                 
-                //if attendancetype is going, change to maybe, if maybe delete;
+                //if attendancetype is going, change to maybe, if type is maybe, delete;
                 if([attendance.attendanceType isEqualToString:@"Going"]){
                     [partyCell.goingButton setTitle:@"Going" forState:UIControlStateNormal];
                 }
@@ -146,10 +146,25 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
-    partyCell.party = party;
+    [self partyGoingCountQuery:party withPartyCell:partyCell];
     
     return partyCell;
+}
+
+-(void)partyGoingCountQuery:(Party *) party withPartyCell: (PartyCell *) partyCell{
+    PFQuery *partyQuery = [PFQuery queryWithClassName:(@"Attendance")];
+    
+    [partyQuery whereKey:@"party" equalTo:party];
+    [partyQuery whereKey:@"attendanceType" equalTo:@"Going"];
+    
+    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
+        self.goingListCount = (int)partyGoingList.count;
+        party.numberAttending = self.goingListCount;
+        [party saveInBackground];
+        partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%d", party.numberAttending];
+        
+        partyCell.party = party;
+    }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

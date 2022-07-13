@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, strong) NSString *school;
 @property (nonatomic, strong) PFUser *partyThrower;
-@property (nonatomic, strong) NSNumber *numberAttending;
+@property (nonatomic) int numberAttending;
 @property (nonatomic) BOOL isGoing;
 @property (nonatomic) BOOL maybe;
 @property (nonatomic, strong) PFFileObject *backgroundImage;

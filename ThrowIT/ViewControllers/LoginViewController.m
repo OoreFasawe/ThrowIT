@@ -45,7 +45,7 @@
                 else{
                     //if thrower is verified
                     PFQuery *query = [PFQuery queryWithClassName:@"Thrower"];
-                    [query whereKey:@"throwerName" equalTo:self.usernameField.text];
+                    [query whereKey:@"thrower" equalTo:user];
                     [query whereKey:@"verified" equalTo:@YES];
 
                     [query findObjectsInBackgroundWithBlock:^(NSArray  *throwersList, NSError *error) {
