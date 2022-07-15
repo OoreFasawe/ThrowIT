@@ -34,6 +34,7 @@
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
 		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
+		899D92602881EA5E007BCC72 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 899D925F2881EA5E007BCC72 /* Keys.plist */; };
 		89B074BA28800CB30016EDC6 /* PartyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B074B828800CB30016EDC6 /* PartyMapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		899D925A28813A8C007BCC72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		899D925C28813B11007BCC72 /* OpenMapDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenMapDirections.h; sourceTree = "<group>"; };
 		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
+		899D925F2881EA5E007BCC72 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		89B074B828800CB30016EDC6 /* PartyMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyMapViewController.m; sourceTree = "<group>"; };
 		89B074B928800CB30016EDC6 /* PartyMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyMapViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +176,7 @@
 				891EF8B7286E519000F5947E /* LaunchScreen.storyboard */,
 				891EF8BA286E519000F5947E /* Info.plist */,
 				891EF8BB286E519000F5947E /* main.m */,
+				899D925F2881EA5E007BCC72 /* Keys.plist */,
 			);
 			path = ThrowIT;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899D92602881EA5E007BCC72 /* Keys.plist in Resources */,
 				891EF8B9286E519000F5947E /* LaunchScreen.storyboard in Resources */,
 				891EF8B6286E519000F5947E /* Assets.xcassets in Resources */,
 				891EF8B4286E519000F5947E /* Main.storyboard in Resources */,
