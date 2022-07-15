@@ -5,6 +5,7 @@
 //  Created by Oore Fasawe on 7/5/22.
 //
 
+#import "Utility.h"
 #import "TimelineViewController.h"
 #import "DetailsViewController.h"
 #import "SceneDelegate.h"
@@ -57,8 +58,8 @@
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier: LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
         }
     }];
@@ -68,7 +69,7 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"toDetailsViewControllerForCollectionCell"]){
+    if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORCOLLECTIONCELL]){
         UICollectionViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.collectionView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
@@ -76,7 +77,7 @@
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
-    else if([[segue identifier] isEqualToString:@"toDetailsViewControllerForTableCell"]){
+    else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
@@ -88,9 +89,9 @@
 
 
 -(void)fetchParties{
-    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 20;
+    PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
+    [query orderByDescending:CREATEDAT];
+    query.limit = QUERYLIMIT;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
@@ -108,37 +109,36 @@
 
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:@"PartyCell"];
+    PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
     
     Party *party = self.partyList[indexPath.row + 3];
     
     
     partyCell.partyName.text = party.name;
-//    partyCell.partyTime.text = party.partyDescription;
     partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription;
 
     
-    PFQuery *goingQuery = [PFQuery queryWithClassName:@"Attendance"];
-    [goingQuery whereKey:@"party" equalTo:party];
-    [goingQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+    PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
+    [goingQuery whereKey:PARTYKEY equalTo:party];
+    [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
     [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
         if (!error){
             Attendance *attendance;
             //if there's not an attendance object, create one
             if(!attendanceList.count){
-                [partyCell.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
+                [partyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
             }
             //if there's an attendance object, check it's attendance type
             else{
                 attendance = attendanceList[0];
                 
                 //if attendancetype is going, change to maybe, if type is maybe, delete;
-                if([attendance.attendanceType isEqualToString:@"Going"]){
-                    [partyCell.goingButton setTitle:@"Going" forState:UIControlStateNormal];
+                if([attendance.attendanceType isEqualToString:GOING]){
+                    [partyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
                 }
                 else{
-                    [partyCell.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+                    [partyCell.goingButton setTitle:MAYBE forState:UIControlStateNormal];
                 }
             }
         }
@@ -152,13 +152,12 @@
 }
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (PartyCell *) partyCell{
-    PFQuery *partyQuery = [PFQuery queryWithClassName:(@"Attendance")];
+    PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
     
-    [partyQuery whereKey:@"party" equalTo:party];
-    [partyQuery whereKey:@"attendanceType" equalTo:@"Going"];
+    [partyQuery whereKey:PARTYKEY equalTo:party];
+    [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
     
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
-        //self.goingListCount = (int)partyGoingList.count;
         party.numberAttending = (int)partyGoingList.count;
         [party saveInBackground];
         partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%d", party.numberAttending];
@@ -183,33 +182,33 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   TopPartyCell *topPartyCell =
-    [self.collectionView dequeueReusableCellWithReuseIdentifier:@"TopPartyCell" forIndexPath:indexPath];
+    [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     Party *party = self.partyList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
     
     if(party){
-        PFQuery *goingQuery = [PFQuery queryWithClassName:@"Attendance"];
-        [goingQuery whereKey:@"party" equalTo:party];
-        [goingQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+        PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
+        [goingQuery whereKey:PARTYKEY equalTo:party];
+        [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
         [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
             if (!error){
                 Attendance *attendance;
                 //if there's not attendance object, create one
                 if(!attendanceList.count){
-                    [topPartyCell.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
+                    [topPartyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
                 }
                 //if there's an attendance object, check it's attendance type
                 else{
                     attendance = attendanceList[0];
 
                     //if attendancetype is going, change to maybe, if maybe delete;
-                    if([attendance.attendanceType isEqualToString:@"Going"]){
-                        [topPartyCell.goingButton setTitle:@"Going" forState:UIControlStateNormal];
+                    if([attendance.attendanceType isEqualToString:GOING]){
+                        [topPartyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
                     }
                     else{
-                        [topPartyCell.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+                        [topPartyCell.goingButton setTitle:MAYBE forState:UIControlStateNormal];
                     }
                 }
             }
@@ -233,10 +232,7 @@
 
 -(void)setUpcollectionViewWithCHTCollectionViewWaterfallLayout{
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
-
-//        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-//        layout.headerHeight = 15;
-//        layout.footerHeight = 10;
+    
     layout.minimumColumnSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     layout.columnCount = 2;

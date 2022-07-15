@@ -6,6 +6,7 @@
 //
 
 #import "Party.h"
+#import "Utility.h"
 
 @implementation Party
 
@@ -25,7 +26,7 @@
 
 
 + (nonnull NSString *)parseClassName {
-    return @"Party";
+    return PARTYCLASS;
 }
 
 + (void) postNewParty:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion {

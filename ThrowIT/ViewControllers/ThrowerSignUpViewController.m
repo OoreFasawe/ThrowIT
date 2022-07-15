@@ -8,6 +8,7 @@
 #import "ThrowerSignUpViewController.h"
 #import <Parse/Parse.h>
 #import "Thrower.h"
+#import "Utility.h"
 
 @interface ThrowerSignUpViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *throwerNameField;
@@ -25,8 +26,8 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)goToLogin:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
     self.view.window.rootViewController = loginViewController;
 }
 - (IBAction)registerThrower:(id)sender {
@@ -39,7 +40,7 @@
     newUser.username = self.throwerNameField.text;
     newUser.password = self.throwerPasswordField.text;
     newUser.email = self.throwerEmailField.text;
-    newUser[@"isThrower"] = @YES;
+    newUser[USERISTHROWERKEY] = @YES;
         
     Thrower *partyThrower = [Thrower new];
     partyThrower.throwerName = self.throwerNameField.text;
@@ -57,7 +58,7 @@
                 }
                 else{
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"ThrowerWaitScreenNavigationController"];
+                    UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERWAITSCREENNAVIGATIONCONTROLLER];
                     self.view.window.rootViewController
                     = throwerWaitScreenNavigationController;
                 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>google_Maps_API_Key</key>
+	<string>AIzaSyD7hKoIbEncEISSrBMPQtgnsnFddzr8DHk</string>
+	<key>parse_Client_Key</key>
+	<string>XvtUXs4zeIV1NDySBUjXNBbdDTS4ZUQMxpePcqOO</string>
+	<key>parse_ApplicationId</key>
+	<string>OxfGkkqPRPlUtOAc4zKLIoNITxCmTKGCdaL3Tqtp</string>
+</dict>
+</plist>
