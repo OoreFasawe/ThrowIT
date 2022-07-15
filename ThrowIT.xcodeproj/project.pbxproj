@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */; };
+		890F5C9428822948006E549B /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 890F5C9328822948006E549B /* Keys.plist */; };
 		891EF8AB286E519000F5947E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AA286E519000F5947E /* AppDelegate.m */; };
 		891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AD286E519000F5947E /* SceneDelegate.m */; };
 		891EF8B4286E519000F5947E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891EF8B2286E519000F5947E /* Main.storyboard */; };
@@ -34,7 +35,6 @@
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
 		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
-		899D92602881EA5E007BCC72 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 899D925F2881EA5E007BCC72 /* Keys.plist */; };
 		89B074BA28800CB30016EDC6 /* PartyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B074B828800CB30016EDC6 /* PartyMapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +59,7 @@
 		15E14E2E88E61ABD435331DC /* Pods-ThrowIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT.debug.xcconfig"; path = "Target Support Files/Pods-ThrowIT/Pods-ThrowIT.debug.xcconfig"; sourceTree = "<group>"; };
 		23E04F0427BF60B7F4EB2C7A /* Pods-ThrowIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT/Pods-ThrowIT.release.xcconfig"; sourceTree = "<group>"; };
 		887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		890F5C9328822948006E549B /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		891EF8A6286E519000F5947E /* ThrowIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThrowIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		891EF8A9286E519000F5947E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		891EF8AA286E519000F5947E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		899D925A28813A8C007BCC72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		899D925C28813B11007BCC72 /* OpenMapDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenMapDirections.h; sourceTree = "<group>"; };
 		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
-		899D925F2881EA5E007BCC72 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		89B074B828800CB30016EDC6 /* PartyMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyMapViewController.m; sourceTree = "<group>"; };
 		89B074B928800CB30016EDC6 /* PartyMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyMapViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,7 +176,7 @@
 				891EF8B7286E519000F5947E /* LaunchScreen.storyboard */,
 				891EF8BA286E519000F5947E /* Info.plist */,
 				891EF8BB286E519000F5947E /* main.m */,
-				899D925F2881EA5E007BCC72 /* Keys.plist */,
+				890F5C9328822948006E549B /* Keys.plist */,
 			);
 			path = ThrowIT;
 			sourceTree = "<group>";
@@ -377,7 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				899D92602881EA5E007BCC72 /* Keys.plist in Resources */,
+				890F5C9428822948006E549B /* Keys.plist in Resources */,
 				891EF8B9286E519000F5947E /* LaunchScreen.storyboard in Resources */,
 				891EF8B6286E519000F5947E /* Assets.xcassets in Resources */,
 				891EF8B4286E519000F5947E /* Main.storyboard in Resources */,
