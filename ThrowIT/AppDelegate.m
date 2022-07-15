@@ -21,14 +21,14 @@
     // Override point for customization after application launch.
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
-            configuration.applicationId = @"OxfGkkqPRPlUtOAc4zKLIoNITxCmTKGCdaL3Tqtp";
-            configuration.clientKey = @"XvtUXs4zeIV1NDySBUjXNBbdDTS4ZUQMxpePcqOO";
+            configuration.applicationId = @"";
+            configuration.clientKey = @"";
             configuration.server = @"https://parseapi.back4app.com";
         }];
 
     [Parse initializeWithConfiguration:config];
-    [GMSServices provideAPIKey:@"AIzaSyD7hKoIbEncEISSrBMPQtgnsnFddzr8DHk"];
-    [GMSPlacesClient provideAPIKey:@"AIzaSyD7hKoIbEncEISSrBMPQtgnsnFddzr8DHk"];
+    [GMSServices provideAPIKey:@""];
+    [GMSPlacesClient provideAPIKey:@""];
         return YES;
 }
 
