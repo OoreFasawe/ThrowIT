@@ -122,12 +122,12 @@
     [partyQuery whereKey:@"attendanceType" equalTo:@"Going"];
     
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
-        self.goingListCount = (int)partyGoingList.count;
-        party.numberAttending = self.goingListCount;
-        [party saveInBackground];
+        party.numberAttending = (int)partyGoingList.count;
+        
         throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%d", party.numberAttending];
         
         throwerPartyCell.party = party;
+        [party saveInBackground];
     }];
 }
 

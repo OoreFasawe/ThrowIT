@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EE94F641092256749B80E6F /* Pods_ThrowITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E3BBE3ED6DF4C50E02AB9B /* Pods_ThrowITTests.framework */; };
 		4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */; };
-		5DB6EE0B1210C3CA5DD8385F /* Pods_ThrowIT_ThrowITUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB1B3952B57CF4942AAFBB1 /* Pods_ThrowIT_ThrowITUITests.framework */; };
 		891EF8AB286E519000F5947E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AA286E519000F5947E /* AppDelegate.m */; };
 		891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AD286E519000F5947E /* SceneDelegate.m */; };
 		891EF8B4286E519000F5947E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891EF8B2286E519000F5947E /* Main.storyboard */; };
@@ -34,6 +32,9 @@
 		89824512287DE2EA00744255 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89824511287DE2EA00744255 /* DetailsViewController.m */; };
 		89824517287DE8E100744255 /* ThrowerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89824516287DE8E100744255 /* ThrowerDetailsViewController.m */; };
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
+		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
+		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
+		89B074BA28800CB30016EDC6 /* PartyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B074B828800CB30016EDC6 /* PartyMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +57,6 @@
 /* Begin PBXFileReference section */
 		15E14E2E88E61ABD435331DC /* Pods-ThrowIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT.debug.xcconfig"; path = "Target Support Files/Pods-ThrowIT/Pods-ThrowIT.debug.xcconfig"; sourceTree = "<group>"; };
 		23E04F0427BF60B7F4EB2C7A /* Pods-ThrowIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT/Pods-ThrowIT.release.xcconfig"; sourceTree = "<group>"; };
-		3FB1B3952B57CF4942AAFBB1 /* Pods_ThrowIT_ThrowITUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowIT_ThrowITUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		584BACFC47ABA239F40F88A7 /* Pods-ThrowITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowITTests.release.xcconfig"; path = "Target Support Files/Pods-ThrowITTests/Pods-ThrowITTests.release.xcconfig"; sourceTree = "<group>"; };
-		86F8C09D08C43FBC457BA1BB /* Pods-ThrowIT-ThrowITUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT-ThrowITUITests.debug.xcconfig"; path = "Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		891EF8A6286E519000F5947E /* ThrowIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThrowIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		891EF8A9286E519000F5947E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,9 +103,11 @@
 		89824516287DE8E100744255 /* ThrowerDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrowerDetailsViewController.m; sourceTree = "<group>"; };
 		8982451B287DEF7B00744255 /* Attendance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Attendance.h; sourceTree = "<group>"; };
 		8982451C287DEF7B00744255 /* Attendance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Attendance.m; sourceTree = "<group>"; };
-		B0E3BBE3ED6DF4C50E02AB9B /* Pods_ThrowITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBB9BC1CE556041F1B28E2FB /* Pods-ThrowIT-ThrowITUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT-ThrowITUITests.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowITTests.debug.xcconfig"; path = "Target Support Files/Pods-ThrowITTests/Pods-ThrowITTests.debug.xcconfig"; sourceTree = "<group>"; };
+		899D925A28813A8C007BCC72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		899D925C28813B11007BCC72 /* OpenMapDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenMapDirections.h; sourceTree = "<group>"; };
+		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
+		89B074B828800CB30016EDC6 /* PartyMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyMapViewController.m; sourceTree = "<group>"; };
+		89B074B928800CB30016EDC6 /* PartyMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyMapViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */,
 				4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +124,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EE94F641092256749B80E6F /* Pods_ThrowITTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +131,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DB6EE0B1210C3CA5DD8385F /* Pods_ThrowIT_ThrowITUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +165,6 @@
 				891EF8A9286E519000F5947E /* AppDelegate.h */,
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
-				89824510287DE2EA00744255 /* DetailsViewController.h */,
-				89824511287DE2EA00744255 /* DetailsViewController.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
 				89824500287D0F8100744255 /* ViewComponents */,
@@ -202,6 +199,10 @@
 			isa = PBXGroup;
 			children = (
 				89824515287DE8E100744255 /* ThrowerDetailsViewController.h */,
+				89824510287DE2EA00744255 /* DetailsViewController.h */,
+				89824511287DE2EA00744255 /* DetailsViewController.m */,
+				899D925C28813B11007BCC72 /* OpenMapDirections.h */,
+				899D925D28813B11007BCC72 /* OpenMapDirections.m */,
 				89824516287DE8E100744255 /* ThrowerDetailsViewController.m */,
 				89824507287D15F000744255 /* CreatePartyViewController.h */,
 				89824508287D15F000744255 /* CreatePartyViewController.m */,
@@ -217,6 +218,8 @@
 				891EF8E72875530400F5947E /* TimelineViewController.m */,
 				891EF8E3287551DD00F5947E /* SignUpViewController.h */,
 				891EF8E4287551DD00F5947E /* SignUpViewController.m */,
+				89B074B928800CB30016EDC6 /* PartyMapViewController.h */,
+				89B074B828800CB30016EDC6 /* PartyMapViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -250,9 +253,8 @@
 		C27060469BBE3ECD3B7A3DC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				899D925A28813A8C007BCC72 /* MapKit.framework */,
 				887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */,
-				3FB1B3952B57CF4942AAFBB1 /* Pods_ThrowIT_ThrowITUITests.framework */,
-				B0E3BBE3ED6DF4C50E02AB9B /* Pods_ThrowITTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -262,10 +264,6 @@
 			children = (
 				15E14E2E88E61ABD435331DC /* Pods-ThrowIT.debug.xcconfig */,
 				23E04F0427BF60B7F4EB2C7A /* Pods-ThrowIT.release.xcconfig */,
-				86F8C09D08C43FBC457BA1BB /* Pods-ThrowIT-ThrowITUITests.debug.xcconfig */,
-				BBB9BC1CE556041F1B28E2FB /* Pods-ThrowIT-ThrowITUITests.release.xcconfig */,
-				F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */,
-				584BACFC47ABA239F40F88A7 /* Pods-ThrowITTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -282,6 +280,7 @@
 				891EF8A3286E519000F5947E /* Frameworks */,
 				891EF8A4286E519000F5947E /* Resources */,
 				A121F9B45334A4264C9FC980 /* [CP] Embed Pods Frameworks */,
+				8A1EA2BC871B9D538B025794 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,7 +295,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 891EF8D8286E519100F5947E /* Build configuration list for PBXNativeTarget "ThrowITTests" */;
 			buildPhases = (
-				73E91D9CE463F073059D0FFE /* [CP] Check Pods Manifest.lock */,
 				891EF8BD286E519100F5947E /* Sources */,
 				891EF8BE286E519100F5947E /* Frameworks */,
 				891EF8BF286E519100F5947E /* Resources */,
@@ -315,11 +313,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 891EF8DB286E519100F5947E /* Build configuration list for PBXNativeTarget "ThrowITUITests" */;
 			buildPhases = (
-				8130CB7A0C97C35A1B4FC1E4 /* [CP] Check Pods Manifest.lock */,
 				891EF8C7286E519100F5947E /* Sources */,
 				891EF8C8286E519100F5947E /* Frameworks */,
 				891EF8C9286E519100F5947E /* Resources */,
-				B4B9965D434D502922FAF953 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -401,48 +397,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		73E91D9CE463F073059D0FFE /* [CP] Check Pods Manifest.lock */ = {
+		8A1EA2BC871B9D538B025794 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ThrowIT/Pods-ThrowIT-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ThrowITTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-ThrowIT/Pods-ThrowIT-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8130CB7A0C97C35A1B4FC1E4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ThrowIT-ThrowITUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThrowIT/Pods-ThrowIT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A121F9B45334A4264C9FC980 /* [CP] Embed Pods Frameworks */ = {
@@ -460,23 +429,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThrowIT/Pods-ThrowIT-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4B9965D434D502922FAF953 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CCDECA5D6FEBDDFBBF84008A /* [CP] Check Pods Manifest.lock */ = {
@@ -522,6 +474,8 @@
 				898244F9287D084300744255 /* ThrowerTimelineViewController.m in Sources */,
 				891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */,
 				89824517287DE8E100744255 /* ThrowerDetailsViewController.m in Sources */,
+				899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */,
+				89B074BA28800CB30016EDC6 /* PartyMapViewController.m in Sources */,
 				891EF8E82875530400F5947E /* TimelineViewController.m in Sources */,
 				898244E728762FCC00744255 /* PartyCell.m in Sources */,
 				89824509287D15F000744255 /* CreatePartyViewController.m in Sources */,
@@ -617,6 +571,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -675,6 +630,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -749,7 +705,6 @@
 		};
 		891EF8D9286E519100F5947E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -768,7 +723,6 @@
 		};
 		891EF8DA286E519100F5947E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 584BACFC47ABA239F40F88A7 /* Pods-ThrowITTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -787,7 +741,6 @@
 		};
 		891EF8DC286E519100F5947E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86F8C09D08C43FBC457BA1BB /* Pods-ThrowIT-ThrowITUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -804,7 +757,6 @@
 		};
 		891EF8DD286E519100F5947E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBB9BC1CE556041F1B28E2FB /* Pods-ThrowIT-ThrowITUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

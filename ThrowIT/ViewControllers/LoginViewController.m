@@ -64,6 +64,9 @@
                     }];
                 }
             }
+            else{
+                NSLog(@"%@", error.localizedDescription);
+            }
         }];
     }
 }

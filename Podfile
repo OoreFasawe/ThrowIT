@@ -11,14 +11,15 @@ target 'ThrowIT' do
 	pod "Parse"
 	pod "Parse/UI"
 	pod 'CHTCollectionViewWaterfallLayout/ObjC'
+	pod 'GoogleMaps'
+	pod 'GooglePlaces'
+	pod 'MapKit'
+end
 
-  target 'ThrowITTests' do
-    inherit! :search_paths
-    # Pods for testing
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+    end
   end
-
-  target 'ThrowITUITests' do
-    # Pods for testing
-  end
-
 end
