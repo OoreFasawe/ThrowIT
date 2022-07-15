@@ -50,7 +50,7 @@
 }
 
 -(void)fetchThrowerParties{
-    PFQuery *query = [PFQuery queryWithClassName:PARTY];
+    PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
     query.limit = QUERYLIMIT;
@@ -116,9 +116,9 @@
 }
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (ThrowerPartyCell *) throwerPartyCell{
-    PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCE)];
+    PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
     
-    [partyQuery whereKey:PARTY equalTo:party];
+    [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
     
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
