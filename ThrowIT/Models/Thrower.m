@@ -6,6 +6,7 @@
 //
 
 #import "Thrower.h"
+#import "Utility.h"
 
 @implementation Thrower
 
@@ -16,7 +17,7 @@
 @dynamic thrower;
 
 + (nonnull NSString *)parseClassName {
-    return @"Thrower";
+    return THROWERCLASS;
 }
 
 //+ (void) postNewThrower: (NSString * _Nullable)throwerName withSchool:(NSString * _Nullable)partySchool withUser: (PFUser *)throwerUser withCompletion: (PFBooleanResultBlock  _Nullable)completion {
@@ -55,12 +56,12 @@
 
 + (BOOL)isThowerVerified: (NSString* )throwerUsername{
     __block BOOL isVerified = FALSE;
-    PFQuery *query = [PFQuery queryWithClassName:@"Thrower"];
-    [query whereKey:@"throwerName" equalTo:throwerUsername];
+    PFQuery *query = [PFQuery queryWithClassName:THROWERCLASS];
+    [query whereKey:THROWERNAMEKEY equalTo:throwerUsername];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *throwerList, NSError *error) {
         if(throwerList !=nil){
-            isVerified = throwerList[0][@"verified"];
+            isVerified = throwerList[0][VERIFIEDKEY];
         }
         else{
             NSLog(@"Thrower list is nil");

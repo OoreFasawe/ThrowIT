@@ -25,12 +25,20 @@
     }];
     if([self.goingButton.titleLabel.text isEqualToString:@"Going"]){
         [self.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+        self.party.numberAttending -= 1;
+        [self.party saveInBackground];
+
+        self.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)self.party.numberAttending];
+        
     }
     else if([self.goingButton.titleLabel.text isEqualToString:@"Maybe"]){
         [self.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
     }
     else{
         [self.goingButton setTitle:@"Going" forState:UIControlStateNormal];
+        self.party.numberAttending += 1;
+        [self.party saveInBackground];
+        self.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)self.party.numberAttending];
     }
 }
 

@@ -8,6 +8,7 @@
 #import "ThrowerVerificationViewController.h"
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
+#import "Utility.h"
 
 @interface ThrowerVerificationViewController ()
 
@@ -25,8 +26,8 @@
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
         }
     }];

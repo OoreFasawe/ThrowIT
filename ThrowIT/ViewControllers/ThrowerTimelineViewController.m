@@ -12,10 +12,13 @@
 #import "SceneDelegate.h"
 #import "ThrowerPartyCell.h"
 #import "Party.h"
+#import "Utility.h"
 
 @interface ThrowerTimelineViewController () <UITableViewDelegate, UITableViewDataSource, CreatePartyViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *throwerPartyList;
+@property (strong,nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic) int goingListCount;
 
 @end
 
@@ -27,6 +30,10 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 120;
     [self fetchThrowerParties];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     // Do any additional setup after loading the view.
 }
 - (IBAction)logoutUser:(id)sender {
@@ -35,22 +42,23 @@
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
         }
     }];
 }
 
 -(void)fetchThrowerParties{
-    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-    [query orderByDescending:@"createdAt"];
-    [query whereKey:@"partyThrower" equalTo:[PFUser currentUser]];
-    query.limit = 20;
+    PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
+    [query orderByDescending:CREATEDAT];
+    [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
+    query.limit = QUERYLIMIT;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.throwerPartyList = (NSMutableArray *)partyList;
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         }
         else{
@@ -63,12 +71,12 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"createPartySegue"]){
+    if([[segue identifier] isEqualToString:CREATEPARTYSEGUE]){
     UINavigationController *navigationController = [segue destinationViewController];
     CreatePartyViewController *createPartyViewController = (CreatePartyViewController*)navigationController.topViewController;
     createPartyViewController.delegate = self;
     }
-    else if([[segue identifier] isEqualToString:@"toThrowerDetailsViewController"]){
+    else if([[segue identifier] isEqualToString:THROWERDETAILSVIEWCONTROLLER]){
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
@@ -96,15 +104,31 @@
  }
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:@"ThrowerPartyCell"];
+    ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:THROWERPARTYCELL];
     Party *party = self.throwerPartyList[indexPath.row];
     
     throwerPartyCell.partyName.text = party.name;
-    throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%@", party.numberAttending];
     throwerPartyCell.partyDescription.text = party.partyDescription;
-    throwerPartyCell.party = party;
+    
+    [self partyGoingCountQuery:party withPartyCell:throwerPartyCell];
     
     return throwerPartyCell;
+}
+
+-(void)partyGoingCountQuery:(Party *) party withPartyCell: (ThrowerPartyCell *) throwerPartyCell{
+    PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
+    
+    [partyQuery whereKey:PARTYKEY equalTo:party];
+    [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
+    
+    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
+        self.goingListCount = (int)partyGoingList.count;
+        party.numberAttending = self.goingListCount;
+        [party saveInBackground];
+        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%d", party.numberAttending];
+        
+        throwerPartyCell.party = party;
+    }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
