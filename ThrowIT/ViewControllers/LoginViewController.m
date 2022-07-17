@@ -105,4 +105,7 @@
         }
     }];
 }
+- (IBAction)onTapView:(id)sender {
+    [self.view endEditing:true];
+}
 @end

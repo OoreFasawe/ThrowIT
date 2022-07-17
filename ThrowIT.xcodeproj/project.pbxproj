@@ -35,7 +35,6 @@
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
 		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
-		89B074BA28800CB30016EDC6 /* PartyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B074B828800CB30016EDC6 /* PartyMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,8 +107,6 @@
 		899D925A28813A8C007BCC72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		899D925C28813B11007BCC72 /* OpenMapDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenMapDirections.h; sourceTree = "<group>"; };
 		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
-		89B074B828800CB30016EDC6 /* PartyMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyMapViewController.m; sourceTree = "<group>"; };
-		89B074B928800CB30016EDC6 /* PartyMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyMapViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,8 +218,6 @@
 				891EF8E72875530400F5947E /* TimelineViewController.m */,
 				891EF8E3287551DD00F5947E /* SignUpViewController.h */,
 				891EF8E4287551DD00F5947E /* SignUpViewController.m */,
-				89B074B928800CB30016EDC6 /* PartyMapViewController.h */,
-				89B074B828800CB30016EDC6 /* PartyMapViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -479,7 +474,6 @@
 				891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */,
 				89824517287DE8E100744255 /* ThrowerDetailsViewController.m in Sources */,
 				899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */,
-				89B074BA28800CB30016EDC6 /* PartyMapViewController.m in Sources */,
 				891EF8E82875530400F5947E /* TimelineViewController.m in Sources */,
 				898244E728762FCC00744255 /* PartyCell.m in Sources */,
 				89824509287D15F000744255 /* CreatePartyViewController.m in Sources */,

@@ -17,6 +17,25 @@ PODS:
   - Bolts/Tasks (1.9.1)
   - CHTCollectionViewWaterfallLayout/ObjC (0.9.10)
   - DateTools (2.0.0)
+  - Google-Maps-iOS-Utils (4.1.0):
+    - Google-Maps-iOS-Utils/Clustering (= 4.1.0)
+    - Google-Maps-iOS-Utils/Geometry (= 4.1.0)
+    - Google-Maps-iOS-Utils/GeometryUtils (= 4.1.0)
+    - Google-Maps-iOS-Utils/Heatmap (= 4.1.0)
+    - Google-Maps-iOS-Utils/QuadTree (= 4.1.0)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (4.1.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (4.1.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/GeometryUtils (4.1.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (4.1.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (4.1.0):
+    - GoogleMaps
   - GoogleMaps (7.0.0):
     - GoogleMaps/Maps (= 7.0.0)
   - GoogleMaps/Base (7.0.0)
@@ -34,6 +53,7 @@ DEPENDENCIES:
   - AFNetworking
   - CHTCollectionViewWaterfallLayout/ObjC
   - DateTools
+  - Google-Maps-iOS-Utils
   - GoogleMaps
   - GooglePlaces
   - Parse
@@ -45,6 +65,7 @@ SPEC REPOS:
     - Bolts
     - CHTCollectionViewWaterfallLayout
     - DateTools
+    - Google-Maps-iOS-Utils
     - GoogleMaps
     - GooglePlaces
     - Parse
@@ -54,10 +75,11 @@ SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  Google-Maps-iOS-Utils: 3343332b18dfd5be8f1f44edd7d481ace3da4d9a
   GoogleMaps: 6e9c923ca035989709fcb5771544fda4cc5fa2a4
   GooglePlaces: 8dba710bed6160a2e4b85e84aaafdbcc0b4010d8
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
 
-PODFILE CHECKSUM: ba913a912d810997036289508dcebf4f0cc06a31
+PODFILE CHECKSUM: 4b434e1f617baaeabbc615f3ec16fe4752918b75
 
 COCOAPODS: 1.11.3

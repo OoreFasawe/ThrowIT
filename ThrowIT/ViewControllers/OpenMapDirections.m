@@ -8,16 +8,15 @@
 
 #import "OpenMapDirections.h"
 
-
-
 @implementation OpenMapDirections
 
 +(void)presentWithViewController:(UIViewController *)viewController withSourceView:(UIView *)sourceView withLocationCoordinate:(CLLocationCoordinate2D) location{
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Open Directions" message:@"Choose an app to open directions." preferredStyle:(UIAlertControllerStyleActionSheet)];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Google Maps" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                NSURL *url = [NSURL URLWithString:@"comgooglemaps://?daddr=48.8566,2.3522)&directionsmode=driving&zoom=14&views=traffic"];
-                
+        NSString *urlString = [NSString stringWithFormat:@"comgooglemaps://?daddr=(%lf,%lf)&directionsmode=driving&zoom=14&views=traffic", location.latitude, location.longitude];
+        NSURL *url = [NSURL URLWithString:urlString];
+        
         [[UIApplication sharedApplication] openURL:url];
 
     }]];

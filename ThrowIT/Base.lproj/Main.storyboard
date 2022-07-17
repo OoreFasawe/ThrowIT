@@ -480,22 +480,6 @@
             </objects>
             <point key="canvasLocation" x="2625.700934579439" y="2243.8444924406049"/>
         </scene>
-        <!--Select Address View Controller-->
-        <scene sceneID="5FZ-Ug-Dcu">
-            <objects>
-                <viewController id="5Ie-4X-l2g" customClass="SelectAddressViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zqa-p2-J6G">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="5ZB-fL-xMg"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="WJo-HI-D6d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hRL-vj-CKI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4551.8691588785041" y="2243.8444924406049"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="2uV-ps-G7O">
             <objects>
@@ -580,6 +564,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5zl-YL-dki"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4eD-DJ-xiS" appends="YES" id="Mut-Jg-W1L"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="passwordField" destination="x0h-Dp-ggK" id="nrN-H2-Ds6"/>
@@ -587,6 +575,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDJ-r0-VaQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4eD-DJ-xiS">
+                    <connections>
+                        <action selector="onTapView:" destination="aUh-8j-bzq" id="QN6-dH-Jxv"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-200.46728971962617" y="-568.25053995680355"/>
         </scene>
@@ -800,6 +793,11 @@
                                     <action selector="goToMapDirections:" destination="Zk2-eP-YQZ" eventType="touchUpInside" id="50Z-TW-kWN"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O6P-Uy-1Qg">
+                                <rect key="frame" x="20" y="269" width="388" height="388"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZhC-9l-zFZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -807,6 +805,7 @@
                     <navigationItem key="navigationItem" id="bGk-0K-4hl"/>
                     <connections>
                         <outlet property="partyNameLabel" destination="U9f-7n-0lL" id="PwU-0Y-dW0"/>
+                        <outlet property="viewForMapView" destination="O6P-Uy-1Qg" id="xBE-4P-aWE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ux-lS-mZs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -925,24 +924,6 @@
             </objects>
             <point key="canvasLocation" x="1712" y="2244"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="CiN-uk-wv6">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KWE-Bn-M96" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ALe-Yf-ljI">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5Ie-4X-l2g" kind="relationship" relationship="rootViewController" id="tAt-uJ-N3j"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eUd-wS-Zs6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3651.8691588785045" y="2243.8444924406049"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="s2E-pg-iGe"/>
@@ -956,6 +937,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

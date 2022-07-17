@@ -12,8 +12,8 @@ target 'ThrowIT' do
 	pod "Parse/UI"
 	pod 'CHTCollectionViewWaterfallLayout/ObjC'
 	pod 'GoogleMaps'
+	pod 'Google-Maps-iOS-Utils'
 	pod 'GooglePlaces'
-	pod 'MapKit'
 end
 
 post_install do |installer|
