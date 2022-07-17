@@ -6,6 +6,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "Utility.h"
 #import <Parse/Parse.h>
 
 @interface SignUpViewController ()
@@ -27,33 +28,34 @@
     }
     else{
         PFUser *newUser = [PFUser user];
-        
+    
         newUser.username = self.usernameField.text;
         newUser.password = self.passwordField.text;
         newUser.email = self.emailField.text;
-        
+    
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TimelineTabBarController"];
-                self.view.window.rootViewController
-                = timelineTabBarController;
+            } 
+            else {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+                UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:TIMELINETABBARCONTROLLER];
+                self.view.window.rootViewController = timelineTabBarController;
             }
         }];
     }
 }
+
 - (IBAction)goToLogin:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
     self.view.window.rootViewController
     = loginViewController;
 }
 
 - (IBAction)goToThrowerSignUp:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *throwerSignUpViewController = [storyboard instantiateViewControllerWithIdentifier:@"ThrowerSignUpViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+    UIViewController *throwerSignUpViewController = [storyboard instantiateViewControllerWithIdentifier:THROWERSIGNUPVIEWCONTROLLER];
     self.view.window.rootViewController
     = throwerSignUpViewController;
 }

@@ -14,8 +14,6 @@
             filePath = "ThrowIT/Models/Thrower.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
             landmarkName = "+isThowerVerified:"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +28,6 @@
             filePath = "ThrowIT/Models/Thrower.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
             landmarkName = "+isThowerVerified:"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +42,6 @@
             filePath = "ThrowIT/Models/Thrower.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
             landmarkName = "+isThowerVerified:"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +56,6 @@
             filePath = "ThrowIT/Models/Thrower.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
             landmarkName = "+isThowerVerified:"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +70,6 @@
             filePath = "ThrowIT/Models/Thrower.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
             landmarkName = "+isThowerVerified:"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +84,6 @@
             filePath = "ThrowIT/Models/Thrower.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
             landmarkName = "+isThowerVerified:"
             landmarkType = "7">
          </BreakpointContent>

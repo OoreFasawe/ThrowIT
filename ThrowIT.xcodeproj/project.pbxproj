@@ -35,6 +35,7 @@
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
 		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
+		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,11 @@
 		899D925A28813A8C007BCC72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		899D925C28813B11007BCC72 /* OpenMapDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenMapDirections.h; sourceTree = "<group>"; };
 		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
+		899D92612881EF9D007BCC72 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		899D92622881EF9D007BCC72 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		B0E3BBE3ED6DF4C50E02AB9B /* Pods_ThrowITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBB9BC1CE556041F1B28E2FB /* Pods-ThrowIT-ThrowITUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT-ThrowITUITests.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT-ThrowITUITests/Pods-ThrowIT-ThrowITUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F30873660132596351E1B0BA /* Pods-ThrowITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowITTests.debug.xcconfig"; path = "Target Support Files/Pods-ThrowITTests/Pods-ThrowITTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,8 @@
 				891EF8B2286E519000F5947E /* Main.storyboard */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
+				899D92612881EF9D007BCC72 /* Utility.h */,
+				899D92622881EF9D007BCC72 /* Utility.m */,
 				89824500287D0F8100744255 /* ViewComponents */,
 				891EF8EF28760ECF00F5947E /* Models */,
 				891EF8E2287550C200F5947E /* ViewControllers */,
@@ -467,6 +475,7 @@
 				891EF8EB287554D300F5947E /* LoginViewController.m in Sources */,
 				898244FC287D086E00744255 /* ThrowerVerificationViewController.m in Sources */,
 				891EF8BC286E519000F5947E /* main.m in Sources */,
+				899D92632881EF9D007BCC72 /* Utility.m in Sources */,
 				89824512287DE2EA00744255 /* DetailsViewController.m in Sources */,
 				898244ED28775E6400744255 /* TopPartyCell.m in Sources */,
 				89824503287D104400744255 /* ThrowerPartyCell.m in Sources */,
