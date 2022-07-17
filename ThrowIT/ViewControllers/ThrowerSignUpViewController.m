@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)goToLogin:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -31,7 +30,7 @@
 }
 - (IBAction)registerThrower:(id)sender {
     if([self.throwerNameField.text isEqual:@""] || [self.throwerSchoolField.text isEqual:@""] || [self.throwerEmailField.text isEqual:@""] || [self.throwerPasswordField.text isEqual:@""]){
-        //[self showAlert];
+        //TODO: [self showAlert];
     }
     else{
     PFUser *newUser = [PFUser user];
@@ -49,8 +48,8 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            
+        }
+        else {
             [Thrower postNewThrower:partyThrower withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                 if (error != nil) {
                             NSLog(@"Error: %@", error.localizedDescription);
@@ -58,22 +57,11 @@
                 else{
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"ThrowerWaitScreenNavigationController"];
-                    self.view.window.rootViewController
-                    = throwerWaitScreenNavigationController;
-                }
-            }];
-        }
-    }];
+                    self.view.window.rootViewController = throwerWaitScreenNavigationController;
+                    }
+                }];
+            }
+        }];
+    }
 }
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

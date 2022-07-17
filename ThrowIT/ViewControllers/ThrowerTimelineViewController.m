@@ -92,15 +92,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
-     Party *party = self.throwerPartyList[indexPath.row];
-     [party deleteInBackground];
-     [self.throwerPartyList removeObjectAtIndex:indexPath.row];
-   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
- } else {
-     NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
- }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    Party *party = self.throwerPartyList[indexPath.row];
+    [party deleteInBackground];
+    [self.throwerPartyList removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else{
+        NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
+    }
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:@"ThrowerPartyCell"];
