@@ -28,11 +28,9 @@
     self.mapView = [GMSMapView mapWithFrame:self.viewForMapView.frame camera:camera];
     self.mapView.myLocationEnabled = YES;
     [self.view addSubview:self.mapView];
-    
     self.mapView.layer.cornerRadius = 20;
     self.mapView.layer.borderWidth = 0.05;
     self.viewForMapView.hidden = YES;
-    
     self.mapView.delegate = self;
     CLLocationCoordinate2D mapCenter = CLLocationCoordinate2DMake(self.mapView.camera.target.latitude, self.mapView.camera.target.longitude);
     GMSMarker *marker = [GMSMarker markerWithPosition:mapCenter];

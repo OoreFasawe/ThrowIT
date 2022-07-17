@@ -30,7 +30,6 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 120;
     [self fetchThrowerParties];
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -124,11 +123,11 @@
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
         
-        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%d", party.numberAttending];
+        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
         
         throwerPartyCell.party = party;
         [party saveInBackground];
-    }];
+    }]; 
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
