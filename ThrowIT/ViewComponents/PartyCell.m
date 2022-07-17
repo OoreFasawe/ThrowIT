@@ -7,7 +7,6 @@
 
 #import "PartyCell.h"
 #import "Attendance.h"
-#import "Utility.h"
 
 @implementation PartyCell
 
