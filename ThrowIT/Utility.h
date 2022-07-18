@@ -56,6 +56,9 @@
 
 #pragma mark - Query limits
 #define QUERYLIMIT 20
+#define YESKEYWORD @YES
+#define ZERO @0
+
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -18,26 +18,26 @@
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
-        if([user[@"isThrower"] isEqual:@0]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TimelineTabBarController"];
+        if([user[USERISTHROWERKEY] isEqual:ZERO]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+        UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:TIMELINETABBARCONTROLLER];
         self.window.rootViewController = timelineTabBarController;
         }
         //if login is from thrower
         else{
             //if thrower is verified
-            PFQuery *query = [PFQuery queryWithClassName:@"Thrower"];
-            [query whereKey:@"throwerName" equalTo:user.username];
-            [query whereKey:@"verified" equalTo:@YES];
+            PFQuery *query = [PFQuery queryWithClassName:THROWERCLASS];
+            [query whereKey:THROWERNAMEKEY equalTo:user.username];
+            [query whereKey:VERIFIEDKEY equalTo:YESKEYWORD];
             [query findObjectsInBackgroundWithBlock:^(NSArray  *throwersList, NSError *error) {
                 if (throwersList.count){
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UINavigationController *throwerTimelineNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"ThrowerTimelineNavigationController"];
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+                    UINavigationController *throwerTimelineNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERTIMELINENAVIGATIONVIEWCONTROLLER];
                     self.window.rootViewController = throwerTimelineNavigationController;
                 }
                 else{
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"ThrowerWaitScreenNavigationController"];
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+                    UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERWAITSCREENNAVIGATIONCONTROLLER];
                     self.window.rootViewController = throwerWaitScreenNavigationController;
                 }
 
