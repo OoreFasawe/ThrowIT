@@ -52,8 +52,8 @@
 #define PARTYTHROWERKEY @"partyThrower"
 
 #define ATTENDANCETYPEKEY @"attendanceType"
-#define NOTGOING @"Not going"
-#define GOING @"Going"
+#define NOTGOING @"Pass"
+#define GOING @"Crash"
 #define MAYBE @"Maybe"
 
 #define CREATEDAT @"createdAt"

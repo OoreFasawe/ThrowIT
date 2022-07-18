@@ -5,6 +5,7 @@
 //  Created by Oore Fasawe on 7/5/22.
 //
 
+#import "Foundation/Foundation.h"
 #import <UIKit/UIKit.h>
 #import "CHTCollectionViewWaterfallLayout.h"
 

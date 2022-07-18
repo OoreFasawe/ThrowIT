@@ -49,6 +49,7 @@
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
 }
@@ -90,6 +91,7 @@
 -(void)fetchParties{
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
+    [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
@@ -109,15 +111,11 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    
     Party *party = self.partyList[indexPath.row + 3];
-    
-    partyCell.layer.cornerRadius = 10;
-    partyCell.layer.borderWidth= 0.05;
     partyCell.partyName.text = party.name;
     partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription;
-
+    partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
     
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
@@ -184,7 +182,8 @@
   TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
-    topPartyCell.layer.borderWidth= 0.05;
+    topPartyCell.layer.borderWidth=2;
+    topPartyCell.layer.borderColor= [[UIColor blackColor] CGColor];
     Party *party = self.partyList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;

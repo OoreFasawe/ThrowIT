@@ -34,6 +34,7 @@
 		89824517287DE8E100744255 /* ThrowerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89824516287DE8E100744255 /* ThrowerDetailsViewController.m */; };
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
 		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
+		89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E90EBD288555B50031223F /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		8982451C287DEF7B00744255 /* Attendance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Attendance.m; sourceTree = "<group>"; };
 		899D92612881EF9D007BCC72 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		899D92622881EF9D007BCC72 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		89E90EBD288555B50031223F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */,
+				89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +253,7 @@
 		C27060469BBE3ECD3B7A3DC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89E90EBD288555B50031223F /* AudioToolbox.framework */,
 				887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */,
 			);
 			name = Frameworks;

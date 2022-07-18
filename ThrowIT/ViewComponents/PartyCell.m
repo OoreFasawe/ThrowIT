@@ -23,7 +23,9 @@
 - (IBAction)didTapLike:(id)sender {
     [Attendance setAvailability:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];
-    if([self.goingButton.titleLabel.text isEqualToString:@"Going"]){
+    
+    AudioServicesPlaySystemSound (4095);
+    if([self.goingButton.titleLabel.text isEqualToString:@"Crash"]){
         [self.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
         self.party.numberAttending -= 1;
         [self.party saveInBackground];
@@ -32,10 +34,10 @@
         
     }
     else if([self.goingButton.titleLabel.text isEqualToString:@"Maybe"]){
-        [self.goingButton setTitle:@"Not going" forState:UIControlStateNormal];
+        [self.goingButton setTitle:@"Pass" forState:UIControlStateNormal];
     }
     else{
-        [self.goingButton setTitle:@"Going" forState:UIControlStateNormal];
+        [self.goingButton setTitle:@"Crash" forState:UIControlStateNormal];
         self.party.numberAttending += 1;
         [self.party saveInBackground];
         self.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)self.party.numberAttending];
