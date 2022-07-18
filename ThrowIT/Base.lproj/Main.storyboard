@@ -314,7 +314,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                            <color key="backgroundColor" red="0.94328004121780396" green="0.61785526230153409" blue="0.043115925353073743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="jFF-8Q-Nhr" firstAttribute="top" secondItem="OlK-nw-V0z" secondAttribute="top" id="Amr-27-bzF"/>
                                                 <constraint firstItem="jFF-8Q-Nhr" firstAttribute="leading" secondItem="OlK-nw-V0z" secondAttribute="trailing" constant="8" id="IfA-GM-nt1"/>
@@ -476,17 +476,75 @@
             </objects>
             <point key="canvasLocation" x="2626" y="2244"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="2uV-ps-G7O">
             <objects>
-                <viewController id="yo9-S4-ASC" sceneMemberID="viewController">
+                <viewController id="yo9-S4-ASC" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hil-9w-tHV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fpe-03-yI5" customClass="PFImageView">
+                                <rect key="frame" x="20" y="88" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Frat Storlie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uol-ET-Cad">
+                                <rect key="frame" x="193" y="124" width="215" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Class of '23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3n-Nf-Mr6">
+                                <rect key="frame" x="193" y="153" width="215" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Parties crashed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7N-iO-iGw">
+                                <rect key="frame" x="193" y="182" width="123" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfF-88-0bK">
+                                <rect key="frame" x="324" y="182" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-cs-1Og">
+                                <rect key="frame" x="20" y="284" width="388" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUV-iE-Dtd">
+                                <rect key="frame" x="20" y="270" width="388" height="6"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Am0-AS-1Ka">
+                                <rect key="frame" x="20" y="322" width="388" height="521"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.60060376539521143" green="0.55387603621904191" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="iM5-u1-oJW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="ve8-OC-C9v"/>
+                    <connections>
+                        <outlet property="classLabel" destination="y3n-Nf-Mr6" id="83m-mG-NxV"/>
+                        <outlet property="partiesAttendedLabel" destination="gfF-88-0bK" id="gfg-m1-FLq"/>
+                        <outlet property="profilePicture" destination="Fpe-03-yI5" id="dBF-Ax-dd1"/>
+                        <outlet property="usernameLabel" destination="Uol-ET-Cad" id="EeK-Ve-nCD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="07z-Mk-Oye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -626,12 +684,12 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
+                                                <color key="backgroundColor" red="0.66772900977054606" green="0.40934428168975867" blue="0.84258943799999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstItem="K6D-Aj-72B" firstAttribute="centerX" secondItem="ezw-yu-tls" secondAttribute="centerX" id="1xa-fX-MQ0"/>
                                                     <constraint firstAttribute="bottom" secondItem="K6D-Aj-72B" secondAttribute="bottom" constant="8" id="36U-xZ-AZ4"/>
                                                 </constraints>
                                             </collectionViewCellContentView>
-                                            <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                             <connections>
                                                 <outlet property="goingButton" destination="K6D-Aj-72B" id="CPk-Eg-W7Z"/>
                                                 <outlet property="partyDescriptionLabel" destination="8qy-bE-8iA" id="OYB-CS-h4T"/>
@@ -703,7 +761,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.15963762889999999" green="0.59532756880000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.10309723552597151" green="0.6631731010060391" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="2Qn-Nn-HH0" firstAttribute="bottom" secondItem="dTE-Ea-tP1" secondAttribute="bottom" id="5G4-a1-wU9"/>
                                                 <constraint firstAttribute="bottom" secondItem="dTE-Ea-tP1" secondAttribute="bottom" constant="11" id="A6b-kS-M1E"/>
@@ -907,11 +965,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -32,10 +32,14 @@
 #define PARTYCLASS @"Party"
 #define THROWERCLASS @"Thrower"
 #define ATTENDANCECLASS @"Attendance"
+#define USERCLASS @"_User"
 
 #pragma mark - Parse Keys
 #define USER @"user"
 #define USERISTHROWERKEY @"isThrower"
+#define USERPROFILEPHOTOKEY @"profilePhoto"
+#define USERUSERNAMEKEY @"username"
+#define PARTIESATTENDEDKEY @"partiesAttended"
 
 #define THROWERKEY @"thrower"
 #define VERIFIEDKEY @"verified"
