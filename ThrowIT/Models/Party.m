@@ -23,26 +23,34 @@
 @dynamic backgroundImage;
 @dynamic isPublic;
 @dynamic rating;
+@dynamic partyCoordinateLongitude;
+@dynamic partyCoordinateLatitude;
+@dynamic partyLocationName;
+@dynamic partyLocationAddress;
 
 
 + (nonnull NSString *)parseClassName {
     return PARTYCLASS;
 }
 
-+ (void) postNewParty:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withCompletion: (PFBooleanResultBlock  _Nullable)completion {
 
     
-    Party *newParty = [Party new];
+    Party *newParty = party;
     newParty.name = partyName;
     newParty.partyDescription = partyDescription;
     newParty.startTime=startTime;
     newParty.endTime=endTime;
     newParty.school = school;
-    newParty.numberAttending= @(0);
+    newParty.numberAttending= 0;
     newParty.isGoing=NO;
     newParty.maybe=NO;
     newParty.backgroundImage = [self getPFFileFromImage:backgroundImage];
     newParty.isPublic=NO;
+    newParty.partyLocationName = partyLocationName;
+    newParty.partyLocationAddress = partyLocationAddress;
+    newParty.partyCoordinateLongitude = partyCoordinate.longitude;
+    newParty.partyCoordinateLatitude = partyCoordinate.latitude;
     newParty.partyThrower = [PFUser currentUser];
     newParty.rating = 0;
     

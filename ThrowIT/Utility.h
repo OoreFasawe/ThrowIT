@@ -59,14 +59,18 @@
 
 #define CREATEDAT @"createdAt"
 
-#pragma mark - Array limits
+#pragma mark - Query limits
 #define QUERYLIMIT 20
+#define YESKEYWORD @YES
+#define ZERO @0
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Utility : NSObject
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
+-(void)setAttendanceState:(UIButton *)attendanceButton;
 @end
 
 NS_ASSUME_NONNULL_END

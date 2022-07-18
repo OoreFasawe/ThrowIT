@@ -30,7 +30,6 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 120;
     [self fetchThrowerParties];
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -93,15 +92,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
-     Party *party = self.throwerPartyList[indexPath.row];
-     [party deleteInBackground];
-     [self.throwerPartyList removeObjectAtIndex:indexPath.row];
-   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
- } else {
-     NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
- }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    Party *party = self.throwerPartyList[indexPath.row];
+    [party deleteInBackground];
+    [self.throwerPartyList removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else{
+        NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
+    }
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:THROWERPARTYCELL];
@@ -122,13 +121,13 @@
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
     
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
-        self.goingListCount = (int)partyGoingList.count;
-        party.numberAttending = self.goingListCount;
-        [party saveInBackground];
-        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%d", party.numberAttending];
+        party.numberAttending = (int)partyGoingList.count;
+        
+        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
         
         throwerPartyCell.party = party;
-    }];
+        [party saveInBackground];
+    }]; 
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -28,12 +28,8 @@
 
 @implementation TimelineViewController
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self fetchParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
@@ -44,14 +40,12 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 120;
-    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
 }
 - (IBAction)logoutUser:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -65,9 +59,7 @@
     }];
 }
 
-
 #pragma mark - Navigation
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORCOLLECTIONCELL]){
         UICollectionViewCell *partyCell = sender;
@@ -87,20 +79,18 @@
     }
 }
 
-
 -(void)fetchParties{
+
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
-
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
-            
         }
         else{
             NSLog(@"%@", error.localizedDescription);
@@ -123,6 +113,8 @@
         else
             NSLog(@"%@", error.localizedDescription);
     }];
+    partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
+    partyCell.partyDescription.text= party.partyDescription; 
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
     [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
@@ -136,7 +128,6 @@
             //if there's an attendance object, check it's attendance type
             else{
                 attendance = attendanceList[0];
-                
                 //if attendancetype is going, change to maybe, if type is maybe, delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     [partyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
@@ -151,21 +142,17 @@
         }
     }];
     [self partyGoingCountQuery:party withPartyCell:partyCell];
-    
     return partyCell;
 }
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (PartyCell *) partyCell{
     PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
-    
     [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-    
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
         [party saveInBackground];
         partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
-        
         partyCell.party = party;
     }];
 }
@@ -178,14 +165,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
   return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  TopPartyCell *topPartyCell =
+    TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
     Party *party = self.partyList[indexPath.item];
@@ -230,10 +216,8 @@
             }];
         }];
     }
-    
     topPartyCell.topParty = party;
-    
-  return topPartyCell;
+    return topPartyCell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -245,13 +229,12 @@
 
 -(void)setUpcollectionViewWithCHTCollectionViewWaterfallLayout{
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
-    
     layout.minimumColumnSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     layout.columnCount = 2;
-
     self.collectionView.collectionViewLayout = layout;
 }
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.topPartyCellSizes[indexPath.item] CGSizeValue];
 }

@@ -22,15 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)loginUser:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
     if([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]){
-       // [self showAlert];
-        
+       // TODO: [self showAlert];
     }
     else{
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
@@ -61,15 +59,15 @@
                             self.view.window.rootViewController
                             = throwerWaitScreenNavigationController;
                         }
-                        
                     }];
                 }
+            }
+            else{
+                NSLog(@"%@", error.localizedDescription);
             }
         }];
     }
 }
-    
-    
     
 - (IBAction)goToSignUp:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
@@ -79,15 +77,6 @@
     = signUpViewController;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 -(void)checkVerified{
     PFQuery *query = [PFQuery queryWithClassName:THROWERCLASS];
     [query whereKey:THROWERNAMEKEY equalTo:self.usernameField.text];
@@ -95,12 +84,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *throwerList, NSError *error) {
         if(throwerList !=nil){
             self.throwersList = throwerList;
-            NSLog(@"%@", throwerList[0][VERIFIEDKEY]);
         }
         else{
             NSLog(@"Thrower list is nil");
             self.throwersList = nil;
         }
     }];
+}
+- (IBAction)onTapView:(id)sender {
+    [self.view endEditing:true];
 }
 @end

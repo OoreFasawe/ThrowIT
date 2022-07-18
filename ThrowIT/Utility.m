@@ -8,7 +8,6 @@
 #import "Utility.h"
 
 @implementation Utility
-
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType{
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = viewController;
@@ -25,6 +24,15 @@
         return nil;
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
-
-
+-(void)setAttendanceState:(UIButton *)attendanceButton{
+    if([attendanceButton.titleLabel.text isEqualToString:GOING]){
+        [attendanceButton setTitle:MAYBE forState:UIControlStateNormal];
+    }
+    else if([attendanceButton.titleLabel.text isEqualToString:MAYBE]){
+        [attendanceButton setTitle:NOTGOING forState:UIControlStateNormal];
+    }
+    else{
+        [attendanceButton setTitle:GOING forState:UIControlStateNormal];
+    }
+}
 @end
