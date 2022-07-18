@@ -35,6 +35,7 @@
     }
     else if([self.goingButton.titleLabel.text isEqualToString:@"Maybe"]){
         [self.goingButton setTitle:@"Pass" forState:UIControlStateNormal];
+        
     }
     else{
         [self.goingButton setTitle:@"Crash" forState:UIControlStateNormal];
