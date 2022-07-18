@@ -6,6 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIKit/UIKit.h"
+#import "Parse/Parse.h"
+
 #pragma mark - Storyboard
 #define MAIN @"Main"
 
@@ -61,7 +64,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Utility : NSObject
-
++(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType;
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 @end
 
 NS_ASSUME_NONNULL_END
