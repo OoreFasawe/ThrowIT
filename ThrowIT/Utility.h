@@ -6,6 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+
 #pragma mark - Storyboard
 #define MAIN @"Main"
 
@@ -51,13 +54,16 @@
 
 #define CREATEDAT @"createdAt"
 
-#pragma mark - Array limits
+#pragma mark - Query limits
 #define QUERYLIMIT 20
+#define YESKEYWORD @YES
+#define ZERO @0
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Utility : NSObject
-
+-(void)setAttendanceState:(UIButton *)attendanceButton;
 @end
 
 NS_ASSUME_NONNULL_END

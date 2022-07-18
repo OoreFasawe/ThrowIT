@@ -17,8 +17,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 - (IBAction)didTapLike:(id)sender {
     [Attendance setAvailability:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
