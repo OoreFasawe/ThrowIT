@@ -44,6 +44,7 @@
     newParty.backgroundImage = [self getPFFileFromImage:backgroundImage];
     newParty.isPublic=NO;
     newParty.partyThrower = [PFUser currentUser];
+    newParty.rating = 0;
     
     [newParty saveInBackgroundWithBlock: completion];
 

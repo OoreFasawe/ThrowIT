@@ -16,12 +16,18 @@
     AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     if([self.goingButton.titleLabel.text isEqualToString:@"Crash"]){
         [self.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+        self.topParty.numberAttending -= 1;
+        [self.topParty saveInBackground];
+        self.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)self.topParty.numberAttending];
     }
     else if([self.goingButton.titleLabel.text isEqualToString:@"Maybe"]){
         [self.goingButton setTitle:@"Pass" forState:UIControlStateNormal];
     }
     else{
         [self.goingButton setTitle:@"Crash" forState:UIControlStateNormal];
+        self.topParty.numberAttending += 1;
+        [self.topParty saveInBackground];
+        self.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)self.topParty.numberAttending];
     }
 }
 

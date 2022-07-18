@@ -24,7 +24,7 @@
     [Attendance setAvailability:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];
     
-    AudioServicesPlaySystemSound (4095);
+    AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     if([self.goingButton.titleLabel.text isEqualToString:@"Crash"]){
         [self.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
         self.party.numberAttending -= 1;

@@ -47,6 +47,7 @@
 #define THROWERKEY @"thrower"
 #define VERIFIEDKEY @"verified"
 #define THROWERNAMEKEY @"throwerName"
+#define THROWERRATING @"throwerRating"
 
 #define PARTYKEY @"party"
 #define PARTYTHROWERKEY @"partyThrower"

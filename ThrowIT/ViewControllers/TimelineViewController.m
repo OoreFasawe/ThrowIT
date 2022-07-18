@@ -113,10 +113,16 @@
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
     Party *party = self.partyList[indexPath.row + 3];
     partyCell.partyName.text = party.name;
-    partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
-    
+    PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+    [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+        if(!error)
+            partyCell.partyRating.text = [NSString stringWithFormat:@". Usually %@ / 5", thrower[THROWERRATING]];
+        else
+            NSLog(@"%@", error.localizedDescription);
+    }];
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
     [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
@@ -158,7 +164,7 @@
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
         [party saveInBackground];
-        partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%d", party.numberAttending];
+        partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
         
         partyCell.party = party;
     }];
@@ -182,8 +188,6 @@
   TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
-    topPartyCell.layer.borderWidth=2;
-    topPartyCell.layer.borderColor= [[UIColor blackColor] CGColor];
     Party *party = self.partyList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;
@@ -216,6 +220,14 @@
             else{
                 NSLog(@"%@", error.localizedDescription);
             }
+            PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+            [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+            [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+                if(!error)
+                    topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:@"%@ / 5", thrower[THROWERRATING]];
+                else
+                    NSLog(@"%@", error.localizedDescription);
+            }];
         }];
     }
     
