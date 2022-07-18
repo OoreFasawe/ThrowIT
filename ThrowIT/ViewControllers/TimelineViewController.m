@@ -57,7 +57,6 @@
         if (!error)
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
             UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier: LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
@@ -113,7 +112,8 @@
     
     Party *party = self.partyList[indexPath.row + 3];
     
-    
+    partyCell.layer.cornerRadius = 10;
+    partyCell.layer.borderWidth= 0.05;
     partyCell.partyName.text = party.name;
     partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription;
@@ -183,6 +183,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
+    topPartyCell.layer.cornerRadius = 10;
+    topPartyCell.layer.borderWidth= 0.05;
     Party *party = self.partyList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;
