@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyDate;
 @property (strong, nonatomic) IBOutlet UILabel *partyDescription;
 @property (strong, nonatomic) Party *party;
-
 @end
 
 NS_ASSUME_NONNULL_END

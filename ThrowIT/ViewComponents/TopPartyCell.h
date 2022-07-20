@@ -7,7 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Party.h"
-#import <AudioToolbox/AudioToolbox.h> 
+#import <AudioToolbox/AudioToolbox.h>
+#import "Utility.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,10 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Party *topParty;
 @property (strong, nonatomic) IBOutlet UILabel *partyDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UIButton *goingButton;
-
 @property (strong, nonatomic) IBOutlet UILabel *goingCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyRatingLabel;
-
 @end
 
 NS_ASSUME_NONNULL_END

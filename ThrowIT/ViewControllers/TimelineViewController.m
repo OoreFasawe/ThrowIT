@@ -5,7 +5,7 @@
 //  Created by Oore Fasawe on 7/5/22.
 //
 
-#import "Utility.h"
+
 #import "TimelineViewController.h"
 #import "DetailsViewController.h"
 #import "SceneDelegate.h"
@@ -16,11 +16,13 @@
 #import "Thrower.h"
 #import <Parse/Parse.h>
 
+
 @interface TimelineViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
 @property (nonatomic, strong) NSMutableArray *partyList;
+@property (nonatomic, strong) NSMutableArray *distanceDetailsList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
 
@@ -30,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[APIManager shared] locationManagerInit];
     [self fetchParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
@@ -88,6 +91,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
+            if(self.distanceDetailsList.count != self.partyList.count){
+                self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
+                    if(success){
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.tableView reloadData];
+                        });
+                    }}];
+            }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
@@ -98,10 +109,18 @@
     }];
 }
 
+- (void)partyDistancesFetched{
+    [self.tableView reloadData];
+};
+
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
     Party *party = self.partyList[indexPath.row + 3];
+    if(self.distanceDetailsList.count)
+        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + 3]];
+    else
+        partyCell.partyDistance.text = @" ...";
     partyCell.partyName.text = party.name;
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
@@ -109,7 +128,7 @@
     [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
     [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
         if(!error)
-            partyCell.partyRating.text = [NSString stringWithFormat:@". Usually %@ / 5", thrower[THROWERRATING]];
+            partyCell.partyRating.text = [NSString stringWithFormat:PARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
         else
             NSLog(@"%@", error.localizedDescription);
     }];
@@ -210,7 +229,7 @@
             [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
             [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
                 if(!error)
-                    topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:@"%@ / 5", thrower[THROWERRATING]];
+                    topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
                 else
                     NSLog(@"%@", error.localizedDescription);
             }];

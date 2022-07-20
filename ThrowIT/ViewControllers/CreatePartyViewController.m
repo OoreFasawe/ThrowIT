@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *partyDescriptionField;
 @property (strong, nonatomic) IBOutlet UITextField *partyLocationField;
 @property (strong, nonatomic) NSString *partyLocationName;
+@property (strong, nonatomic) NSString *partyLocationId;
 @property (nonatomic) CLLocationCoordinate2D partyCoordinate;
 @end
 
@@ -36,7 +37,7 @@
     }
     else{
         Party *party = [Party new];
-        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:nil withEndTime:nil withSchoolName:nil withBackGroundImage:nil withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:nil withEndTime:nil withSchoolName:nil withBackGroundImage:nil withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -55,7 +56,7 @@
     acController.delegate = self;
 
     // Specify the place data types to return.
-    GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID | GMSPlaceFieldCoordinate | GMSPlaceFieldFormattedAddress);
+    GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID | GMSPlaceFieldCoordinate | GMSPlaceFieldFormattedAddress | GMSPlaceFieldPlaceID);
     acController.placeFields = fields;
 
     // Specify a filter.
@@ -72,11 +73,11 @@
     didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
     // Do something with the selected place.
-    NSLog(@"Place name %@", place.name);
-    NSLog(@"Place ID %@", place.placeID);
     self.partyLocationName = place.name;
     self.partyLocationField.text = place.formattedAddress;
     self.partyCoordinate= place.coordinate;
+    self.partyLocationId = place.placeID;
+    
 }
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController

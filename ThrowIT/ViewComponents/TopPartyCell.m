@@ -22,19 +22,18 @@
     [Attendance setAvailability:self.topParty withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];
     AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
-    if([self.goingButton.titleLabel.text isEqualToString:@"Crash"]){
-        [self.goingButton setTitle:@"Maybe" forState:UIControlStateNormal];
+    if([self.goingButton.titleLabel.text isEqualToString:GOING]){
+        [self.goingButton setTitle:MAYBE forState:UIControlStateNormal];
         self.topParty.numberAttending -= 1;
         [self.topParty saveInBackground];
         self.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)self.topParty.numberAttending];
     }
-    else if([self.goingButton.titleLabel.text isEqualToString:@"Maybe"]){
-        [self.goingButton setTitle:@"Pass" forState:UIControlStateNormal];
+    else if([self.goingButton.titleLabel.text isEqualToString:MAYBE]){
+        [self.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
     }
     else{
-        [self.goingButton setTitle:@"Crash" forState:UIControlStateNormal];
+        [self.goingButton setTitle:GOING forState:UIControlStateNormal];
         self.topParty.numberAttending += 1;
-        
         [self.topParty saveInBackground];
         self.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)self.topParty.numberAttending];
     }

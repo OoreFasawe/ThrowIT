@@ -24,28 +24,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
 - (IBAction)goToLogin:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
     self.view.window.rootViewController = loginViewController;
 }
+
 - (IBAction)registerThrower:(id)sender {
     if([self.throwerNameField.text isEqual:@""] || [self.throwerSchoolField.text isEqual:@""] || [self.throwerEmailField.text isEqual:@""] || [self.throwerPasswordField.text isEqual:@""]){
         //TODO: [self showAlert];
     }
     else{
     PFUser *newUser = [PFUser user];
-    
     newUser.username = self.throwerNameField.text;
     newUser.password = self.throwerPasswordField.text;
     newUser.email = self.throwerEmailField.text;
     newUser[USERISTHROWERKEY] = @YES;
-        
     Thrower *partyThrower = [Thrower new];
     partyThrower.throwerName = self.throwerNameField.text;
     partyThrower.school = self.throwerSchoolField.text;
     partyThrower.thrower = newUser;
-        
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);

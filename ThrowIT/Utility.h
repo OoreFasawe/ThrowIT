@@ -19,6 +19,7 @@
 #define THROWERTIMELINENAVIGATIONVIEWCONTROLLER @"ThrowerTimelineNavigationController"
 #define THROWERWAITSCREENNAVIGATIONCONTROLLER @"ThrowerWaitScreenNavigationController"
 #define TIMELINETABBARCONTROLLER @"TimelineTabBarController"
+#define TIMELINEVIEWCONTROLLER @"TimelineViewController"
 
 #pragma mark - Segues
 #define DETAILSVIEWCONTROLLERFORCOLLECTIONCELL @"toDetailsViewControllerForCollectionCell"
@@ -28,6 +29,9 @@
 
 #pragma mark - Models
 #define PARTYCELL @"PartyCell"
+#define PARTYCELLPARTYRATINGTEXTFORMAT @". Usually %@ / 5"
+#define TOPPARTYCELLPARTYRATINGTEXTFORMAT @"%@ / 5"
+#define PARTYDISTANCELABELPLACEHOLDER @" ..."
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
 
@@ -59,18 +63,40 @@
 
 #define CREATEDAT @"createdAt"
 
-#pragma mark - Query limits
+#define PARSEIMAGEDEFAULTFILENAME @"image.png"
+
+#pragma mark - Query Limits
 #define QUERYLIMIT 20
 #define YESKEYWORD @YES
 #define ZERO @0
 
 
-NS_ASSUME_NONNULL_BEGIN
+#pragma mark - API Info
+#define BASEURL @"https://maps.googleapis.com/maps/api/distancematrix/json"
+#define URLSTRINGFORMAT @"%@?destinations=place_id:%@&origins=%f,%f&units=imperial&key=%@"
+#define GOOGLEMAPSAPIKEY @"google_Maps_API_Key"
+#define KEYSFILENAME @"Keys"
+#define KEYSFILETYPE @"plist"
+#define GETMETHOD @"GET"
+#define CONSUMERKEY @"consumer-key"
+#define MILEDATAPATH json[@"rows"][0][@"elements"][0][@"distance"][@"text"]
+#define PARSECLIENTKEY @"parse_Client_Key"
+#define PARSEAPPID @"parse_ApplicationId"
+#define PARSESERVER @"https://parseapi.back4app.com"
 
+#pragma mark - Profile Picture Constants
+#define ADDPROFILEPHOTO @"Add Profile photo"
+#define TAKEPHOTO @"Take Photo"
+#define CHOOSEFROMLIBRARY @"Choose from library"
+#define CANCEL @"Cancel"
+
+NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 -(void)setAttendanceState:(UIButton *)attendanceButton;
++(NSMutableArray*)initLocationsWithArray:(NSArray *)array;
++(NSMutableArray *)getDistancesFromArray:(NSArray *)array withCompletionHandler:(void (^)(BOOL success ))completion;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -37,6 +37,7 @@
 		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
 		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
+		89AC10EF2886125500F35820 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10EE2886125500F35820 /* APIManager.m */; };
 		89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E90EBD288555B50031223F /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
 		899D92612881EF9D007BCC72 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		899D92622881EF9D007BCC72 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		89AC10ED2886125500F35820 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		89AC10EE2886125500F35820 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		89E90EBD288555B50031223F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -173,8 +176,8 @@
 				891EF8A9286E519000F5947E /* AppDelegate.h */,
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
-				893969242884F1F9004DD10E /* ProfileViewController.h */,
-				893969252884F1F9004DD10E /* ProfileViewController.m */,
+				89AC10ED2886125500F35820 /* APIManager.h */,
+				89AC10EE2886125500F35820 /* APIManager.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
 				899D92612881EF9D007BCC72 /* Utility.h */,
@@ -211,8 +214,8 @@
 		891EF8E2287550C200F5947E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				89824510287DE2EA00744255 /* DetailsViewController.h */,
-				89824511287DE2EA00744255 /* DetailsViewController.m */,
+				893969242884F1F9004DD10E /* ProfileViewController.h */,
+				893969252884F1F9004DD10E /* ProfileViewController.m */,
 				89824515287DE8E100744255 /* ThrowerDetailsViewController.h */,
 				89824510287DE2EA00744255 /* DetailsViewController.h */,
 				89824511287DE2EA00744255 /* DetailsViewController.m */,
@@ -485,6 +488,7 @@
 				891EF8BC286E519000F5947E /* main.m in Sources */,
 				899D92632881EF9D007BCC72 /* Utility.m in Sources */,
 				89824512287DE2EA00744255 /* DetailsViewController.m in Sources */,
+				89AC10EF2886125500F35820 /* APIManager.m in Sources */,
 				898244ED28775E6400744255 /* TopPartyCell.m in Sources */,
 				89824503287D104400744255 /* ThrowerPartyCell.m in Sources */,
 				898244F9287D084300744255 /* ThrowerTimelineViewController.m in Sources */,

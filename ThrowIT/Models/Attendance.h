@@ -14,9 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Party *party;
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) NSString *attendanceType;
-
-
-
 +(void) setAvailability:(Party * )party withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 @end
 

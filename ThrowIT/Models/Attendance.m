@@ -21,7 +21,6 @@
     PFQuery *query = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [query whereKey:PARTYKEY equalTo:party];
     [query whereKey:USER equalTo:[PFUser currentUser]];
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
         if (!error){
             //if there's not attendance object, create one
@@ -37,7 +36,6 @@
             //if there's an attendance object, check it's attendance type
             else{
                 attendance = attendanceList[0];
-                
                 //if attendancetype is going, change to maybe, if maybe delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     attendance.attendanceType = MAYBE;
@@ -51,8 +49,6 @@
         else{
             NSLog(@"%@", error.localizedDescription);
         }
-        
     }];
-    
 }
 @end

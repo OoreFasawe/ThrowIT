@@ -18,20 +18,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: KEYSFILENAME ofType: @"plist"];
     NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile: path];
-
-    NSString *parseAppId = [keysDict objectForKey: @"parse_ApplicationId"];
-    NSString *parseClientKey = [keysDict objectForKey: @"parse_Client_Key"];
-    NSString *googleMapsAPIKey = [keysDict objectForKey: @"google_Maps_API_Key"];
+    NSString *parseAppId = [keysDict objectForKey: PARSEAPPID];
+    NSString *parseClientKey = [keysDict objectForKey: PARSECLIENTKEY];
+    NSString *googleMapsAPIKey = [keysDict objectForKey: GOOGLEMAPSAPIKEY];
     // Override point for customization after application launch.
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-
             configuration.applicationId = parseAppId;
             configuration.clientKey = parseClientKey;
-            configuration.server = @"https://parseapi.back4app.com";
+            configuration.server = PARSESERVER;
         }];
-
     [Parse initializeWithConfiguration:config];
     [GMSServices provideAPIKey:googleMapsAPIKey];
     [GMSPlacesClient provideAPIKey:googleMapsAPIKey];
