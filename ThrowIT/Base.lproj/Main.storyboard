@@ -790,7 +790,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlC-3g-wJ6">
-                                                    <rect key="frame" x="10" y="15" width="41" height="18"/>
+                                                    <rect key="frame" x="43" y="15" width="41" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -827,12 +827,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thrower Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqB-qT-VmZ">
-                                                    <rect key="frame" x="55" y="15" width="103" height="18"/>
+                                                    <rect key="frame" x="88" y="15" width="103" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". 0.3 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45Z-F5-ZLA">
-                                                    <rect key="frame" x="162" y="15" width="71.666666666666686" height="18"/>
+                                                    <rect key="frame" x="195" y="15" width="71.666666666666686" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -842,6 +842,13 @@
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_compass_night.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jd4-vs-7CF" customClass="PFImageView">
+                                                    <rect key="frame" x="10" y="8" width="25" height="25"/>
+                                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="6mY-9L-czm"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.54901963470000004" green="0.47450977560000002" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
@@ -853,14 +860,16 @@
                                                 <constraint firstAttribute="bottom" secondItem="dTE-Ea-tP1" secondAttribute="bottom" constant="11" id="A6b-kS-M1E"/>
                                                 <constraint firstItem="2Qn-Nn-HH0" firstAttribute="top" secondItem="dTE-Ea-tP1" secondAttribute="top" id="CLB-yn-N59"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bnq-Oz-Yub" secondAttribute="trailing" constant="10" id="Flu-it-Lj7"/>
-                                                <constraint firstItem="mlC-3g-wJ6" firstAttribute="leading" secondItem="Ugx-vf-K6a" secondAttribute="leading" constant="10" id="Isb-jP-CHf"/>
+                                                <constraint firstItem="fQd-Tk-xLn" firstAttribute="leading" secondItem="Jd4-vs-7CF" secondAttribute="leading" id="Fqy-uR-qex"/>
+                                                <constraint firstItem="mlC-3g-wJ6" firstAttribute="leading" secondItem="Jd4-vs-7CF" secondAttribute="trailing" constant="8" id="HJS-rI-rUD"/>
+                                                <constraint firstItem="mlC-3g-wJ6" firstAttribute="bottom" secondItem="Jd4-vs-7CF" secondAttribute="bottom" id="JaD-vr-xyo"/>
                                                 <constraint firstItem="gqu-AZ-BeF" firstAttribute="leading" secondItem="Lp1-ip-iWu" secondAttribute="trailing" constant="4" id="Jpf-yM-NoJ"/>
                                                 <constraint firstItem="dTE-Ea-tP1" firstAttribute="top" secondItem="fQd-Tk-xLn" secondAttribute="bottom" constant="14" id="OIq-2n-Ka7"/>
                                                 <constraint firstItem="2Qn-Nn-HH0" firstAttribute="leading" secondItem="dTE-Ea-tP1" secondAttribute="trailing" constant="4" id="OQx-fK-VbD"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gqu-AZ-BeF" secondAttribute="trailing" constant="10" id="QKE-m4-gMR"/>
                                                 <constraint firstItem="Lp1-ip-iWu" firstAttribute="top" secondItem="dTE-Ea-tP1" secondAttribute="top" id="S9f-CV-T9i"/>
-                                                <constraint firstItem="dTE-Ea-tP1" firstAttribute="leading" secondItem="mlC-3g-wJ6" secondAttribute="leading" id="T1W-is-JlP"/>
                                                 <constraint firstItem="gqu-AZ-BeF" firstAttribute="bottom" secondItem="Lp1-ip-iWu" secondAttribute="bottom" id="TI2-EL-mWm"/>
+                                                <constraint firstItem="Jd4-vs-7CF" firstAttribute="top" secondItem="Ugx-vf-K6a" secondAttribute="top" constant="8" id="Vnz-fY-o3w"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="45Z-F5-ZLA" secondAttribute="trailing" constant="10" id="a8g-WR-LbY"/>
                                                 <constraint firstItem="fQd-Tk-xLn" firstAttribute="top" secondItem="mlC-3g-wJ6" secondAttribute="bottom" constant="8" symbolic="YES" id="ccs-Hb-hGX"/>
                                                 <constraint firstItem="45Z-F5-ZLA" firstAttribute="top" secondItem="mlC-3g-wJ6" secondAttribute="top" id="emJ-g4-OuL"/>
@@ -868,12 +877,13 @@
                                                 <constraint firstItem="bqB-qT-VmZ" firstAttribute="bottom" secondItem="mlC-3g-wJ6" secondAttribute="bottom" id="gfa-h1-7vb"/>
                                                 <constraint firstItem="bqB-qT-VmZ" firstAttribute="leading" secondItem="mlC-3g-wJ6" secondAttribute="trailing" constant="4" id="hAB-2q-rvs"/>
                                                 <constraint firstItem="mlC-3g-wJ6" firstAttribute="top" secondItem="Ugx-vf-K6a" secondAttribute="top" constant="15" id="lsA-Rr-8oc"/>
-                                                <constraint firstItem="fQd-Tk-xLn" firstAttribute="leading" secondItem="mlC-3g-wJ6" secondAttribute="leading" id="pxH-OU-nq4"/>
+                                                <constraint firstItem="Jd4-vs-7CF" firstAttribute="leading" secondItem="Ugx-vf-K6a" secondAttribute="leading" constant="10" id="pxU-zF-7BB"/>
                                                 <constraint firstItem="Lp1-ip-iWu" firstAttribute="leading" secondItem="2Qn-Nn-HH0" secondAttribute="trailing" constant="4" id="sUw-jl-dcm"/>
                                                 <constraint firstItem="bqB-qT-VmZ" firstAttribute="top" secondItem="mlC-3g-wJ6" secondAttribute="top" id="t64-lq-4kY"/>
                                                 <constraint firstItem="gqu-AZ-BeF" firstAttribute="top" secondItem="Lp1-ip-iWu" secondAttribute="top" id="vE0-UX-AdK"/>
                                                 <constraint firstItem="Lp1-ip-iWu" firstAttribute="top" secondItem="2Qn-Nn-HH0" secondAttribute="top" id="yfm-7n-xEs"/>
                                                 <constraint firstItem="Bnq-Oz-Yub" firstAttribute="centerY" secondItem="fQd-Tk-xLn" secondAttribute="centerY" id="zMz-iv-IeF"/>
+                                                <constraint firstItem="dTE-Ea-tP1" firstAttribute="leading" secondItem="Jd4-vs-7CF" secondAttribute="leading" id="zkI-Mn-gMn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -885,6 +895,7 @@
                                             <outlet property="partyRating" destination="Lp1-ip-iWu" id="ULo-ZL-ipk"/>
                                             <outlet property="partyTime" destination="gqu-AZ-BeF" id="fJb-fw-9bo"/>
                                             <outlet property="throwerNameLabel" destination="bqB-qT-VmZ" id="L3G-rV-jve"/>
+                                            <outlet property="throwerProfilePicture" destination="Jd4-vs-7CF" id="kR0-1B-TbO"/>
                                             <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForTableCell" id="ww1-hf-2xj"/>
                                         </connections>
                                     </tableViewCell>
@@ -1087,6 +1098,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>
+        <image name="button_compass_night.png" width="40" height="40"/>
         <image name="knuckles" width="860" height="586"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <systemColor name="labelColor">

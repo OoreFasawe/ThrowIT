@@ -76,7 +76,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.partyList[myIndexPath.row + 3];
+        Party *party = self.partyList[myIndexPath.row + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }

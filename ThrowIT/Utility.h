@@ -69,6 +69,7 @@
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
 #define YESKEYWORD @YES
+#define NOKEYWORD @NO
 #define ZERO @0
 
 
