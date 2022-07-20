@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIKit/UIKit.h"
-#import "Parse/Parse.h"
+#import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 #pragma mark - Storyboard
 #define MAIN @"Main"
