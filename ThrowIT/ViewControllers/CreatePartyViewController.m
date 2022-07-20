@@ -100,5 +100,8 @@ didFailAutocompleteWithError:(NSError *)error {
 - (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
+- (IBAction)didTapScreen:(id)sender {
+    [self.view endEditing:true];\
+}
 
 @end

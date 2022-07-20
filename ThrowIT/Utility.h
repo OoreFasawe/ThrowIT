@@ -34,6 +34,7 @@
 #define PARTYDISTANCELABELPLACEHOLDER @" ..."
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
+#define SHIFTNUMBER 3
 
 #pragma mark - Parse Classes
 #define PARTYCLASS @"Party"

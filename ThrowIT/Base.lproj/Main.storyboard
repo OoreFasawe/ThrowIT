@@ -102,6 +102,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4nG-wk-cqF" appends="YES" id="n5K-Nv-cNa"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="0Uy-Wb-hUs" id="6lI-xg-Jff"/>
@@ -110,6 +114,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4nG-wk-cqF">
+                    <connections>
+                        <action selector="didTapScreen:" destination="BYZ-38-t0r" id="7ky-he-QBa"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-200.46728971962617" y="75.809935205183592"/>
         </scene>
@@ -212,6 +221,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IOv-nj-Txk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ZWz-xc-rQe" appends="YES" id="0gc-Pf-abW"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="throwerEmailField" destination="Q7C-Zs-i9e" id="N4m-0z-Sa8"/>
@@ -221,6 +234,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeQ-Un-ePu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ZWz-xc-rQe">
+                    <connections>
+                        <action selector="didTapScreen:" destination="2J5-oN-jhf" id="VT4-wV-UC8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-200" y="1113"/>
         </scene>
@@ -456,6 +474,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BiQ-sL-IiX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="MyC-ko-LZS" appends="YES" id="ili-fs-4Oo"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="4ej-sK-aNE">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="iBq-b6-TbD">
@@ -477,6 +499,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klu-93-b2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MyC-ko-LZS">
+                    <connections>
+                        <action selector="didTapScreen:" destination="Tdh-bJ-dOE" id="jWU-YT-ze9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2625.700934579439" y="2243.8444924406049"/>
         </scene>

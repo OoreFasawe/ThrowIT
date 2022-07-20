@@ -41,6 +41,7 @@
     newUser.password = self.throwerPasswordField.text;
     newUser.email = self.throwerEmailField.text;
     newUser[USERISTHROWERKEY] = @YES;
+    newUser[PARTIESATTENDEDKEY] = ZERO;
     Thrower *partyThrower = [Thrower new];
     partyThrower.throwerName = self.throwerNameField.text;
     partyThrower.school = self.throwerSchoolField.text;
@@ -63,6 +64,9 @@
             }
         }];
     }
+}
+- (IBAction)didTapScreen:(id)sender {
+    [self.view endEditing:true];
 }
 
 @end

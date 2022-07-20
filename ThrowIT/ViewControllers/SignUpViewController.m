@@ -59,4 +59,7 @@
     self.view.window.rootViewController
     = throwerSignUpViewController;
 }
+- (IBAction)didTapScreen:(id)sender {
+    [self.view endEditing:true];
+}
 @end

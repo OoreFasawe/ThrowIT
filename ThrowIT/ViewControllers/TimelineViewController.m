@@ -116,9 +116,9 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    Party *party = self.partyList[indexPath.row + 3];
+    Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
     if(self.distanceDetailsList.count)
-        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + 3]];
+        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + SHIFTNUMBER]];
     else
         partyCell.partyDistance.text = @" ...";
     partyCell.partyName.text = party.name;
@@ -177,7 +177,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.partyList.count - 3;
+    return self.partyList.count - SHIFTNUMBER;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
