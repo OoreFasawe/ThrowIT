@@ -66,5 +66,12 @@
     }
 }
 
++(void)addDistanceDataToList:(NSMutableArray *)partyList fromList:(NSMutableArray *)distanceList{
+    for(int i = 0; i < partyList.count; i++){
+        Party *someParty = partyList[i];
+        someParty.distancesFromUser = distanceList[i];
+    }
+}
+
 
 @end

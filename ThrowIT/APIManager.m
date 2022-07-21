@@ -52,8 +52,10 @@ static int runCount = 0;
             runCount++;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             array[arrayIndex] = MILEDATAPATH;
-            if (runCount == count)
+            if (runCount == count){
+                runCount = 0;
                 return completion(YES);
+            }
         }
         else{
             NSLog(@"%@", error.localizedDescription);

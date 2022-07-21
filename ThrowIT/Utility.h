@@ -99,6 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setAttendanceState:(UIButton *)attendanceButton;
 +(NSMutableArray*)initLocationsWithArray:(NSArray *)array;
 +(NSMutableArray *)getDistancesFromArray:(NSArray *)array withCompletionHandler:(void (^)(BOOL success ))completion;
++(void)addDistanceDataToList:(NSMutableArray *)partyList fromList:(NSMutableArray *)distanceList;
 @end
 
 NS_ASSUME_NONNULL_END

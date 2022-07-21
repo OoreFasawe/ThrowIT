@@ -88,20 +88,30 @@
     [query orderByDescending:CREATEDAT];
     [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
+    __weak __typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
+        __strong __typeof(self) strongSelf = weakSelf;
+        if(!strongSelf) {
+            return;
+        }
+        
         if (!error){
-            self.partyList = (NSMutableArray *)partyList;
-//            if(self.distanceDetailsList.count != self.partyList.count){
-//                self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
-//                    if(success){
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            [self.tableView reloadData];
-//                        });
-//                    }}];
-//            }
-            [self.refreshControl endRefreshing];
-            [self.tableView reloadData];
-            [self.collectionView reloadData];
+            strongSelf.partyList = (NSMutableArray *)partyList;
+            if(strongSelf.distanceDetailsList.count != strongSelf.partyList.count){
+                strongSelf.distanceDetailsList = [Utility getDistancesFromArray:strongSelf.partyList withCompletionHandler:^(BOOL success) {
+                    if(success){
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [strongSelf.tableView reloadData];
+                        });
+                    }}];
+            }
+            else{
+//                [Utility addDistanceDataToList:strongSelf.partyList fromList:strongSelf.distanceDetailsList];
+//                NSLog(@"%@", strongSelf.partyList);
+            }
+            [strongSelf.refreshControl endRefreshing];
+            [strongSelf.tableView reloadData];
+            [strongSelf.collectionView reloadData];
         }
         else{
             NSLog(@"%@", error.localizedDescription);
@@ -110,7 +120,7 @@
 }
 
 - (void)partyDistancesFetched{
-    [self.tableView reloadData];
+    [self fetchParties];
 };
 
 #pragma mark - UITableViewDataSource
