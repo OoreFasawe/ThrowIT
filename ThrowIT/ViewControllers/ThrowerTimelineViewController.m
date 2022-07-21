@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 120;
+    self.tableView.rowHeight = self.tableView.frame.size.height;
     [self fetchThrowerParties];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
