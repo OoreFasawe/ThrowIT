@@ -91,14 +91,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
-            if(self.distanceDetailsList.count != self.partyList.count){
-                self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
-                    if(success){
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.tableView reloadData];
-                        });
-                    }}];
-            }
+//            if(self.distanceDetailsList.count != self.partyList.count){
+//                self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
+//                    if(success){
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            [self.tableView reloadData];
+//                        });
+//                    }}];
+//            }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
