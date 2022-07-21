@@ -72,6 +72,21 @@
         someParty.distancesFromUser = distanceList[i];
     }
 }
++(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)mileLimit{
+    NSMutableArray *filteredList = [NSMutableArray new];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
 
-
+    for(int i = 0; i < partyList.count; i++){
+        Party *party = partyList[i];
+        if([[f numberFromString:[party.distancesFromUser componentsSeparatedByString:@" "][0]] doubleValue]< mileLimit || [[party.distancesFromUser componentsSeparatedByString:@" "][1] isEqualToString:@"ft"])
+        {
+            NSLog(@"Added: %@", party.distancesFromUser);
+            [filteredList addObject:party];
+        }
+        else
+            NSLog(@"Took out: %@", party.distancesFromUser);
+    }
+    return filteredList;
+}
 @end

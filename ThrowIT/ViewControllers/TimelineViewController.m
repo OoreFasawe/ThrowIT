@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
 @property (nonatomic, strong) NSMutableArray *partyList;
+@property (nonatomic, strong) NSMutableArray *filteredList;
 @property (nonatomic, strong) NSMutableArray *distanceDetailsList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
@@ -88,30 +89,20 @@
     [query orderByDescending:CREATEDAT];
     [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
-    __weak __typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
-        __strong __typeof(self) strongSelf = weakSelf;
-        if(!strongSelf) {
-            return;
-        }
-        
         if (!error){
-            strongSelf.partyList = (NSMutableArray *)partyList;
-            if(strongSelf.distanceDetailsList.count != strongSelf.partyList.count){
-                strongSelf.distanceDetailsList = [Utility getDistancesFromArray:strongSelf.partyList withCompletionHandler:^(BOOL success) {
+            self.partyList = (NSMutableArray *)partyList;
+            if(self.distanceDetailsList.count != self.partyList.count){
+                self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf.tableView reloadData];
+                            [self filterListByDistance];
                         });
                     }}];
             }
-            else{
-//                [Utility addDistanceDataToList:strongSelf.partyList fromList:strongSelf.distanceDetailsList];
-//                NSLog(@"%@", strongSelf.partyList);
-            }
-            [strongSelf.refreshControl endRefreshing];
-            [strongSelf.tableView reloadData];
-            [strongSelf.collectionView reloadData];
+            [self.refreshControl endRefreshing];
+            [self.tableView reloadData];
+            [self.collectionView reloadData];
         }
         else{
             NSLog(@"%@", error.localizedDescription);
@@ -119,18 +110,24 @@
     }];
 }
 
-- (void)partyDistancesFetched{
-    [self fetchParties];
-};
+-(void)filterListByDistance{
+    [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
+    self.partyList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:100.0];
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
+}
 
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
     Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
-    if(self.distanceDetailsList.count)
-        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + SHIFTNUMBER]];
+    
+    if(party.distancesFromUser != nil)
+        partyCell.partyDistance.text = party.distancesFromUser;
     else
         partyCell.partyDistance.text = @" ...";
+    
+    
     partyCell.partyName.text = party.name;
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
