@@ -92,14 +92,16 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
-            if(self.distanceDetailsList.count != self.partyList.count){
+            if(self.distanceDetailsList.count != partyList.count){
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self filterListByDistance];
+                            [self filterListByDistance:50];
                         });
                     }}];
             }
+            [self filterListByDistance:50];
+            self.partyList = (NSMutableArray *)partyList;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
@@ -110,9 +112,9 @@
     }];
 }
 
--(void)filterListByDistance{
+-(void)filterListByDistance:(float)distance{
     [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
-    self.partyList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:100.0];
+    self.partyList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance];
     [self.tableView reloadData];
     [self.collectionView reloadData];
 }
@@ -183,8 +185,12 @@
     }];
 }
 
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.partyList.count - SHIFTNUMBER;
+    if(self.partyList.count > SHIFTNUMBER)
+        return self.partyList.count - SHIFTNUMBER;
+    else
+        return 0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -193,7 +199,10 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return 3;
+    if(self.partyList.count < SHIFTNUMBER)
+        return self.partyList.count;
+    else
+        return SHIFTNUMBER;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
