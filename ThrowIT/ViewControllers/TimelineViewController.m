@@ -15,10 +15,9 @@
 #import "Party.h"
 #import "Thrower.h"
 #import <Parse/Parse.h>
-#import "PartyFilterViewController.h"
 
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <PartyFilterViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
@@ -83,7 +82,8 @@
         detailsController.party = party;
     }
     else if([[segue identifier] isEqualToString:@"filterSegue"]){
-        PartyFilterViewController *partyFilterViewController = [segue destinationViewController];
+        UINavigationController *partyFilterNavigationController = [segue destinationViewController];
+        PartyFilterViewController *partyFilterViewController = [partyFilterNavigationController.viewControllers objectAtIndex:0];
         partyFilterViewController.delegate = self;
     }
 }

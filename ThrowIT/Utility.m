@@ -91,6 +91,10 @@ static int runCount;
             else
                 NSLog(@"Took out: %@", party.distancesFromUser);
         }
+        else
+        {
+            [filteredList addObject:party];
+        }
     }
     return filteredList;
 }

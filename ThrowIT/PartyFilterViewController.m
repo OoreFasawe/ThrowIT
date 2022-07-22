@@ -52,17 +52,10 @@
 -(void)setRatingLabeltext{
     self.ratingLabel.text = [NSString stringWithFormat:@"Min rating %.1f / 5", self.ratingStepper.value / 2.0];
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)setPartyFilters:(id)sender {
+    [self.delegate filterListByDistance:self.distanceSlider.value];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
 @end

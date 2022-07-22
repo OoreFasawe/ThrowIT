@@ -928,7 +928,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="camera.filters" catalog="system"/>
                                 <connections>
-                                    <segue destination="tCf-yp-7CB" kind="show" identifier="filterSegue" id="sv4-yg-g5Y"/>
+                                    <segue destination="dPd-IL-xCD" kind="show" identifier="filterSegue" id="sv4-yg-g5Y"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1006,6 +1006,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Filter Parties">
                                     <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="18"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="setPartyFilters:" destination="tCf-yp-7CB" eventType="touchUpInside" id="mEG-zN-h29"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5N8-xm-TAE"/>
@@ -1023,7 +1026,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oj5-jd-dzo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4921.9626168224295" y="-926.56587473002162"/>
+            <point key="canvasLocation" x="4921.9626168224295" y="-918.14254859611242"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="M33-1g-7yT">
@@ -1204,6 +1207,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5f-TV-nsW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="811.68224299065412" y="1489.6328293736501"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NfY-r0-ya7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dPd-IL-xCD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vQg-zi-PFa"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cP8-Po-6Wi">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tCf-yp-7CB" kind="relationship" relationship="rootViewController" id="vg3-OB-VQu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Up3-Uh-LHb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4021.9626168224295" y="-918.14254859611242"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
