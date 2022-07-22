@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSDictionary *distanceDetails;
 +(instancetype)shared;
--(void)loadDistanceDataIntoArray:(NSMutableArray *)array withDestinationLocation:(NSString *)destinationPlaceId withArrayIndex:(int) arrayIndex  withCount:(NSUInteger)count withCompletionHandler:(void (^)(BOOL success ))completion;
+-(void)loadDistanceDataFromLocation:(NSString *)destinationPlaceId withCompletionHandler:(void (^)(NSString * distance))completion;
 -(void)locationManagerInit;
 @end
 

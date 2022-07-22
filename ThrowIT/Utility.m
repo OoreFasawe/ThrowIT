@@ -9,7 +9,7 @@
 #import "APIManager.h"
 #import "Party.h"
 #import "TimelineViewController.h"
-
+static int runCount;
 @implementation Utility
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType{
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -21,17 +21,19 @@
 
 +(NSMutableArray *)getDistancesFromArray:(NSArray *)array withCompletionHandler:(void (^)(BOOL success ))completion{
     NSMutableArray *distances = [NSMutableArray new];
-    for(int i = 0; i < array.count; i++)
-    {
-        [distances addObject:PARTYDISTANCELABELPLACEHOLDER];
-    }
     NSMutableArray *place_Ids = [self initLocationsWithArray:array];
     for(int i = 0; i < place_Ids.count; i++)
     {
-        [[APIManager shared] loadDistanceDataIntoArray:distances withDestinationLocation:place_Ids[i] withArrayIndex:i withCount:place_Ids.count withCompletionHandler:^(BOOL success) {
-            if (success)
+        [distances addObject:PARTYDISTANCELABELPLACEHOLDER];
+        [[APIManager shared] loadDistanceDataFromLocation:place_Ids[i] withCompletionHandler:^(NSString * distance) {
+            if (distance)
             {
-                completion(YES);
+                runCount++;
+                distances[i] = distance;
+                if(runCount == place_Ids.count){
+                    runCount = 0;
+                    completion(YES);
+                }
             }
         }];
     }
