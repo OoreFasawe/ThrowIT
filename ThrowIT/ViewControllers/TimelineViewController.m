@@ -69,7 +69,7 @@
         UICollectionViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.collectionView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.partyList[myIndexPath.item];
+        Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
@@ -77,7 +77,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.partyList[myIndexPath.row + SHIFTNUMBER];
+        Party *party = self.filteredList[myIndexPath.row + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
@@ -100,8 +100,6 @@
                         });
                     }}];
             }
-            [self filterListByDistance:50];
-            self.partyList = (NSMutableArray *)partyList;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
@@ -114,7 +112,7 @@
 
 -(void)filterListByDistance:(float)distance{
     [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
-    self.partyList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance];
+    self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance];
     [self.tableView reloadData];
     [self.collectionView reloadData];
 }
@@ -122,10 +120,10 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
+    Party *party = self.filteredList[indexPath.row + SHIFTNUMBER];
     
     if(party.distancesFromUser != nil)
-        partyCell.partyDistance.text = party.distancesFromUser;
+        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
     else
         partyCell.partyDistance.text = @" ...";
     
@@ -187,8 +185,8 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.partyList.count > SHIFTNUMBER)
-        return self.partyList.count - SHIFTNUMBER;
+    if(self.filteredList.count > SHIFTNUMBER)
+        return self.filteredList.count - SHIFTNUMBER;
     else
         return 0;
 }
@@ -199,8 +197,8 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if(self.partyList.count < SHIFTNUMBER)
-        return self.partyList.count;
+    if(self.filteredList.count < SHIFTNUMBER)
+        return self.filteredList.count;
     else
         return SHIFTNUMBER;
 }
@@ -209,7 +207,7 @@
     TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
-    Party *party = self.partyList[indexPath.item];
+    Party *party = self.filteredList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
