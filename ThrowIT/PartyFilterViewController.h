@@ -9,8 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PartyFilterViewController : UIViewController
+@protocol PartyFilterViewControllerDelegate <NSObject>
 
+- (void)filterListByDistance:(float) distance;
+
+@end
+
+@interface PartyFilterViewController : UIViewController
+@property (nonatomic, strong) id<PartyFilterViewControllerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

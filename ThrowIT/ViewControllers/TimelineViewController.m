@@ -15,6 +15,7 @@
 #import "Party.h"
 #import "Thrower.h"
 #import <Parse/Parse.h>
+#import "PartyFilterViewController.h"
 
 
 @interface TimelineViewController ()
@@ -81,6 +82,10 @@
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
+    else if([[segue identifier] isEqualToString:@"filterSegue"]){
+        PartyFilterViewController *partyFilterViewController = [segue destinationViewController];
+        partyFilterViewController.delegate = self;
+    }
 }
 
 -(void)fetchParties{
@@ -96,7 +101,7 @@
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self filterListByDistance:50];
+                            [self filterListByDistance:-1];
                         });
                     }}];
             }
