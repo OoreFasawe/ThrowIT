@@ -38,6 +38,7 @@
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
 		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
 		89AC10EF2886125500F35820 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10EE2886125500F35820 /* APIManager.m */; };
+		89AC10FA288A855F00F35820 /* PartyFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10F9288A855F00F35820 /* PartyFilterViewController.m */; };
 		89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E90EBD288555B50031223F /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,8 @@
 		899D92622881EF9D007BCC72 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		89AC10ED2886125500F35820 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		89AC10EE2886125500F35820 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		89AC10F8288A855F00F35820 /* PartyFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyFilterViewController.h; sourceTree = "<group>"; };
+		89AC10F9288A855F00F35820 /* PartyFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyFilterViewController.m; sourceTree = "<group>"; };
 		89E90EBD288555B50031223F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -176,6 +179,8 @@
 				891EF8A9286E519000F5947E /* AppDelegate.h */,
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
+				89AC10F8288A855F00F35820 /* PartyFilterViewController.h */,
+				89AC10F9288A855F00F35820 /* PartyFilterViewController.m */,
 				89AC10ED2886125500F35820 /* APIManager.h */,
 				89AC10EE2886125500F35820 /* APIManager.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
@@ -491,6 +496,7 @@
 				89AC10EF2886125500F35820 /* APIManager.m in Sources */,
 				898244ED28775E6400744255 /* TopPartyCell.m in Sources */,
 				89824503287D104400744255 /* ThrowerPartyCell.m in Sources */,
+				89AC10FA288A855F00F35820 /* PartyFilterViewController.m in Sources */,
 				898244F9287D084300744255 /* ThrowerTimelineViewController.m in Sources */,
 				891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */,
 				893969262884F1F9004DD10E /* ProfileViewController.m in Sources */,
