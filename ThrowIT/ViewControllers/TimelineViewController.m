@@ -101,7 +101,7 @@
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self filterListByDistance:-1];
+                            [self filterListByDistance:50];
                         });
                     }}];
             }
