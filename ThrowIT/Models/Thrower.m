@@ -21,7 +21,6 @@
 }
 
 + (void) postNewThrower: (Thrower *)partyThrower withCompletion: (PFBooleanResultBlock  _Nullable)completion {
-
     partyThrower.throwerRating = 0;
     partyThrower.verified = NO;
     [partyThrower saveInBackgroundWithBlock: completion];
@@ -33,26 +32,22 @@
     if (!image) {
         return nil;
     }
-    
     NSData *imageData = UIImagePNGRepresentation(image);
     if (!imageData) {
         return nil;
     }
-    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    return [PFFileObject fileObjectWithName:PARSEIMAGEDEFAULTFILENAME data:imageData];
 }
 
 + (BOOL)isThowerVerified: (NSString* )throwerUsername{
     __block BOOL isVerified = FALSE;
     PFQuery *query = [PFQuery queryWithClassName:THROWERCLASS];
     [query whereKey:THROWERNAMEKEY equalTo:[PFUser currentUser]];
-
-
     [query findObjectsInBackgroundWithBlock:^(NSArray *throwerList, NSError *error) {
         if(throwerList !=nil){
             isVerified = throwerList[0][VERIFIEDKEY];
         }
         else{
-            NSLog(@"Thrower list is nil");
             isVerified = FALSE;
         }
     }];

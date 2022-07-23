@@ -10,7 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol CreatePartyViewControllerDelegate <NSObject>
-
 - (void)didCreateParty:(Party *)party;
 @end
 

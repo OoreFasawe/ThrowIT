@@ -8,8 +8,8 @@ target 'ThrowIT' do
   # Pods for ThrowIT
 	pod 'AFNetworking'
 	pod 'DateTools'
-	pod "Parse"
-	pod "Parse/UI"
+	pod 'Parse'
+	pod 'Parse/UI'
 	pod 'CHTCollectionViewWaterfallLayout/ObjC'
 	pod 'GoogleMaps'
 	pod 'Google-Maps-iOS-Utils'

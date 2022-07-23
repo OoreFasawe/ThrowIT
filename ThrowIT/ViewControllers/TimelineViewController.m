@@ -5,7 +5,7 @@
 //  Created by Oore Fasawe on 7/5/22.
 //
 
-#import "Utility.h"
+
 #import "TimelineViewController.h"
 #import "DetailsViewController.h"
 #import "SceneDelegate.h"
@@ -16,11 +16,13 @@
 #import "Thrower.h"
 #import <Parse/Parse.h>
 
+
 @interface TimelineViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
 @property (nonatomic, strong) NSMutableArray *partyList;
+@property (nonatomic, strong) NSMutableArray *distanceDetailsList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
 
@@ -30,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[APIManager shared] locationManagerInit];
     [self fetchParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
@@ -44,6 +47,7 @@
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 - (IBAction)logoutUser:(id)sender {
@@ -51,7 +55,6 @@
         if (!error)
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
             UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier: LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
@@ -73,7 +76,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.partyList[myIndexPath.row + 3];
+        Party *party = self.partyList[myIndexPath.row + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
@@ -83,10 +86,19 @@
 
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
+    [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
+            if(self.distanceDetailsList.count != self.partyList.count){
+                self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
+                    if(success){
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.tableView reloadData];
+                        });
+                    }}];
+            }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
@@ -97,11 +109,29 @@
     }];
 }
 
+- (void)partyDistancesFetched{
+    [self.tableView reloadData];
+};
+
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    Party *party = self.partyList[indexPath.row + 3];
+    Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
+    if(self.distanceDetailsList.count)
+        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + SHIFTNUMBER]];
+    else
+        partyCell.partyDistance.text = @" ...";
     partyCell.partyName.text = party.name;
+    partyCell.partyDescription.text= party.partyDescription;
+    partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
+    PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+    [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+        if(!error)
+            partyCell.partyRating.text = [NSString stringWithFormat:PARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+        else
+            NSLog(@"%@", error.localizedDescription);
+    }];
     partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription; 
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
@@ -141,13 +171,13 @@
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
         [party saveInBackground];
-        partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%d", party.numberAttending];
+        partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
         partyCell.party = party;
     }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.partyList.count - 3;
+    return self.partyList.count - SHIFTNUMBER;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -162,6 +192,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
+    topPartyCell.layer.cornerRadius = 10;
     Party *party = self.partyList[indexPath.item];
     
     topPartyCell.partyNameLabel.text = party.name;
@@ -194,6 +225,14 @@
             else{
                 NSLog(@"%@", error.localizedDescription);
             }
+            PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+            [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+            [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+                if(!error)
+                    topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+                else
+                    NSLog(@"%@", error.localizedDescription);
+            }];
         }];
     }
     topPartyCell.topParty = party;

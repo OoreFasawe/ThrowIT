@@ -32,6 +32,7 @@
         newUser.username = self.usernameField.text;
         newUser.password = self.passwordField.text;
         newUser.email = self.emailField.text;
+        newUser[USERISTHROWERKEY] = NOKEYWORD;
     
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
@@ -58,5 +59,8 @@
     UIViewController *throwerSignUpViewController = [storyboard instantiateViewControllerWithIdentifier:THROWERSIGNUPVIEWCONTROLLER];
     self.view.window.rootViewController
     = throwerSignUpViewController;
+}
+- (IBAction)didTapScreen:(id)sender {
+    [self.view endEditing:true];
 }
 @end

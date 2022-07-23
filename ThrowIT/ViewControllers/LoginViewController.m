@@ -86,7 +86,6 @@
             self.throwersList = throwerList;
         }
         else{
-            NSLog(@"Thrower list is nil");
             self.throwersList = nil;
         }
     }];

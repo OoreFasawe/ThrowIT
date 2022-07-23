@@ -29,8 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double partyCoordinateLatitude;
 @property (nonatomic, strong) NSString *partyLocationName;
 @property (nonatomic, strong) NSString *partyLocationAddress;
+@property (nonatomic, strong) NSString *partyLocationId;
 
-+ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate * _Nullable)endTime withSchoolName:(NSString * _Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate * _Nullable)endTime withSchoolName:(NSString * _Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withLocationId:(NSString *) partyLocationId withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 

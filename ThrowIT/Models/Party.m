@@ -27,15 +27,13 @@
 @dynamic partyCoordinateLatitude;
 @dynamic partyLocationName;
 @dynamic partyLocationAddress;
-
+@dynamic partyLocationId;
 
 + (nonnull NSString *)parseClassName {
     return PARTYCLASS;
 }
 
-+ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withCompletion: (PFBooleanResultBlock  _Nullable)completion {
-
-    
++ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withLocationId:(NSString *) partyLocationId withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Party *newParty = party;
     newParty.name = partyName;
     newParty.partyDescription = partyDescription;
@@ -52,7 +50,8 @@
     newParty.partyCoordinateLongitude = partyCoordinate.longitude;
     newParty.partyCoordinateLatitude = partyCoordinate.latitude;
     newParty.partyThrower = [PFUser currentUser];
-    
+    newParty.rating = 0;
+    newParty.partyLocationId = partyLocationId;
     [newParty saveInBackgroundWithBlock: completion];
 
 }
@@ -68,7 +67,7 @@
     if (!imageData) {
         return nil;
     }
-    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    return [PFFileObject fileObjectWithName:PARSEIMAGEDEFAULTFILENAME data:imageData];
 }
 
 
