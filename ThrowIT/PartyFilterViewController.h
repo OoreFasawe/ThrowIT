@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PartyFilterViewControllerDelegate <NSObject>
 
-- (void)filterListByDistance:(float) distance byPartyCount:(int) partyCount;
+- (void)filterListByDistance:(double) distance byPartyCount:(int) partyCount byRating:(double) rating;
 
 @end
 

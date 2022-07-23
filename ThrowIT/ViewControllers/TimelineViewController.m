@@ -101,7 +101,7 @@
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self filterListByDistance:50 byPartyCount:0];
+                            [self filterListByDistance:50.0 byPartyCount:0 byRating:0.0 ];
                         });
                     }}];
             }
@@ -115,11 +115,12 @@
     }];
 }
 
--(void)filterListByDistance:(float)distance byPartyCount:(int)partyCount{
+-(void)filterListByDistance:(double)distance byPartyCount:(int)partyCount byRating:(double)rating{
     [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
-    self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance withPartyCountlimit:partyCount];
-    [self.tableView reloadData];
-    [self.collectionView reloadData];
+    self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance withPartyCountlimit:partyCount withRatingLimit:rating withCompletionHandler:^(BOOL success) {
+            [self.tableView reloadData];
+            [self.collectionView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
