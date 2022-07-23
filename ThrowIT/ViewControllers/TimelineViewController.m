@@ -118,8 +118,10 @@
 -(void)filterListByDistance:(double)distance byPartyCount:(int)partyCount byRating:(double)rating{
     [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
     self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance withPartyCountlimit:partyCount withRatingLimit:rating withCompletionHandler:^(BOOL success) {
+        if(success){
             [self.tableView reloadData];
             [self.collectionView reloadData];
+        }
     }];
 }
 

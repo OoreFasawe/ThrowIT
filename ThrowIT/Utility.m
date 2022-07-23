@@ -83,27 +83,30 @@ static int filterRunCount;
     f.numberStyle = NSNumberFormatterDecimalStyle;
     for(int i = 0; i < partyList.count; i++){
         Party *party = partyList[i];
-        //filterRunCount++;
         //filter distance
-        if(distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:@" "][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:@" "][1] isEqualToString:@"ft"]){
-            if(party.numberAttending >= partyCountLimit)
-            {
-                PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
-                [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
-                [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-                    if(!error){
-                        Thrower *partyThrower = thrower;
-                        if(partyThrower.throwerRating >= ratingLimit)
-                        {
-                            [filteredList addObject:party];
-                            completion(YES);
+        PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+        [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+        [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+            filterRunCount++;
+            if(!error){
+                Thrower *partyThrower = (Thrower *)thrower;
+                if(partyThrower.throwerRating >= ratingLimit)
+                    {
+                        if(distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:@" "][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:@" "][1] isEqualToString:@"ft"]){
+                            if(party.numberAttending >= partyCountLimit)
+                                {
+                                    [filteredList addObject:party];
+                                }
                         }
                     }
-                    else
-                        NSLog(@"%@", error.localizedDescription);
-                }];
+                }
+                else
+                    NSLog(@"%@", error.localizedDescription);
+            if(filterRunCount == partyList.count){
+                filterRunCount = 0;
+                completion(YES);
             }
-        }
+        }];
     }
     return filteredList;
 }
