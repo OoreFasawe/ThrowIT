@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSMutableArray*)initLocationsWithArray:(NSArray *)array;
 +(NSMutableArray *)getDistancesFromArray:(NSArray *)array withCompletionHandler:(void (^)(BOOL success ))completion;
 +(void)addDistanceDataToList:(NSMutableArray *)partyList fromList:(NSMutableArray *)distanceList;
-+(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)distanceLimit;
++(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)distanceLimit withPartyCountlimit:(int)partyCount;
 @end
 
 NS_ASSUME_NONNULL_END

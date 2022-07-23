@@ -101,7 +101,7 @@
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self filterListByDistance:50];
+                            [self filterListByDistance:50 byPartyCount:0];
                         });
                     }}];
             }
@@ -115,9 +115,9 @@
     }];
 }
 
--(void)filterListByDistance:(float)distance{
+-(void)filterListByDistance:(float)distance byPartyCount:(int)partyCount{
     [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
-    self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance];
+    self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance withPartyCountlimit:partyCount];
     [self.tableView reloadData];
     [self.collectionView reloadData];
 }
@@ -144,7 +144,6 @@
         else
             NSLog(@"%@", error.localizedDescription);
     }];
-    partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription; 
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];

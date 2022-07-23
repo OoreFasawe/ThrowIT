@@ -42,19 +42,16 @@
 }
 
 -(void)setAttendanceLabeltext{
-    int attendanceNumbers[] = {10, 25, 50, 100, 100};
-    if(self.attendanceSegmentedController.selectedSegmentIndex != self.attendanceSegmentedController.numberOfSegments - 1)
-        self.attendanceLabel.text = [NSString stringWithFormat:@"%d and below", attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex]];
-    else
+    int attendanceNumbers[] = {0, 1, 2, 3, 4};
         self.attendanceLabel.text = [NSString stringWithFormat:@"%d and above", attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex]];
 }
 
 -(void)setRatingLabeltext{
-    self.ratingLabel.text = [NSString stringWithFormat:@"Min rating %.1f / 5", self.ratingStepper.value / 2.0];
+    self.ratingLabel.text = [NSString stringWithFormat:@"%.1f / 5", self.ratingStepper.value / 2.0];
 }
 - (IBAction)setPartyFilters:(id)sender {
-    [self.delegate filterListByDistance:self.distanceSlider.value];
-    
+    int attendanceNumbers[] = {0, 1, 2, 3, 4};
+    [self.delegate filterListByDistance:self.distanceSlider.value byPartyCount: attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -75,25 +75,21 @@ static int runCount;
         someParty.distancesFromUser = distanceList[i];
     }
 }
-+(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)distanceLimit{
+
++(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)distanceLimit withPartyCountlimit:(int)partyCount{
     NSMutableArray *filteredList = [NSMutableArray new];
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
 
+    float ratingLimit;
     for(int i = 0; i < partyList.count; i++){
         Party *party = partyList[i];
-        if(distanceLimit > 0){
-            if([[f numberFromString:[party.distancesFromUser componentsSeparatedByString:@" "][0]] doubleValue]< distanceLimit || [[party.distancesFromUser componentsSeparatedByString:@" "][1] isEqualToString:@"ft"])
+        //filter distance
+        if([[f numberFromString:[party.distancesFromUser componentsSeparatedByString:@" "][0]] doubleValue]<= distanceLimit || [[party.distancesFromUser componentsSeparatedByString:@" "][1] isEqualToString:@"ft"]){
+            if(party.numberAttending >= partyCount)
             {
-                NSLog(@"Added: %@", party.distancesFromUser);
                 [filteredList addObject:party];
             }
-            else
-                NSLog(@"Took out: %@", party.distancesFromUser);
-        }
-        else
-        {
-            [filteredList addObject:party];
         }
     }
     return filteredList;
