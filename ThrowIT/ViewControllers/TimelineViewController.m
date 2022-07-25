@@ -81,7 +81,7 @@
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
-    else if([[segue identifier] isEqualToString:@"filterSegue"]){
+    else if([[segue identifier] isEqualToString:FILTERSEGUE]){
         UINavigationController *partyFilterNavigationController = [segue destinationViewController];
         PartyFilterViewController *partyFilterViewController = [partyFilterNavigationController.viewControllers objectAtIndex:0];
         partyFilterViewController.delegate = self;
@@ -101,9 +101,10 @@
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self filterListByDistance:50.0 byPartyCount:0 byRating:0.0 ];
+                            [self filterListByDistance:DISTANCELIMITDEFAULT byPartyCount:PARTYCOUNTLIMITDEFAULT byRating:RATINGLIMITDEFAULT ];
                         });
-                    }}];
+                    }
+                }];
             }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
@@ -133,7 +134,7 @@
     if(party.distancesFromUser != nil)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
     else
-        partyCell.partyDistance.text = @" ...";
+        partyCell.partyDistance.text = PARTYDISTANCELABELPLACEHOLDER;
     
     
     partyCell.partyName.text = party.name;

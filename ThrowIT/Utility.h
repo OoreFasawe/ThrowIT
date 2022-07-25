@@ -27,6 +27,7 @@
 #define DETAILSVIEWCONTROLLERFORTABLECELL @"toDetailsViewControllerForTableCell"
 #define THROWERDETAILSVIEWCONTROLLER @"toThrowerDetailsViewController"
 #define CREATEPARTYSEGUE @"createPartySegue"
+#define FILTERSEGUE @"filterSegue"
 
 #pragma mark - Models
 #define PARTYCELL @"PartyCell"
@@ -66,6 +67,7 @@
 #define CREATEDAT @"createdAt"
 
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
+#define EMPTY @""
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
@@ -73,16 +75,19 @@
 #define NOKEYWORD @NO
 #define ZERO @0
 
-#pragma mark - Filter constants
+#pragma mark - Party Filter constants
 #define SPACE @" "
 #define FEET @"ft"
 #define DISTANCELABELTEXTFORMAT @"%.1f miles"
 #define ATTENDANCELABELTEXTFORMAT @"%d and above"
 #define RATINGLABELTEXTFORMAT @"%.1f / 5"
+#define DISTANCELIMITDEFAULT 50.0
+#define PARTYCOUNTLIMITDEFAULT 0
+#define RATINGLIMITDEFAULT 0.0
 
 #pragma mark - API Info
 #define BASEURL @"https://maps.googleapis.com/maps/api/distancematrix/json"
-#define URLSTRINGFORMAT @"%@?destinations=place_id:%@&origins=%f,%f&units=imperial&key=%@"
+#define APIURLSTRINGFORMAT @"%@?destinations=place_id:%@&origins=%f,%f&units=imperial&key=%@"
 #define GOOGLEMAPSAPIKEY @"google_Maps_API_Key"
 #define KEYSFILENAME @"Keys"
 #define KEYSFILETYPE @"plist"
@@ -92,6 +97,12 @@
 #define PARSECLIENTKEY @"parse_Client_Key"
 #define PARSEAPPID @"parse_ApplicationId"
 #define PARSESERVER @"https://parseapi.back4app.com"
+#define OPENDIRECTIONSTITLE @"Open Directions"
+#define OPENDIRECTIONSMESSAGE @"Choose an app to open directions"
+#define ALERTACTIONGOOGLEMAPSTITLE @"Google Maps"
+#define LAUNCHURLFORGOOGLEMAPS @"comgooglemaps://?daddr=(%lf,%lf)&directionsmode=driving&zoom=14&views=traffic"
+#define ALERTACTIONAPPLEMAPSTITLE @"Apple Maps"
+#define DESTINATION @"Destination"
 
 #pragma mark - Profile Picture Constants
 #define ADDPROFILEPHOTO @"Add Profile photo"

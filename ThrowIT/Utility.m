@@ -11,7 +11,6 @@
 #import "TimelineViewController.h"
 static int apiRunCount;
 static int filterRunCount;
-static int partyPosition;
 
 @implementation Utility
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType{
