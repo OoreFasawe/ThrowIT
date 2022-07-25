@@ -23,7 +23,7 @@
 }
 
 - (IBAction)registerUser:(id)sender {
-    if([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]){
+    if([self.usernameField.text isEqual:EMPTY] || [self.passwordField.text isEqual:EMPTY]){
         //TODO: [self showAlert];
     }
     else{

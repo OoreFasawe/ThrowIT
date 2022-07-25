@@ -32,7 +32,7 @@
 }
 
 - (IBAction)registerThrower:(id)sender {
-    if([self.throwerNameField.text isEqual:@""] || [self.throwerSchoolField.text isEqual:@""] || [self.throwerEmailField.text isEqual:@""] || [self.throwerPasswordField.text isEqual:@""]){
+    if([self.throwerNameField.text isEqual:EMPTY] || [self.throwerSchoolField.text isEqual:EMPTY] || [self.throwerEmailField.text isEqual:EMPTY] || [self.throwerPasswordField.text isEqual:@""]){
         //TODO: [self showAlert];
     }
     else{
