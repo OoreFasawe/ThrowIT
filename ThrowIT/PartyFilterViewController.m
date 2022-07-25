@@ -38,20 +38,20 @@
 }
 
 -(void)setDistanceLabeltext{
-    self.distanceLabel.text = [NSString stringWithFormat:@"%.1f miles", self.distanceSlider.value];
+    self.distanceLabel.text = [NSString stringWithFormat:DISTANCELABELTEXTFORMAT, self.distanceSlider.value];
 }
 
 -(void)setAttendanceLabeltext{
     int attendanceNumbers[] = {0, 1, 2, 3, 4};
-        self.attendanceLabel.text = [NSString stringWithFormat:@"%d and above", attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex]];
+        self.attendanceLabel.text = [NSString stringWithFormat:ATTENDANCELABELTEXTFORMAT, attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex]];
 }
 
 -(void)setRatingLabeltext{
-    self.ratingLabel.text = [NSString stringWithFormat:@"%.1f / 5", self.ratingStepper.value / 2.0];
+    self.ratingLabel.text = [NSString stringWithFormat:RATINGLABELTEXTFORMAT, self.ratingStepper.value / 2.0];
 }
 - (IBAction)setPartyFilters:(id)sender {
     int attendanceNumbers[] = {0, 1, 2, 3, 4};
-    [self.delegate filterListByDistance:self.distanceSlider.value byPartyCount: attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex] byRating: self.ratingStepper.value / 2.0];
+    [self.delegate filterListByDistance:self.distanceSlider.value byPartyCount: attendanceNumbers[self.attendanceSegmentedController.selectedSegmentIndex] byRating: self.ratingStepper.value/ 2.0];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

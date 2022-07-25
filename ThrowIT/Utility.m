@@ -11,6 +11,8 @@
 #import "TimelineViewController.h"
 static int apiRunCount;
 static int filterRunCount;
+static int partyPosition;
+
 @implementation Utility
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType{
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -82,7 +84,7 @@ static int filterRunCount;
     f.numberStyle = NSNumberFormatterDecimalStyle;
     for(int i = 0; i < partyList.count; i++){
         Party *party = partyList[i];
-        //filter distance
+        //filter rating
         PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
         [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
         [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
@@ -91,16 +93,20 @@ static int filterRunCount;
                 Thrower *partyThrower = (Thrower *)thrower;
                 if(partyThrower.throwerRating >= ratingLimit)
                     {
-                        if(distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:@" "][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:@" "][1] isEqualToString:@"ft"]){
-                            if(party.numberAttending >= partyCountLimit)
-                                {
-                                    [filteredList addObject:party];
-                                }
+                        //filter distance
+                        if(distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:SPACE][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
+                            // filter party count
+                            if(party.numberAttending >= partyCountLimit){
+                                [filteredList addObject:party];
+                            }
                         }
                     }
                 }
                 else
+                {
                     NSLog(@"%@", error.localizedDescription);
+                }
+            
             if(filterRunCount == partyList.count){
                 filterRunCount = 0;
                 completion(YES);
@@ -109,4 +115,5 @@ static int filterRunCount;
     }
     return filteredList;
 }
+
 @end

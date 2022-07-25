@@ -17,6 +17,7 @@
 #define SIGNUPVIEWCONTROLLER @"SignUpViewController"
 #define THROWERSIGNUPVIEWCONTROLLER @"ThrowerSignUpViewController"
 #define THROWERTIMELINENAVIGATIONVIEWCONTROLLER @"ThrowerTimelineNavigationController"
+#define THROWERTIMELINETABBARCONTROLLER @"ThrowerTimelineTabBarController"
 #define THROWERWAITSCREENNAVIGATIONCONTROLLER @"ThrowerWaitScreenNavigationController"
 #define TIMELINETABBARCONTROLLER @"TimelineTabBarController"
 #define TIMELINEVIEWCONTROLLER @"TimelineViewController"
@@ -72,6 +73,12 @@
 #define NOKEYWORD @NO
 #define ZERO @0
 
+#pragma mark - Filter constants
+#define SPACE @" "
+#define FEET @"ft"
+#define DISTANCELABELTEXTFORMAT @"%.1f miles"
+#define ATTENDANCELABELTEXTFORMAT @"%d and above"
+#define RATINGLABELTEXTFORMAT @"%.1f / 5"
 
 #pragma mark - API Info
 #define BASEURL @"https://maps.googleapis.com/maps/api/distancematrix/json"
