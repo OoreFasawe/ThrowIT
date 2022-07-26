@@ -1108,8 +1108,6 @@
 		8857113CB0EC8E1F3847F15DC830CDB2 /* PFAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFAlertView.h; path = Parse/Parse/Internal/PFAlertView.h; sourceTree = "<group>"; };
 		88E28E99916FF04EF7C4D85EB3F5D567 /* PFACLPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFACLPrivate.h; path = Parse/Parse/Internal/ACL/PFACLPrivate.h; sourceTree = "<group>"; };
 		89AA7FA08429050D0CA084DF3AF573A0 /* PFPin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFPin.m; path = Parse/Parse/Internal/LocalDataStore/Pin/PFPin.m; sourceTree = "<group>"; };
-		89AC10F02889BDB100F35820 /* Core Haptics Generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Core Haptics Generator.h"; path = "../ThrowIT/ViewControllers/Core Haptics Generator.h"; sourceTree = "<group>"; };
-		89AC10F12889BDB100F35820 /* Core Haptics Generator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Core Haptics Generator.m"; path = "../ThrowIT/ViewControllers/Core Haptics Generator.m"; sourceTree = "<group>"; };
 		8A0365618F59BF85C42C66F1907AD12E /* PFBaseState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFBaseState.m; path = Parse/Parse/Internal/PFBaseState.m; sourceTree = "<group>"; };
 		8ABDA88B01AFA69F8F1A1EA5F80F478C /* PFOfflineQueryController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFOfflineQueryController.h; path = Parse/Parse/Internal/Query/Controller/PFOfflineQueryController.h; sourceTree = "<group>"; };
 		8B167816A35DA164A8A986DD9145A9E6 /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = fr.lproj; path = ParseUI/Resources/Localization/fr.lproj; sourceTree = "<group>"; };
@@ -2451,8 +2449,6 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
-				89AC10F02889BDB100F35820 /* Core Haptics Generator.h */,
-				89AC10F12889BDB100F35820 /* Core Haptics Generator.m */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				2FE445AD883B9ABD3E0241A05A5B79FD /* Frameworks */,
 				87FE3964692206130E81A327109BA347 /* Pods */,

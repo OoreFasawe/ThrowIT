@@ -183,10 +183,9 @@
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
 				899D92612881EF9D007BCC72 /* Utility.h */,
 				899D92622881EF9D007BCC72 /* Utility.m */,
+				89D525A9289097900075C464 /* Haptics */,
 				89824500287D0F8100744255 /* ViewComponents */,
 				891EF8EF28760ECF00F5947E /* Models */,
-				89AC10F52889C00000F35820 /* CoreHapticsGenerator.h */,
-				89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */,
 				891EF8E2287550C200F5947E /* ViewControllers */,
 				891EF8B5286E519000F5947E /* Assets.xcassets */,
 				891EF8B7286E519000F5947E /* LaunchScreen.storyboard */,
@@ -267,6 +266,15 @@
 				898244E628762FCC00744255 /* PartyCell.m */,
 			);
 			path = ViewComponents;
+			sourceTree = "<group>";
+		};
+		89D525A9289097900075C464 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				89AC10F52889C00000F35820 /* CoreHapticsGenerator.h */,
+				89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */,
+			);
+			path = Haptics;
 			sourceTree = "<group>";
 		};
 		C27060469BBE3ECD3B7A3DC4 /* Frameworks */ = {
