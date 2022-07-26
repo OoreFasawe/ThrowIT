@@ -117,7 +117,8 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    partyCell.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    partyCell.soundGenerator = soundGenerator;
     Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
     if(self.distanceDetailsList.count)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + SHIFTNUMBER]];
@@ -196,7 +197,8 @@
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
     Party *party = self.partyList[indexPath.item];
-    topPartyCell.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
     
