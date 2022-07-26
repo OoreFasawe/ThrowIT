@@ -39,7 +39,6 @@
 		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
 		89AC10EF2886125500F35820 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10EE2886125500F35820 /* APIManager.m */; };
 		89AC10F72889C00000F35820 /* CoreHapticsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */; };
-		89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E90EBD288555B50031223F /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +129,6 @@
 			files = (
 				899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */,
 				4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */,
-				89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

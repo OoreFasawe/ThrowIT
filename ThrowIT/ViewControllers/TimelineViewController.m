@@ -8,6 +8,7 @@
 
 #import "TimelineViewController.h"
 #import "DetailsViewController.h"
+#import "CoreHapticsGenerator.h"
 #import "SceneDelegate.h"
 #import "partyCell.h"
 #import "TopPartyCell.h"
@@ -116,6 +117,7 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
+    partyCell.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
     if(self.distanceDetailsList.count)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + SHIFTNUMBER]];
