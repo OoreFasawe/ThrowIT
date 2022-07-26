@@ -91,6 +91,10 @@
 #define TAKEPHOTO @"Take Photo"
 #define CHOOSEFROMLIBRARY @"Choose from library"
 #define CANCEL @"Cancel"
+#define ORIGINALXPOSITION 1.f
+#define ORIGINALYPOSITION 1.f
+#define DEFAULTDURATION 0.3
+#define SIZEMULTIPLIER 2.5
 
 NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
