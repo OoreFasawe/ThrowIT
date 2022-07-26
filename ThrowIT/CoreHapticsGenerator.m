@@ -70,7 +70,7 @@
     NSError* error;
     CHHapticPattern* pattern = [[CHHapticPattern alloc] initWithDictionary:hapticDict error:&error];
     error = nil;
-    self.player = [_engine createPlayerWithPattern:pattern error:&error];
+    self.player = [self.engine createPlayerWithPattern:pattern error:&error];
     [self.engine startWithCompletionHandler:^(NSError* returnedError) {
         NSError* error;
         [self.player startAtTime:0 error:&error];
