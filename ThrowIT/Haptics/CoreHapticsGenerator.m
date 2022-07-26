@@ -71,13 +71,17 @@
     CHHapticPattern* pattern = [[CHHapticPattern alloc] initWithDictionary:hapticDict error:&error];
     error = nil;
     self.player = [self.engine createPlayerWithPattern:pattern error:&error];
-    [self.engine startWithCompletionHandler:^(NSError* returnedError) {
-        NSError* error;
-        [self.player startAtTime:0 error:&error];
-    }];
+    
     // Stop the engine after it completes the playback.
     [self.engine notifyWhenPlayersFinished:^CHHapticEngineFinishedAction(NSError * _Nullable error) {
         return CHHapticEngineFinishedActionStopEngine;
     }];
+    
+    [self.engine startWithCompletionHandler:^(NSError* returnedError) {
+        NSError* error;
+        [self.player startAtTime:0 error:&error];
+    }];
+    
+    
 }
 @end
