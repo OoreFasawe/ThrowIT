@@ -196,7 +196,7 @@
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
     Party *party = self.partyList[indexPath.item];
-    
+    topPartyCell.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
     
