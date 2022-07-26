@@ -73,27 +73,21 @@
 - (IBAction)didLongPressOnProfileImage:(id)sender {
     UILongPressGestureRecognizer *profileImageExpand = sender;
     CGRect profileImageframe = profileImageExpand.view.frame;
-    profileImageframe.size.height = profileImageExpand.view.frame.size.height * 2.5;
-    profileImageframe.size.width = profileImageExpand.view.frame.size.width * 2.5;
-    
+    profileImageframe.size.height = profileImageExpand.view.frame.size.height * SIZEMULTIPLIER;
+    profileImageframe.size.width = profileImageExpand.view.frame.size.width * SIZEMULTIPLIER;
     if(profileImageExpand.state == UIGestureRecognizerStateBegan){
-        [UIView animateWithDuration:0.3 animations:^{
-            [profileImageExpand.view setOpaque:YES];
+        [UIView animateWithDuration:DEFAULTDURATION animations:^{
             profileImageExpand.view.layer.zPosition = MAXFLOAT;
             profileImageExpand.view.frame = profileImageframe;
             profileImageExpand.view.transform = CGAffineTransformMakeTranslation(self.view.center.x - profileImageExpand.view.center.x, self.view.center.y - profileImageExpand.view.center.y);
-            
         } completion:nil];
     }
-    
-    profileImageframe.size.height = profileImageExpand.view.frame.size.height / 2.5;
-    profileImageframe.size.width = profileImageExpand.view.frame.size.width / 2.5;
+    profileImageframe.size.height = profileImageExpand.view.frame.size.height / SIZEMULTIPLIER;
+    profileImageframe.size.width = profileImageExpand.view.frame.size.width / SIZEMULTIPLIER;
     if(profileImageExpand.state == UIGestureRecognizerStateEnded){
-        [UIView animateWithDuration:0.3 animations:^{
-            [profileImageExpand.view setOpaque:NO];
-            profileImageExpand.view.layer.zPosition = MAXFLOAT;
+        [UIView animateWithDuration:DEFAULTDURATION animations:^{
             profileImageExpand.view.frame = profileImageframe;
-            profileImageExpand.view.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+            profileImageExpand.view.transform = CGAffineTransformMakeTranslation(ORIGINALXPOSITION, ORIGINALYPOSITION);
         } completion:nil];
     }
 }
