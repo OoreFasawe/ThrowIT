@@ -516,6 +516,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Wax-yz-jlt" appends="YES" id="gJv-dY-XAC"/>
+                                    <outletCollection property="gestureRecognizers" destination="g25-Sc-mJB" appends="YES" id="2Iw-ZN-5Me"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Frat Storlie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uol-ET-Cad">
@@ -578,6 +579,11 @@
                         <action selector="onTapProfilePicture:" destination="yo9-S4-ASC" id="BUA-Tj-foP"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="g25-Sc-mJB">
+                    <connections>
+                        <action selector="didLongPressOnProfileImage:" destination="yo9-S4-ASC" id="dMs-w4-xfg"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2761.6822429906542" y="75.809935205183592"/>
         </scene>
@@ -1094,6 +1100,7 @@
                 <tabBarController storyboardIdentifier="ThrowerTimelineTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="VZc-q8-Mz2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X94-B7-qgd">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
