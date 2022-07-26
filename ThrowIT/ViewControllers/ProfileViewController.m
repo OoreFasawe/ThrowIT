@@ -70,6 +70,7 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+
 - (IBAction)didLongPressOnProfileImage:(id)sender {
     UILongPressGestureRecognizer *profileImageExpand = sender;
     CGRect profileImageframe = profileImageExpand.view.frame;
