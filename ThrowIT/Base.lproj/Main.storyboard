@@ -771,6 +771,7 @@
                                                     <constraint firstItem="jPe-lp-m9r" firstAttribute="top" secondItem="ezw-yu-tls" secondAttribute="top" constant="15" id="r2P-vS-1R0"/>
                                                 </constraints>
                                             </collectionViewCellContentView>
+                                            <gestureRecognizers/>
                                             <connections>
                                                 <outlet property="goingButton" destination="K6D-Aj-72B" id="CPk-Eg-W7Z"/>
                                                 <outlet property="goingCountLabel" destination="rvn-rW-SAH" id="ALk-AQ-Ymv"/>
@@ -887,6 +888,7 @@
                                                 <constraint firstItem="dTE-Ea-tP1" firstAttribute="leading" secondItem="Jd4-vs-7CF" secondAttribute="leading" id="zkI-Mn-gMn"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="goingButton" destination="Bnq-Oz-Yub" id="Gmd-8Z-ZI5"/>
                                             <outlet property="partyDescription" destination="fQd-Tk-xLn" id="NSP-cY-xvZ"/>
@@ -897,7 +899,6 @@
                                             <outlet property="partyTime" destination="gqu-AZ-BeF" id="fJb-fw-9bo"/>
                                             <outlet property="throwerNameLabel" destination="bqB-qT-VmZ" id="L3G-rV-jve"/>
                                             <outlet property="throwerProfilePicture" destination="Jd4-vs-7CF" id="kR0-1B-TbO"/>
-                                            <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForTableCell" id="ww1-hf-2xj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -929,6 +930,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Wtv-q0-MQv" id="ior-h6-WKR"/>
                         <outlet property="tableView" destination="HzX-E0-XzU" id="hIl-sA-X75"/>
+                        <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForTableCell" id="IOH-Ak-bky"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s53-Zs-es2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1114,7 +1116,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s2E-pg-iGe"/>
+        <segue reference="IOH-Ak-bky"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>

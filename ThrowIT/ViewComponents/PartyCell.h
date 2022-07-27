@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyDistance;
 @property (strong, nonatomic) IBOutlet PFImageView *throwerProfilePicture;
 @property (strong, nonatomic) IBOutlet UIButton *goingButton;
+- (IBAction)didTapLike:(id)sender;
 @end
 
 NS_ASSUME_NONNULL_END
