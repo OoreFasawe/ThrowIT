@@ -79,7 +79,7 @@
 #define SPACE @" "
 #define FEET @"ft"
 #define DISTANCELABELTEXTFORMAT @"%.1f miles"
-#define ATTENDANCELABELTEXTFORMAT @"%d and above"
+#define ATTENDANCELABELTEXTFORMAT @"%ld and above"
 #define RATINGLABELTEXTFORMAT @"%.1f / 5"
 #define DISTANCELIMITDEFAULT 50.0
 #define PARTYCOUNTLIMITDEFAULT 0
