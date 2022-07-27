@@ -91,9 +91,7 @@ static int filterRunCount;
             if(!error){
                 Thrower *partyThrower = (Thrower *)thrower;
                 if(partyThrower.throwerRating >= ratingLimit &&
-                   (distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:SPACE][0]] doubleValue] ||
-                    [[party.distancesFromUser componentsSeparatedByString:SPACE][1] isEqualToString:FEET]) &&
-                   party.numberAttending >= partyCountLimit)
+                   (distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:SPACE][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:SPACE][1] isEqualToString:FEET]) && party.numberAttending >= partyCountLimit)
                     {
                         [filteredList addObject:party];
                     }
