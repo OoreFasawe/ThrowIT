@@ -10,8 +10,6 @@
 @import GooglePlaces;
 @import GoogleMaps;
 
-
-
 @implementation APIManager
 
 + (instancetype)shared {

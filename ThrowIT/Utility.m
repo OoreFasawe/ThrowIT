@@ -90,16 +90,18 @@ static int filterRunCount;
             filterRunCount++;
             if(!error){
                 Thrower *partyThrower = (Thrower *)thrower;
-                if(partyThrower.throwerRating >= ratingLimit && (distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:SPACE][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:SPACE][1] isEqualToString:FEET]) && party.numberAttending >= partyCountLimit)
+                if(partyThrower.throwerRating >= ratingLimit &&
+                   (distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:SPACE][0]] doubleValue] ||
+                    [[party.distancesFromUser componentsSeparatedByString:SPACE][1] isEqualToString:FEET]) &&
+                   party.numberAttending >= partyCountLimit)
                     {
                         [filteredList addObject:party];
                     }
                 }
-                else
-                {
-                    NSLog(@"%@", error.localizedDescription);
-                }
-            
+            else
+            {
+                NSLog(@"%@", error.localizedDescription);
+            }
             if(filterRunCount == partyList.count){
                 filterRunCount = 0;
                 completion(YES);
