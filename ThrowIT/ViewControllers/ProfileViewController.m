@@ -71,4 +71,26 @@
     return newImage;
 }
 
+- (IBAction)didLongPressOnProfileImage:(id)sender {
+    UILongPressGestureRecognizer *profileImageExpand = sender;
+    CGRect profileImageframe = profileImageExpand.view.frame;
+    profileImageframe.size.height = profileImageExpand.view.frame.size.height * SIZEMULTIPLIER;
+    profileImageframe.size.width = profileImageExpand.view.frame.size.width * SIZEMULTIPLIER;
+    if(profileImageExpand.state == UIGestureRecognizerStateBegan){
+        [UIView animateWithDuration:DEFAULTDURATION animations:^{
+            profileImageExpand.view.layer.zPosition = MAXFLOAT;
+            profileImageExpand.view.frame = profileImageframe;
+            profileImageExpand.view.transform = CGAffineTransformMakeTranslation(self.view.center.x - profileImageExpand.view.center.x, self.view.center.y - profileImageExpand.view.center.y);
+        } completion:nil];
+    }
+    profileImageframe.size.height = profileImageExpand.view.frame.size.height / SIZEMULTIPLIER;
+    profileImageframe.size.width = profileImageExpand.view.frame.size.width / SIZEMULTIPLIER;
+    if(profileImageExpand.state == UIGestureRecognizerStateEnded){
+        [UIView animateWithDuration:DEFAULTDURATION animations:^{
+            profileImageExpand.view.frame = profileImageframe;
+            profileImageExpand.view.transform = CGAffineTransformMakeTranslation(ORIGINALXPOSITION, ORIGINALYPOSITION);
+        } completion:nil];
+    }
+}
+
 @end

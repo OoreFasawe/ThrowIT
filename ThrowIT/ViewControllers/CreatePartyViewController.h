@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Party.h"
+#import "Utility.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol CreatePartyViewControllerDelegate <NSObject>

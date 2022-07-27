@@ -9,8 +9,6 @@
 #import "TimelineViewController.h"
 @import GooglePlaces;
 @import GoogleMaps;
-static int runCount = 0;
-
 
 @implementation APIManager
 
@@ -33,14 +31,14 @@ static int runCount = 0;
     [locationManager startUpdatingLocation];
 }
 
--(void)loadDistanceDataIntoArray:(NSMutableArray *)array withDestinationLocation:(NSString *)destinationPlaceId withArrayIndex:(int)arrayIndex withCount:(NSUInteger)count withCompletionHandler:(void (^)(BOOL success))completion{
+-(void)loadDistanceDataFromLocation:(NSString *)destinationPlaceId withCompletionHandler:(void (^)(NSString * distance))completion{
     NSString *path = [[NSBundle mainBundle] pathForResource: KEYSFILENAME ofType: KEYSFILETYPE];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *key = [dict objectForKey: GOOGLEMAPSAPIKEY];
     if ([[NSUserDefaults standardUserDefaults] stringForKey:CONSUMERKEY]) {
         key = [[NSUserDefaults standardUserDefaults] stringForKey:CONSUMERKEY];
     }
-    NSString *totalString = [NSString stringWithFormat:URLSTRINGFORMAT, BASEURL, destinationPlaceId, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, key];
+    NSString *totalString = [NSString stringWithFormat:APIURLSTRINGFORMAT, BASEURL, destinationPlaceId, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, key];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:totalString]];
     [request setHTTPMethod:GETMETHOD];
@@ -49,11 +47,8 @@ static int runCount = 0;
         NSURLResponse * _Nullable response,
         NSError * _Nullable error) {
         if(!error){
-            runCount++;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            array[arrayIndex] = MILEDATAPATH;
-            if (runCount == count)
-                return completion(YES);
+            completion(MILEDATAPATH);
         }
         else{
             NSLog(@"%@", error.localizedDescription);
