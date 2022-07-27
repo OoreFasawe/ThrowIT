@@ -18,7 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *path = [[NSBundle mainBundle] pathForResource: KEYSFILENAME ofType: @"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: KEYSFILENAME ofType: KEYSFILETYPE];
     NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *parseAppId = [keysDict objectForKey: PARSEAPPID];
     NSString *parseClientKey = [keysDict objectForKey: PARSECLIENTKEY];
