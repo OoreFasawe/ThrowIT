@@ -191,7 +191,7 @@
             break;
         case 2: //double tap
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(singleTapOnTCell) object:nil];
-            [self performSelector:@selector(doubleTapOnCCell) withObject: nil];
+            [self performSelector:@selector(doubleTapOnTCell) withObject: nil];
             break;
         default:
             break;
@@ -204,7 +204,7 @@
     self.tapCount = 0;
 }
 
-- (void)doubleTapOnCCell {
+- (void)doubleTapOnTCell {
     PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:self.tableSelection];
     [partyCell didTapLike:partyCell.goingButton];
     self.tapCount = 0;
