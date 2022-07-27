@@ -21,7 +21,9 @@
 - (IBAction)didTapLike:(id)sender {
     [Attendance setAvailability:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];
-    AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
+    if (self.soundGenerator != nil){
+        [self.soundGenerator playAttendanceSound];
+    }
     if([self.goingButton.titleLabel.text isEqualToString:GOING]){
         [self.goingButton setTitle:MAYBE forState:UIControlStateNormal];
         self.party.numberAttending -= 1;

@@ -8,6 +8,7 @@
 
 #import "TimelineViewController.h"
 #import "DetailsViewController.h"
+#import "CoreHapticsGenerator.h"
 #import "SceneDelegate.h"
 #import "partyCell.h"
 #import "TopPartyCell.h"
@@ -129,6 +130,8 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
+    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    partyCell.soundGenerator = soundGenerator;
     Party *party = self.filteredList[indexPath.row + SHIFTNUMBER];
     
     if(party.distancesFromUser != nil)
@@ -216,7 +219,8 @@
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
     Party *party = self.filteredList[indexPath.item];
-    
+    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
     
