@@ -67,6 +67,7 @@
 #define CREATEDAT @"createdAt"
 
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
+#define PARTYIMAGEDEFAULT @"step2"
 #define EMPTY @""
 
 #pragma mark - Query Limits

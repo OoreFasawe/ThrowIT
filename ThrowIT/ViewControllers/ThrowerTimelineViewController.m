@@ -40,7 +40,6 @@
         if (!error)
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
             UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
@@ -109,15 +108,12 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:THROWERPARTYCELL];
     Party *party = self.throwerPartyList[indexPath.section];
-    
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.partyDescription.text = party.partyDescription;
-    
     throwerPartyCell.partyImageView.layer.cornerRadius = 10;
     throwerPartyCell.partyImageView.layer.borderWidth = 0.1;
-    [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:@"step2"]];
+    [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
     [self partyGoingCountQuery:party withPartyCell:throwerPartyCell];
-    
     return throwerPartyCell;
 }
 
@@ -127,15 +123,11 @@
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (ThrowerPartyCell *) throwerPartyCell{
     PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
-    
     [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-    
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
-        
         throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
-        
         throwerPartyCell.party = party;
         [party saveInBackground];
     }]; 
