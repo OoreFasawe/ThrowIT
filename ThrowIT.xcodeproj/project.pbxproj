@@ -34,6 +34,7 @@
 		89824512287DE2EA00744255 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89824511287DE2EA00744255 /* DetailsViewController.m */; };
 		89824517287DE8E100744255 /* ThrowerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89824516287DE8E100744255 /* ThrowerDetailsViewController.m */; };
 		8982451D287DEF7B00744255 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982451C287DEF7B00744255 /* Attendance.m */; };
+		89855E2C289302A4006D1A13 /* ThrowerProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89855E2B289302A4006D1A13 /* ThrowerProfileViewController.m */; };
 		899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899D925A28813A8C007BCC72 /* MapKit.framework */; };
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
 		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
@@ -111,6 +112,8 @@
 		89824516287DE8E100744255 /* ThrowerDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrowerDetailsViewController.m; sourceTree = "<group>"; };
 		8982451B287DEF7B00744255 /* Attendance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Attendance.h; sourceTree = "<group>"; };
 		8982451C287DEF7B00744255 /* Attendance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Attendance.m; sourceTree = "<group>"; };
+		89855E2A289302A4006D1A13 /* ThrowerProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThrowerProfileViewController.h; sourceTree = "<group>"; };
+		89855E2B289302A4006D1A13 /* ThrowerProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrowerProfileViewController.m; sourceTree = "<group>"; };
 		899D925A28813A8C007BCC72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		899D925C28813B11007BCC72 /* OpenMapDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenMapDirections.h; sourceTree = "<group>"; };
 		899D925D28813B11007BCC72 /* OpenMapDirections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenMapDirections.m; sourceTree = "<group>"; };
@@ -118,13 +121,10 @@
 		899D92622881EF9D007BCC72 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		89AC10ED2886125500F35820 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		89AC10EE2886125500F35820 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
-
 		89AC10F52889C00000F35820 /* CoreHapticsGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreHapticsGenerator.h; sourceTree = "<group>"; };
 		89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreHapticsGenerator.m; sourceTree = "<group>"; };
-
 		89AC10F8288A855F00F35820 /* PartyFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyFilterViewController.h; sourceTree = "<group>"; };
 		89AC10F9288A855F00F35820 /* PartyFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyFilterViewController.m; sourceTree = "<group>"; };
-
 		89E90EBD288555B50031223F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -183,6 +183,8 @@
 				891EF8A9286E519000F5947E /* AppDelegate.h */,
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
+				89855E2A289302A4006D1A13 /* ThrowerProfileViewController.h */,
+				89855E2B289302A4006D1A13 /* ThrowerProfileViewController.m */,
 				89AC10ED2886125500F35820 /* APIManager.h */,
 				89AC10EE2886125500F35820 /* APIManager.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
@@ -508,6 +510,7 @@
 				899D92632881EF9D007BCC72 /* Utility.m in Sources */,
 				89824512287DE2EA00744255 /* DetailsViewController.m in Sources */,
 				89AC10EF2886125500F35820 /* APIManager.m in Sources */,
+				89855E2C289302A4006D1A13 /* ThrowerProfileViewController.m in Sources */,
 				898244ED28775E6400744255 /* TopPartyCell.m in Sources */,
 				89824503287D104400744255 /* ThrowerPartyCell.m in Sources */,
 				89AC10FA288A855F00F35820 /* PartyFilterViewController.m in Sources */,
