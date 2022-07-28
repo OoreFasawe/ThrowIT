@@ -37,6 +37,7 @@
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
 #define SHIFTNUMBER 3
+#define NUMBEROFROWSINSECTION 1
 
 #pragma mark - Parse Classes
 #define PARTYCLASS @"Party"
