@@ -26,7 +26,6 @@
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
 @property (nonatomic)int tapCount;
-@property (nonatomic, strong) NSIndexPath *tableSelection;
 
 @end
 
@@ -183,29 +182,28 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.tableSelection = indexPath;
     self.tapCount++;
     switch (self.tapCount) {
         case 1: //single tap
-            [self performSelector:@selector(singleTapOnTCell) withObject: nil afterDelay: .4];
+            [self performSelector:@selector(singleTapOnTCell:) withObject:indexPath afterDelay: .4];
             break;
         case 2: //double tap
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(singleTapOnTCell) object:nil];
-            [self performSelector:@selector(doubleTapOnTCell) withObject: nil];
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(singleTapOnTCell:) object:indexPath];
+            [self doubleTapOnTCell:indexPath];
             break;
         default:
             break;
     }
 }
 
-- (void)singleTapOnTCell {
-    PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:self.tableSelection];
+- (void)singleTapOnTCell:(NSIndexPath *)indexPath {
+    PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:DETAILSVIEWCONTROLLERFORTABLECELL sender:partyCell];
     self.tapCount = 0;
 }
 
-- (void)doubleTapOnTCell {
-    PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:self.tableSelection];
+- (void)doubleTapOnTCell:(NSIndexPath *)indexPath {
+    PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:indexPath];
     [partyCell didTapLike:partyCell.goingButton];
     self.tapCount = 0;
 }
