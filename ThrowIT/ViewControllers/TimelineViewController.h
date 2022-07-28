@@ -9,6 +9,7 @@
 #import "Foundation/Foundation.h"
 #import <UIKit/UIKit.h>
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "PartyFilterViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

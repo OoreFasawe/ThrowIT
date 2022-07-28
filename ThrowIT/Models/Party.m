@@ -28,6 +28,7 @@
 @dynamic partyLocationName;
 @dynamic partyLocationAddress;
 @dynamic partyLocationId;
+@dynamic distancesFromUser;
 
 + (nonnull NSString *)parseClassName {
     return PARTYCLASS;

@@ -38,7 +38,8 @@
 		899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D925D28813B11007BCC72 /* OpenMapDirections.m */; };
 		899D92632881EF9D007BCC72 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D92622881EF9D007BCC72 /* Utility.m */; };
 		89AC10EF2886125500F35820 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10EE2886125500F35820 /* APIManager.m */; };
-		89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E90EBD288555B50031223F /* AudioToolbox.framework */; };
+		89AC10F72889C00000F35820 /* CoreHapticsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */; };
+		89AC10FA288A855F00F35820 /* PartyFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AC10F9288A855F00F35820 /* PartyFilterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,13 @@
 		899D92622881EF9D007BCC72 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		89AC10ED2886125500F35820 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		89AC10EE2886125500F35820 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+
+		89AC10F52889C00000F35820 /* CoreHapticsGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreHapticsGenerator.h; sourceTree = "<group>"; };
+		89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreHapticsGenerator.m; sourceTree = "<group>"; };
+
+		89AC10F8288A855F00F35820 /* PartyFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyFilterViewController.h; sourceTree = "<group>"; };
+		89AC10F9288A855F00F35820 /* PartyFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyFilterViewController.m; sourceTree = "<group>"; };
+
 		89E90EBD288555B50031223F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -127,7 +135,6 @@
 			files = (
 				899D925B28813A8C007BCC72 /* MapKit.framework in Frameworks */,
 				4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */,
-				89E90EBE288555B50031223F /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +189,9 @@
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
 				899D92612881EF9D007BCC72 /* Utility.h */,
 				899D92622881EF9D007BCC72 /* Utility.m */,
+				89D525A9289097900075C464 /* Haptics */,
+				89AC10F8288A855F00F35820 /* PartyFilterViewController.h */,
+				89AC10F9288A855F00F35820 /* PartyFilterViewController.m */,
 				89824500287D0F8100744255 /* ViewComponents */,
 				891EF8EF28760ECF00F5947E /* Models */,
 				891EF8E2287550C200F5947E /* ViewControllers */,
@@ -216,11 +226,11 @@
 			children = (
 				893969242884F1F9004DD10E /* ProfileViewController.h */,
 				893969252884F1F9004DD10E /* ProfileViewController.m */,
-				89824515287DE8E100744255 /* ThrowerDetailsViewController.h */,
 				89824510287DE2EA00744255 /* DetailsViewController.h */,
 				89824511287DE2EA00744255 /* DetailsViewController.m */,
 				899D925C28813B11007BCC72 /* OpenMapDirections.h */,
 				899D925D28813B11007BCC72 /* OpenMapDirections.m */,
+				89824515287DE8E100744255 /* ThrowerDetailsViewController.h */,
 				89824516287DE8E100744255 /* ThrowerDetailsViewController.m */,
 				89824507287D15F000744255 /* CreatePartyViewController.h */,
 				89824508287D15F000744255 /* CreatePartyViewController.m */,
@@ -264,6 +274,15 @@
 				898244E628762FCC00744255 /* PartyCell.m */,
 			);
 			path = ViewComponents;
+			sourceTree = "<group>";
+		};
+		89D525A9289097900075C464 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				89AC10F52889C00000F35820 /* CoreHapticsGenerator.h */,
+				89AC10F62889C00000F35820 /* CoreHapticsGenerator.m */,
+			);
+			path = Haptics;
 			sourceTree = "<group>";
 		};
 		C27060469BBE3ECD3B7A3DC4 /* Frameworks */ = {
@@ -491,6 +510,7 @@
 				89AC10EF2886125500F35820 /* APIManager.m in Sources */,
 				898244ED28775E6400744255 /* TopPartyCell.m in Sources */,
 				89824503287D104400744255 /* ThrowerPartyCell.m in Sources */,
+				89AC10FA288A855F00F35820 /* PartyFilterViewController.m in Sources */,
 				898244F9287D084300744255 /* ThrowerTimelineViewController.m in Sources */,
 				891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */,
 				893969262884F1F9004DD10E /* ProfileViewController.m in Sources */,
@@ -498,6 +518,7 @@
 				899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */,
 				891EF8E82875530400F5947E /* TimelineViewController.m in Sources */,
 				898244E728762FCC00744255 /* PartyCell.m in Sources */,
+				89AC10F72889C00000F35820 /* CoreHapticsGenerator.m in Sources */,
 				89824509287D15F000744255 /* CreatePartyViewController.m in Sources */,
 				898244F62878B00300744255 /* ThrowerSignUpViewController.m in Sources */,
 			);

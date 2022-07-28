@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Party.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import "CoreHapticsGenerator.h"
 #import "Utility.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *goingButton;
 @property (strong, nonatomic) IBOutlet UILabel *goingCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyRatingLabel;
+@property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
 @end
 
 NS_ASSUME_NONNULL_END

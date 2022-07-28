@@ -17,6 +17,7 @@
 #define SIGNUPVIEWCONTROLLER @"SignUpViewController"
 #define THROWERSIGNUPVIEWCONTROLLER @"ThrowerSignUpViewController"
 #define THROWERTIMELINENAVIGATIONVIEWCONTROLLER @"ThrowerTimelineNavigationController"
+#define THROWERTIMELINETABBARCONTROLLER @"ThrowerTimelineTabBarController"
 #define THROWERWAITSCREENNAVIGATIONCONTROLLER @"ThrowerWaitScreenNavigationController"
 #define TIMELINETABBARCONTROLLER @"TimelineTabBarController"
 #define TIMELINEVIEWCONTROLLER @"TimelineViewController"
@@ -26,6 +27,7 @@
 #define DETAILSVIEWCONTROLLERFORTABLECELL @"toDetailsViewControllerForTableCell"
 #define THROWERDETAILSVIEWCONTROLLER @"toThrowerDetailsViewController"
 #define CREATEPARTYSEGUE @"createPartySegue"
+#define FILTERSEGUE @"filterSegue"
 
 #pragma mark - Models
 #define PARTYCELL @"PartyCell"
@@ -35,6 +37,7 @@
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
 #define SHIFTNUMBER 3
+#define NUMBEROFROWSINSECTION 1
 
 #pragma mark - Parse Classes
 #define PARTYCLASS @"Party"
@@ -65,6 +68,8 @@
 #define CREATEDAT @"createdAt"
 
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
+#define PARTYIMAGEDEFAULT @"step2"
+#define EMPTY @""
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
@@ -72,10 +77,19 @@
 #define NOKEYWORD @NO
 #define ZERO @0
 
+#pragma mark - Party Filter constants
+#define SPACE @" "
+#define FEET @"ft"
+#define DISTANCELABELTEXTFORMAT @"%.1f miles"
+#define ATTENDANCELABELTEXTFORMAT @"%ld and above"
+#define RATINGLABELTEXTFORMAT @"%.1f / 5"
+#define DISTANCELIMITDEFAULT 50.0
+#define PARTYCOUNTLIMITDEFAULT 0
+#define RATINGLIMITDEFAULT 0.0
 
 #pragma mark - API Info
 #define BASEURL @"https://maps.googleapis.com/maps/api/distancematrix/json"
-#define URLSTRINGFORMAT @"%@?destinations=place_id:%@&origins=%f,%f&units=imperial&key=%@"
+#define APIURLSTRINGFORMAT @"%@?destinations=place_id:%@&origins=%f,%f&units=imperial&key=%@"
 #define GOOGLEMAPSAPIKEY @"google_Maps_API_Key"
 #define KEYSFILENAME @"Keys"
 #define KEYSFILETYPE @"plist"
@@ -85,6 +99,12 @@
 #define PARSECLIENTKEY @"parse_Client_Key"
 #define PARSEAPPID @"parse_ApplicationId"
 #define PARSESERVER @"https://parseapi.back4app.com"
+#define OPENDIRECTIONSTITLE @"Open Directions"
+#define OPENDIRECTIONSMESSAGE @"Choose an app to open directions"
+#define ALERTACTIONGOOGLEMAPSTITLE @"Google Maps"
+#define LAUNCHURLFORGOOGLEMAPS @"comgooglemaps://?daddr=(%lf,%lf)&directionsmode=driving&zoom=14&views=traffic"
+#define ALERTACTIONAPPLEMAPSTITLE @"Apple Maps"
+#define DESTINATION @"Destination"
 
 #pragma mark - Profile Picture Constants
 #define ADDPROFILEPHOTO @"Add Profile photo"
@@ -103,6 +123,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setAttendanceState:(UIButton *)attendanceButton;
 +(NSMutableArray*)initLocationsWithArray:(NSArray *)array;
 +(NSMutableArray *)getDistancesFromArray:(NSArray *)array withCompletionHandler:(void (^)(BOOL success ))completion;
++(void)addDistanceDataToList:(NSMutableArray *)partyList fromList:(NSMutableArray *)distanceList;
++(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)distanceLimit withPartyCountlimit:(int)partyCount withRatingLimit:(double) ratingLimit withCompletionHandler:(void (^)(BOOL success))completion;
 @end
 
 NS_ASSUME_NONNULL_END

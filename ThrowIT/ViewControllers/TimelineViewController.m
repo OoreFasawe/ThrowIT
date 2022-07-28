@@ -8,6 +8,7 @@
 
 #import "TimelineViewController.h"
 #import "DetailsViewController.h"
+#import "CoreHapticsGenerator.h"
 #import "SceneDelegate.h"
 #import "partyCell.h"
 #import "TopPartyCell.h"
@@ -17,11 +18,12 @@
 #import <Parse/Parse.h>
 
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <PartyFilterViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *topPartyCellSizes;
 @property (nonatomic, strong) NSMutableArray *partyList;
+@property (nonatomic, strong) NSMutableArray *filteredList;
 @property (nonatomic, strong) NSMutableArray *distanceDetailsList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
@@ -69,7 +71,7 @@
         UICollectionViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.collectionView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.partyList[myIndexPath.item];
+        Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
@@ -77,9 +79,14 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.partyList[myIndexPath.row + SHIFTNUMBER];
+        Party *party = self.filteredList[myIndexPath.row + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
+    }
+    else if([[segue identifier] isEqualToString:FILTERSEGUE]){
+        UINavigationController *partyFilterNavigationController = [segue destinationViewController];
+        PartyFilterViewController *partyFilterViewController = [partyFilterNavigationController.viewControllers objectAtIndex:0];
+        partyFilterViewController.delegate = self;
     }
 }
 
@@ -92,13 +99,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.partyList = (NSMutableArray *)partyList;
-            if(self.distanceDetailsList.count != self.partyList.count){
+            if(self.distanceDetailsList.count != partyList.count){
                 self.distanceDetailsList = [Utility getDistancesFromArray:self.partyList withCompletionHandler:^(BOOL success) {
                     if(success){
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.tableView reloadData];
+                            [self filterListByDistance:DISTANCELIMITDEFAULT byPartyCount:PARTYCOUNTLIMITDEFAULT byRating:RATINGLIMITDEFAULT ];
                         });
-                    }}];
+                    }
+                }];
             }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
@@ -110,18 +118,29 @@
     }];
 }
 
-- (void)partyDistancesFetched{
-    [self.tableView reloadData];
-};
+-(void)filterListByDistance:(double)distance byPartyCount:(int)partyCount byRating:(double)rating{
+    [Utility addDistanceDataToList:self.partyList fromList:self.distanceDetailsList];
+    self.filteredList = [Utility getFilteredListFromList:self.partyList withDistanceLimit:distance withPartyCountlimit:partyCount withRatingLimit:rating withCompletionHandler:^(BOOL success) {
+        if(success){
+            [self.tableView reloadData];
+            [self.collectionView reloadData];
+        }
+    }];
+}
 
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    Party *party = self.partyList[indexPath.row + SHIFTNUMBER];
-    if(self.distanceDetailsList.count)
-        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", self.distanceDetailsList[indexPath.row + SHIFTNUMBER]];
+    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    partyCell.soundGenerator = soundGenerator;
+    Party *party = self.filteredList[indexPath.row + SHIFTNUMBER];
+    
+    if(party.distancesFromUser != nil)
+        partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
     else
-        partyCell.partyDistance.text = @" ...";
+        partyCell.partyDistance.text = PARTYDISTANCELABELPLACEHOLDER;
+    
+    
     partyCell.partyName.text = party.name;
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
@@ -133,7 +152,6 @@
         else
             NSLog(@"%@", error.localizedDescription);
     }];
-    partyCell.partyRating.text = [NSString stringWithFormat:@"%d", party.rating];
     partyCell.partyDescription.text= party.partyDescription; 
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
@@ -177,8 +195,12 @@
     }];
 }
 
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.partyList.count - SHIFTNUMBER;
+    if(self.filteredList.count > SHIFTNUMBER)
+        return self.filteredList.count - SHIFTNUMBER;
+    else
+        return 0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -210,15 +232,19 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return 3;
+    if(self.filteredList.count < SHIFTNUMBER)
+        return self.filteredList.count;
+    else
+        return SHIFTNUMBER;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
     topPartyCell.layer.cornerRadius = 10;
-    Party *party = self.partyList[indexPath.item];
-    
+    Party *party = self.filteredList[indexPath.item];
+    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
+    topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
     
