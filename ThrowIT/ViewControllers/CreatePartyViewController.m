@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *partyLocationField;
 @property (strong, nonatomic) NSString *partyLocationName;
 @property (strong, nonatomic) NSString *partyLocationId;
+@property (strong, nonatomic) IBOutlet PFImageView *partyImageView;
 @property (nonatomic) CLLocationCoordinate2D partyCoordinate;
 @end
 
@@ -24,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.partyImageView.layer.cornerRadius = 10;
 }
 
 - (IBAction)chooseLocation:(id)sender {
@@ -46,38 +47,27 @@
             }
         }];
         [self dismissViewControllerAnimated:true completion:nil];
-             
     }
 }
 
-// Present the autocomplete view controller when the button is pressed.
 - (void)autocompleteClicked {
     GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
     acController.delegate = self;
-
-    // Specify the place data types to return.
     GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID | GMSPlaceFieldCoordinate | GMSPlaceFieldFormattedAddress | GMSPlaceFieldPlaceID);
     acController.placeFields = fields;
-
-    // Specify a filter.
     filter = [[GMSAutocompleteFilter alloc] init];
     filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
     acController.autocompleteFilter = filter;
-
-    // Display the autocomplete view controller.
     [self presentViewController:acController animated:YES completion:nil];
 }
 
-// Handle the user's selection.
 - (void)viewController:(GMSAutocompleteViewController *)viewController
     didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
-    // Do something with the selected place.
     self.partyLocationName = place.name;
     self.partyLocationField.text = place.formattedAddress;
     self.partyCoordinate= place.coordinate;
     self.partyLocationId = place.placeID;
-    
 }
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController
@@ -87,12 +77,10 @@ didFailAutocompleteWithError:(NSError *)error {
     NSLog(@"Error: %@", [error description]);
 }
 
-// User canceled the operation.
 - (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// Turn the network activity indicator on and off again.
 - (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
     [UIApplication sharedApplication].networkActivityIndicatorVisible  = YES;
 }
@@ -100,6 +88,7 @@ didFailAutocompleteWithError:(NSError *)error {
 - (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
+
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:true];
 }
