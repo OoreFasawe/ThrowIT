@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = self.tableView.frame.size.height;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self fetchThrowerParties];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
@@ -79,7 +79,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.throwerPartyList[myIndexPath.row];
+        Party *party = self.throwerPartyList[myIndexPath.section];
         ThrowerDetailsViewController *throwerDetailsController = [segue destinationViewController];
         throwerDetailsController.party = party;
     }
@@ -102,16 +102,27 @@
         NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
     }
 }
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return @" ";
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:THROWERPARTYCELL];
-    Party *party = self.throwerPartyList[indexPath.row];
+    Party *party = self.throwerPartyList[indexPath.section];
     
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.partyDescription.text = party.partyDescription;
     
+    throwerPartyCell.partyImageView.layer.cornerRadius = 10;
+    throwerPartyCell.partyImageView.layer.borderWidth = 0.1;
+    [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:@"step2"]];
     [self partyGoingCountQuery:party withPartyCell:throwerPartyCell];
     
     return throwerPartyCell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.throwerPartyList.count;
 }
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (ThrowerPartyCell *) throwerPartyCell{
@@ -131,7 +142,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.throwerPartyList.count;
+    return 1;
 }
 
 - (void)didCreateParty:(nonnull Party *)party {
