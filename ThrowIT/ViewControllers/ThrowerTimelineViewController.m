@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = self.tableView.frame.size.height;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self fetchThrowerParties];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
@@ -40,7 +40,6 @@
         if (!error)
         {
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
             UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
             sceneDelegate.window.rootViewController = loginViewController;
@@ -79,7 +78,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.throwerPartyList[myIndexPath.row];
+        Party *party = self.throwerPartyList[myIndexPath.section];
         ThrowerDetailsViewController *throwerDetailsController = [segue destinationViewController];
         throwerDetailsController.party = party;
     }
@@ -102,36 +101,40 @@
         NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
     }
 }
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return @" ";
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ThrowerPartyCell *throwerPartyCell = [tableView dequeueReusableCellWithIdentifier:THROWERPARTYCELL];
-    Party *party = self.throwerPartyList[indexPath.row];
-    
+    Party *party = self.throwerPartyList[indexPath.section];
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.partyDescription.text = party.partyDescription;
-    
+    throwerPartyCell.partyImageView.layer.cornerRadius = 10;
+    throwerPartyCell.partyImageView.layer.borderWidth = 0.1;
+    [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
     [self partyGoingCountQuery:party withPartyCell:throwerPartyCell];
-    
     return throwerPartyCell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.throwerPartyList.count;
 }
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (ThrowerPartyCell *) throwerPartyCell{
     PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
-    
     [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-    
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
-        
         throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
-        
         throwerPartyCell.party = party;
         [party saveInBackground];
     }]; 
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.throwerPartyList.count;
+    return NUMBEROFROWSINSECTION;
 }
 
 - (void)didCreateParty:(nonnull Party *)party {

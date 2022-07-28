@@ -32,7 +32,7 @@
 }
 
 - (IBAction)throwParty:(id)sender {
-    if([self.partyNameField.text isEqual:@""] || [self.partyDescriptionField.text isEqual:@""] || [self.partyLocationField.text isEqual:@""]){
+    if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY]){
         //TODO: show missing fields alert
     }
     else{
@@ -101,7 +101,7 @@ didFailAutocompleteWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 - (IBAction)didTapScreen:(id)sender {
-    [self.view endEditing:true];\
+    [self.view endEditing:true];
 }
 
 @end

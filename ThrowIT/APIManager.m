@@ -9,8 +9,6 @@
 #import "TimelineViewController.h"
 @import GooglePlaces;
 @import GoogleMaps;
-static int runCount = 0;
-
 
 @implementation APIManager
 
@@ -40,7 +38,7 @@ static int runCount = 0;
     if ([[NSUserDefaults standardUserDefaults] stringForKey:CONSUMERKEY]) {
         key = [[NSUserDefaults standardUserDefaults] stringForKey:CONSUMERKEY];
     }
-    NSString *totalString = [NSString stringWithFormat:URLSTRINGFORMAT, BASEURL, destinationPlaceId, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, key];
+    NSString *totalString = [NSString stringWithFormat:APIURLSTRINGFORMAT, BASEURL, destinationPlaceId, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, key];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:totalString]];
     [request setHTTPMethod:GETMETHOD];

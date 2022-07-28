@@ -9,7 +9,9 @@
 #import "APIManager.h"
 #import "Party.h"
 #import "TimelineViewController.h"
-static int runCount;
+static int apiRunCount;
+static int filterRunCount;
+
 @implementation Utility
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType{
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -28,10 +30,10 @@ static int runCount;
         [[APIManager shared] loadDistanceDataFromLocation:place_Ids[i] withCompletionHandler:^(NSString * distance) {
             if (distance)
             {
-                runCount++;
+                apiRunCount++;
                 distances[i] = distance;
-                if(runCount == place_Ids.count){
-                    runCount = 0;
+                if(apiRunCount == place_Ids.count){
+                    apiRunCount = 0;
                     completion(YES);
                 }
             }
@@ -68,5 +70,43 @@ static int runCount;
     }
 }
 
++(void)addDistanceDataToList:(NSMutableArray *)partyList fromList:(NSMutableArray *)distanceList{
+    for(int i = 0; i < partyList.count; i++){
+        Party *someParty = partyList[i];
+        someParty.distancesFromUser = distanceList[i];
+    }
+}
+
++(NSMutableArray *)getFilteredListFromList:(NSMutableArray *)partyList withDistanceLimit:(double)distanceLimit withPartyCountlimit:(int)partyCountLimit withRatingLimit:(double) ratingLimit withCompletionHandler:(void (^)(BOOL success))completion{
+    NSMutableArray *filteredList = [NSMutableArray new];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    for(int i = 0; i < partyList.count; i++){
+        Party *party = partyList[i];
+        //filter rating
+        PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+        [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+        [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+            filterRunCount++;
+            if(!error){
+                Thrower *partyThrower = (Thrower *)thrower;
+                if(partyThrower.throwerRating >= ratingLimit &&
+                   (distanceLimit >= [[f numberFromString:[party.distancesFromUser componentsSeparatedByString:SPACE][0]] doubleValue] || [[party.distancesFromUser componentsSeparatedByString:SPACE][1] isEqualToString:FEET]) && party.numberAttending >= partyCountLimit)
+                    {
+                        [filteredList addObject:party];
+                    }
+                }
+            else
+            {
+                NSLog(@"%@", error.localizedDescription);
+            }
+            if(filterRunCount == partyList.count){
+                filterRunCount = 0;
+                completion(YES);
+            }
+        }];
+    }
+    return filteredList;
+}
 
 @end
