@@ -291,51 +291,61 @@
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThrowerPartyCell" rowHeight="711" id="yeH-oq-LBp" customClass="ThrowerPartyCell">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="711"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThrowerPartyCell" rowHeight="374" id="yeH-oq-LBp" customClass="ThrowerPartyCell">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="374"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yeH-oq-LBp" id="ice-t6-zpx">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="711"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="374"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09U-9n-SqB">
-                                                    <rect key="frame" x="10.000000000000007" y="683" width="114.66666666666669" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Party Theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09U-9n-SqB">
+                                                    <rect key="frame" x="20" y="41.333333333333343" width="388" height="21.666666666666664"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlK-nw-V0z">
-                                                    <rect key="frame" x="400.33333333333331" y="683" width="17.666666666666686" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ToF-ye-Jf3">
-                                                    <rect key="frame" x="20" y="61" width="379" height="574"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ToF-ye-Jf3" customClass="PFImageView">
+                                                    <rect key="frame" x="20" y="71" width="388" height="218"/>
                                                     <color key="backgroundColor" systemColor="labelColor"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="218" id="qSw-16-dHW"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0v-Gn-8uf">
-                                                    <rect key="frame" x="10" y="4" width="78.666666666666671" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Party Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0v-Gn-8uf">
+                                                    <rect key="frame" x="20" y="8" width="388" height="25.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" 2 - 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlK-nw-V0z">
+                                                    <rect key="frame" x="20" y="310" width="388" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="36"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.56382826403924768" blue="0.029571823682149057" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstItem="09U-9n-SqB" firstAttribute="leading" secondItem="Q0v-Gn-8uf" secondAttribute="leading" id="BmS-NJ-tkm"/>
-                                                <constraint firstItem="Q0v-Gn-8uf" firstAttribute="top" secondItem="ice-t6-zpx" secondAttribute="top" constant="4" id="KKs-57-oLq"/>
-                                                <constraint firstAttribute="trailing" secondItem="OlK-nw-V0z" secondAttribute="trailing" constant="10" id="Mub-zs-RIS"/>
-                                                <constraint firstItem="Q0v-Gn-8uf" firstAttribute="leading" secondItem="ice-t6-zpx" secondAttribute="leading" constant="10" id="wKI-2u-pDU"/>
-                                                <constraint firstItem="OlK-nw-V0z" firstAttribute="top" secondItem="09U-9n-SqB" secondAttribute="top" id="wNP-GJ-fxd"/>
-                                                <constraint firstAttribute="bottom" secondItem="09U-9n-SqB" secondAttribute="bottom" constant="4" id="zP8-8I-Ox7"/>
+                                                <constraint firstItem="ToF-ye-Jf3" firstAttribute="leading" secondItem="Q0v-Gn-8uf" secondAttribute="leading" id="4jd-hc-Qpo"/>
+                                                <constraint firstItem="ToF-ye-Jf3" firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" id="4my-KT-t6k"/>
+                                                <constraint firstItem="OlK-nw-V0z" firstAttribute="leading" secondItem="Q0v-Gn-8uf" secondAttribute="leading" id="B3M-u9-W7I"/>
+                                                <constraint firstItem="OlK-nw-V0z" firstAttribute="top" secondItem="ToF-ye-Jf3" secondAttribute="bottom" constant="8" id="E5W-3w-26z"/>
+                                                <constraint firstItem="09U-9n-SqB" firstAttribute="leading" secondItem="Q0v-Gn-8uf" secondAttribute="leading" id="E9k-j8-14K"/>
+                                                <constraint firstItem="09U-9n-SqB" firstAttribute="top" secondItem="Q0v-Gn-8uf" secondAttribute="bottom" constant="8" id="EAn-ps-fH3"/>
+                                                <constraint firstItem="09U-9n-SqB" firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" id="KQv-Wg-sBU"/>
+                                                <constraint firstItem="ToF-ye-Jf3" firstAttribute="top" secondItem="09U-9n-SqB" secondAttribute="bottom" constant="8" id="Mre-a0-Oew"/>
+                                                <constraint firstItem="OlK-nw-V0z" firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" id="OCo-sp-BOa"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" constant="20" symbolic="YES" id="bPv-Hc-xjX"/>
+                                                <constraint firstItem="Q0v-Gn-8uf" firstAttribute="leading" secondItem="ice-t6-zpx" secondAttribute="leading" constant="20" symbolic="YES" id="jPT-O2-ciU"/>
+                                                <constraint firstItem="Q0v-Gn-8uf" firstAttribute="top" secondItem="ice-t6-zpx" secondAttribute="top" constant="8" id="m0H-h2-Y75"/>
+                                                <constraint firstAttribute="bottom" secondItem="OlK-nw-V0z" secondAttribute="bottom" constant="8" id="z3B-zm-9RB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="numberAttendingParty" destination="OlK-nw-V0z" id="FNT-Qo-Xu7"/>
                                             <outlet property="partyDescription" destination="09U-9n-SqB" id="zYF-Aj-8NN"/>
+                                            <outlet property="partyImageView" destination="ToF-ye-Jf3" id="gym-Ld-d6s"/>
                                             <outlet property="partyName" destination="Q0v-Gn-8uf" id="GxC-mO-yWl"/>
                                             <segue destination="d6C-lo-USA" kind="show" identifier="toThrowerDetailsViewController" id="56u-3b-bdV"/>
                                         </connections>
@@ -355,21 +365,25 @@
                     <navigationItem key="navigationItem" title="Your Parties" id="DoC-gx-AE3">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="wXc-TU-EcA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="aW1-Jo-pA1">
-                                <rect key="frame" x="20" y="5" width="95" height="34.333333333333336"/>
+                                <rect key="frame" x="20" y="4.3333333333333321" width="95" height="35.666666666666671"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="logoutUser:" destination="wdy-c5-Ghu" eventType="touchUpInside" id="M1a-yR-6CC"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="5xA-PT-TXi">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="hwB-kQ-2pD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="hwB-kQ-2pD">
                                 <rect key="frame" x="309.33333333333331" y="5" width="98.666666666666686" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add Party"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                 <connections>
                                     <segue destination="Igo-YF-Ai9" kind="show" identifier="createPartySegue" id="rC5-xi-YT8"/>
                                 </connections>
@@ -1279,6 +1293,7 @@
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>
         <image name="camera.filters" catalog="system" width="128" height="116"/>
         <image name="knuckles" width="860" height="586"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

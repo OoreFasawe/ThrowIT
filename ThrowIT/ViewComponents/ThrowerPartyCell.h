@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Party.h"
+@import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyName;
 @property (strong, nonatomic) IBOutlet UILabel *numberAttendingParty;
 @property (strong, nonatomic) IBOutlet UILabel *partyDescription;
+@property (strong, nonatomic) IBOutlet PFImageView *partyImageView;
 @property (strong, nonatomic) Party *party;
 @end
 

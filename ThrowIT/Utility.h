@@ -37,6 +37,7 @@
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
 #define SHIFTNUMBER 3
+#define NUMBEROFROWSINSECTION 1
 
 #pragma mark - Parse Classes
 #define PARTYCLASS @"Party"
@@ -67,6 +68,7 @@
 #define CREATEDAT @"createdAt"
 
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
+#define PARTYIMAGEDEFAULT @"step2"
 #define EMPTY @""
 
 #pragma mark - Query Limits
