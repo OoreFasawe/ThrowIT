@@ -25,6 +25,5 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet PFImageView *throwerProfilePicture;
 @property (strong, nonatomic) IBOutlet UIButton *goingButton;
 @property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
-@end
-
+- (IBAction)didTapLike:(id)sender;
 NS_ASSUME_NONNULL_END

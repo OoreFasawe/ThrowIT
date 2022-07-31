@@ -14,6 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TimelineViewController : UIViewController < UITableViewDelegate, UITableViewDataSource, CHTCollectionViewDelegateWaterfallLayout, UICollectionViewDataSource>
+
 @end
 
 NS_ASSUME_NONNULL_END
