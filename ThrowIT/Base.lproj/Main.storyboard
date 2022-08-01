@@ -1062,6 +1062,7 @@
                         <outlet property="collectionView" destination="Wtv-q0-MQv" id="ior-h6-WKR"/>
                         <outlet property="tableView" destination="HzX-E0-XzU" id="hIl-sA-X75"/>
                         <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForTableCell" id="IOH-Ak-bky"/>
+                        <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForCollectionCell" id="ISV-49-HkS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s53-Zs-es2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1413,7 +1414,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IOH-Ak-bky"/>
+        <segue reference="ISV-49-HkS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>
