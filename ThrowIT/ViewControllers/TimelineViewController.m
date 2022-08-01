@@ -183,28 +183,21 @@
 }
 
 -(void)partyGoingCountQuery:(Party *) party withPartyCell: (PartyCell * _Nullable) partyCell orWithTopPartyCell:(TopPartyCell * _Nullable) topPartyCell{
-    if(partyCell != nil){
-        PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
-        [partyQuery whereKey:PARTYKEY equalTo:party];
-        [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-        [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
-            party.numberAttending = (int)partyGoingList.count;
-            [party saveInBackground];
+    PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
+    [partyQuery whereKey:PARTYKEY equalTo:party];
+    [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
+    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
+        party.numberAttending = (int)partyGoingList.count;
+        [party saveInBackground];
+        if(partyCell != nil){
             partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
             partyCell.party = party;
-        }];
-    }
-    else if(topPartyCell != nil){
-        PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
-        [partyQuery whereKey:PARTYKEY equalTo:party];
-        [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-        [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
-            party.numberAttending = (int)partyGoingList.count;
-            [party saveInBackground];
+            }
+        else if(topPartyCell != nil){
             topPartyCell.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
             topPartyCell.topParty = party;
-        }];
-    }
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource
