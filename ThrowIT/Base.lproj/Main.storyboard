@@ -1022,7 +1022,6 @@
                         <viewLayoutGuide key="safeArea" id="A7l-ee-nXc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Jd4-vs-7CF" firstAttribute="leading" secondItem="cNs-Uj-B1w" secondAttribute="leading" constant="10" id="AFo-I4-lb6"/>
                             <constraint firstItem="mlC-3g-wJ6" firstAttribute="leading" secondItem="Jd4-vs-7CF" secondAttribute="trailing" constant="8" id="BbL-ta-b8R"/>
                             <constraint firstItem="HzX-E0-XzU" firstAttribute="top" secondItem="A7l-ee-nXc" secondAttribute="top" id="J7t-MK-UjX"/>
                             <constraint firstItem="mlC-3g-wJ6" firstAttribute="centerY" secondItem="Jd4-vs-7CF" secondAttribute="centerY" id="Jak-DY-5CF"/>
