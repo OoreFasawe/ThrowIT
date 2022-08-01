@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSMutableArray *distanceDetailsList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
+@property (nonatomic)int tapCount;
 
 @end
 
@@ -203,7 +204,30 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.tapCount++;
+    switch (self.tapCount) {
+        case 1: //single tap
+            [self performSelector:@selector(singleTapOnTCell:) withObject:indexPath afterDelay: .4];
+            break;
+        case 2: //double tap
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(singleTapOnTCell:) object:indexPath];
+            [self doubleTapOnTCell:indexPath];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)singleTapOnTCell:(NSIndexPath *)indexPath {
+    PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:DETAILSVIEWCONTROLLERFORTABLECELL sender:partyCell];
+    self.tapCount = 0;
+}
+
+- (void)doubleTapOnTCell:(NSIndexPath *)indexPath {
+    PartyCell *partyCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [partyCell didTapLike:partyCell.goingButton];
+    self.tapCount = 0;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -268,7 +292,6 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
-
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout
 
