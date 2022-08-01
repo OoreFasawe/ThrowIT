@@ -28,4 +28,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)didTapLike:(id)sender;
 NS_ASSUME_NONNULL_END
 @end
-

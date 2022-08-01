@@ -240,7 +240,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-200" y="1113"/>
+            <point key="canvasLocation" x="-275" y="1490"/>
         </scene>
         <!--Thrower Verification View Controller-->
         <scene sceneID="zio-4J-fN5">
@@ -398,6 +398,58 @@
             </objects>
             <point key="canvasLocation" x="2611.6822429906542" y="1489.6328293736501"/>
         </scene>
+        <!--Thrower Profile View Controller-->
+        <scene sceneID="8fv-PP-jQy">
+            <objects>
+                <viewController id="Xus-P8-Jzi" customClass="ThrowerProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m7m-im-edw">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JuD-Nb-tR4">
+                                <rect key="frame" x="20" y="100" width="388" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Profile"/>
+                                    <segment title="Throwerboard"/>
+                                </segments>
+                            </segmentedControl>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UsB-YK-xkv" customClass="PFImageView">
+                                <rect key="frame" x="89" y="229.66666666666515" width="250" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Parties Thrown: 1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk0-pl-58A">
+                                <rect key="frame" x="20" y="536.66666666666515" width="388" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zuck's Frat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ih3-39-29j">
+                                <rect key="frame" x="20" y="498.66666666666515" width="388" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bCL-DL-Rau"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AKf-GZ-ujN">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="throwerPartiesThrownCount" destination="bk0-pl-58A" id="Jsc-oN-WUz"/>
+                        <outlet property="throwerProfileImageView" destination="UsB-YK-xkv" id="7Xd-Ev-fHs"/>
+                        <outlet property="throwerSegmentedController" destination="JuD-Nb-tR4" id="mHe-Ba-YZM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIY-AV-ELW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2611.6822429906542" y="2781.6414686825055"/>
+        </scene>
         <!--Thrower Details View Controller-->
         <scene sceneID="tNP-DU-W24">
             <objects>
@@ -424,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFi-d0-T4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3525.700934579439" y="1489.6328293736501"/>
+            <point key="canvasLocation" x="2612" y="2134"/>
         </scene>
         <!--Create Party View Controller-->
         <scene sceneID="sX6-8T-Tp6">
@@ -476,9 +528,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0p3-J8-NNM">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0p3-J8-NNM" customClass="PFImageView">
                                 <rect key="frame" x="20" y="322" width="386" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BiQ-sL-IiX"/>
@@ -503,6 +556,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="partyDescriptionField" destination="x1m-np-QmP" id="lio-oY-TGO"/>
+                        <outlet property="partyImageView" destination="0p3-J8-NNM" id="Jba-1l-fL1"/>
                         <outlet property="partyLocationField" destination="btc-53-qkT" id="dt3-Wh-1nW"/>
                         <outlet property="partyNameField" destination="Ygf-pg-jbz" id="MgT-oK-GaH"/>
                     </connections>
@@ -514,7 +568,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2625.700934579439" y="2243.8444924406049"/>
+            <point key="canvasLocation" x="4382" y="1490"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="2uV-ps-G7O">
@@ -1212,11 +1266,11 @@
             </objects>
             <point key="canvasLocation" x="812" y="803"/>
         </scene>
-        <!--Item-->
+        <!--Your Parties-->
         <scene sceneID="2Ig-oj-S8Q">
             <objects>
                 <navigationController storyboardIdentifier="ThrowerTimelineNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="RTw-js-TQU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="NDL-Zn-eDB"/>
+                    <tabBarItem key="tabBarItem" title="Your Parties" image="list.bullet.rectangle.fill" catalog="system" id="NDL-Zn-eDB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SeF-Mw-imZ">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -1248,7 +1302,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ks-dM-qQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1712" y="2244"/>
+            <point key="canvasLocation" x="3517" y="1490"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gCh-FF-RMR">
@@ -1261,12 +1315,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="RTw-js-TQU" kind="relationship" relationship="viewControllers" id="PTw-GR-lfV"/>
+                        <segue destination="RTw-js-TQU" kind="relationship" relationship="viewControllers" id="Iyg-Jj-zmy"/>
+                        <segue destination="EKV-sm-sfo" kind="relationship" relationship="viewControllers" id="8mh-b9-bGb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5f-TV-nsW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811.68224299065412" y="1489.6328293736501"/>
+            <point key="canvasLocation" x="812" y="2192"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NfY-r0-ya7">
@@ -1287,6 +1342,25 @@
             </objects>
             <point key="canvasLocation" x="4021.9626168224295" y="-918.14254859611242"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="K8m-ce-kEG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EKV-sm-sfo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="brain.head.profile" catalog="system" id="qou-Ru-ugy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="28d-dj-C8E">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Xus-P8-Jzi" kind="relationship" relationship="rootViewController" id="MOf-n6-KiW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HkY-OP-xm3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1712" y="2782"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ISV-49-HkS"/>
@@ -1295,6 +1369,8 @@
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>
         <image name="camera.filters" catalog="system" width="128" height="116"/>
         <image name="knuckles" width="860" height="586"/>
+        <image name="list.bullet.rectangle.fill" catalog="system" width="128" height="93"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <systemColor name="labelColor">

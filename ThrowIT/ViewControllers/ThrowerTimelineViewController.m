@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSMutableArray *throwerPartyList;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) int goingListCount;
-
 @end
 
 @implementation ThrowerTimelineViewController
@@ -33,7 +32,6 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchThrowerParties) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)logoutUser:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -52,7 +50,6 @@
     [query orderByDescending:CREATEDAT];
     [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
     query.limit = QUERYLIMIT;
-
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
             self.throwerPartyList = (NSMutableArray *)partyList;
@@ -66,13 +63,11 @@
 }
 
 #pragma mark - Navigation
-
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:CREATEPARTYSEGUE]){
-    UINavigationController *navigationController = [segue destinationViewController];
-    CreatePartyViewController *createPartyViewController = (CreatePartyViewController*)navigationController.topViewController;
-    createPartyViewController.delegate = self;
+        UINavigationController *navigationController = [segue destinationViewController];
+        CreatePartyViewController *createPartyViewController = (CreatePartyViewController*)navigationController.topViewController;
+        createPartyViewController.delegate = self;
     }
     else if([[segue identifier] isEqualToString:THROWERDETAILSVIEWCONTROLLER]){
         UITableViewCell *partyCell = sender;
@@ -92,15 +87,16 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-    Party *party = self.throwerPartyList[indexPath.row];
-    [party deleteInBackground];
-    [self.throwerPartyList removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Party *party = self.throwerPartyList[indexPath.row];
+        [party deleteInBackground];
+        [self.throwerPartyList removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else{
         NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
     }
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
     return @" ";
 }
@@ -141,5 +137,4 @@
     [self.throwerPartyList insertObject:party atIndex:0];
     [self.tableView reloadData];
 }
-
 @end
