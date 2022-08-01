@@ -32,8 +32,8 @@
             [query findObjectsInBackgroundWithBlock:^(NSArray  *throwersList, NSError *error) {
                 if (throwersList.count){
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
-                    UITabBarController *throwerTimelineNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERTIMELINETABBARCONTROLLER];
-                    self.window.rootViewController = throwerTimelineNavigationController;
+                    UITabBarController *throwerTimelineTabBarController= [storyboard instantiateViewControllerWithIdentifier:THROWERTIMELINETABBARCONTROLLER];
+                    self.window.rootViewController = throwerTimelineTabBarController;
                 }
                 else{
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];

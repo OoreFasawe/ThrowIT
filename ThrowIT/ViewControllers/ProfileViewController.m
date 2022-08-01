@@ -24,16 +24,16 @@
 
 - (IBAction)onTapProfilePicture:(id)sender {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:ADDPROFILEPHOTO message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
-        [actionSheet addAction:[UIAlertAction actionWithTitle:TAKEPHOTO style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-            [Utility TakeOrChooseImage:self withSourceType:UIImagePickerControllerSourceTypeCamera];
-        }]];
-        [actionSheet addAction:[UIAlertAction actionWithTitle:CHOOSEFROMLIBRARY style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-            [Utility TakeOrChooseImage:self withSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        }]];
-        [[actionSheet popoverPresentationController] setSourceRect:self.view.bounds];
-        [[actionSheet popoverPresentationController] setSourceView:self.view];
-        [actionSheet addAction:[UIAlertAction actionWithTitle:CANCEL style:UIAlertActionStyleCancel handler:nil]];
-        [self presentViewController:actionSheet animated:YES completion:^{}];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:TAKEPHOTO style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [Utility TakeOrChooseImage:self withSourceType:UIImagePickerControllerSourceTypeCamera];
+    }]];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:CHOOSEFROMLIBRARY style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [Utility TakeOrChooseImage:self withSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }]];
+    [[actionSheet popoverPresentationController] setSourceRect:self.view.bounds];
+    [[actionSheet popoverPresentationController] setSourceView:self.view];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:CANCEL style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:actionSheet animated:YES completion:^{}];
 }
 
 -(void)fetchUser{
