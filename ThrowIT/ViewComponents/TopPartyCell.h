@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *goingCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyRatingLabel;
 @property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
+- (IBAction)didTapLike:(id)sender;
 @end
 
 NS_ASSUME_NONNULL_END

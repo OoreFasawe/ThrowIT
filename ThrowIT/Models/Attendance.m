@@ -21,21 +21,11 @@
     PFQuery *query = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [query whereKey:PARTYKEY equalTo:party];
     [query whereKey:USER equalTo:[PFUser currentUser]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable attendanceObject, NSError * _Nullable error) {
+        Attendance *attendance;
         if (!error){
-            //if there's not attendance object, create one
-            Attendance *attendance;
-            if(!attendanceList.count){
-                attendance = [Attendance new];
-                attendance.party = party;
-                attendance.user = [PFUser currentUser];
-                attendance.attendanceType = GOING;
-                
-                [attendance saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
-            }
             //if there's an attendance object, check it's attendance type
-            else{
-                attendance = attendanceList[0];
+                attendance = (Attendance *) attendanceObject;
                 //if attendancetype is going, change to maybe, if maybe delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     attendance.attendanceType = MAYBE;
@@ -44,10 +34,20 @@
                 else{
                     [attendance deleteInBackground];
                 }
-            }
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            //if there's not attendance object, create one
+            if(!attendanceObject){
+                attendance = [Attendance new];
+                attendance.party = party;
+                attendance.user = [PFUser currentUser];
+                attendance.attendanceType = GOING;
+                
+                [attendance saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
+            }
+            else{
+                NSLog(@"%@", error.localizedDescription);
+            }
         }
     }];
 }

@@ -793,7 +793,6 @@
                                                 <outlet property="partyDescriptionLabel" destination="8qy-bE-8iA" id="OYB-CS-h4T"/>
                                                 <outlet property="partyNameLabel" destination="jPe-lp-m9r" id="gRF-bw-EHv"/>
                                                 <outlet property="partyRatingLabel" destination="5VP-pO-MZ6" id="0O9-2e-JtZ"/>
-                                                <segue destination="Zk2-eP-YQZ" kind="presentation" identifier="toDetailsViewControllerForCollectionCell" id="s2E-pg-iGe"/>
                                             </connections>
                                         </collectionViewCell>
                                     </cells>
@@ -958,6 +957,7 @@
                         <outlet property="collectionView" destination="Wtv-q0-MQv" id="ior-h6-WKR"/>
                         <outlet property="tableView" destination="HzX-E0-XzU" id="hIl-sA-X75"/>
                         <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForTableCell" id="IOH-Ak-bky"/>
+                        <segue destination="Zk2-eP-YQZ" kind="show" identifier="toDetailsViewControllerForCollectionCell" id="ISV-49-HkS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s53-Zs-es2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1093,7 +1093,7 @@
             <objects>
                 <viewController storyboardIdentifier="DetailsViewController" id="Zk2-eP-YQZ" customClass="DetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="97U-SE-HRn">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9f-7n-0lL">
@@ -1289,7 +1289,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IOH-Ak-bky"/>
+        <segue reference="ISV-49-HkS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>

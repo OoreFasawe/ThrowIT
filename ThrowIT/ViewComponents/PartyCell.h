@@ -27,3 +27,5 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
 - (IBAction)didTapLike:(id)sender;
 NS_ASSUME_NONNULL_END
+@end
+
