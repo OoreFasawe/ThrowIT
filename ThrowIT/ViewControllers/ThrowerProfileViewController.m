@@ -18,12 +18,12 @@
 @implementation ThrowerProfileViewController
 
 - (void)viewDidLoad {
-    
     self.throwerProfileImageView.layer.cornerRadius = self.throwerProfileImageView.frame.size.height/10;
     self.throwerProfileImageView.layer.borderWidth = 0.05;
     [self fetchThrower];
     [super viewDidLoad];
 }
+
 - (IBAction)chooseThrowerProfilePhoto:(id)sender {
     [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPROFILEPHOTO];
 }
