@@ -25,7 +25,7 @@
     [super viewDidLoad];
 }
 - (IBAction)chooseThrowerProfilePhoto:(id)sender {
-    [Utility showImageTakeOptionSheetOnViewController:self withTitleString:@"Choose Profile Photo"];
+    [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPROFILEPHOTO];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {

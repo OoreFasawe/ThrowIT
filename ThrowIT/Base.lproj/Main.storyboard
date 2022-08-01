@@ -538,10 +538,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0p3-J8-NNM" customClass="PFImageView">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0p3-J8-NNM" customClass="PFImageView">
                                 <rect key="frame" x="20" y="322" width="386" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Il9-pD-t3t" appends="YES" id="kx4-Zk-9dm"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BiQ-sL-IiX"/>
@@ -575,6 +579,11 @@
                 <tapGestureRecognizer id="MyC-ko-LZS">
                     <connections>
                         <action selector="didTapScreen:" destination="Tdh-bJ-dOE" id="jWU-YT-ze9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Il9-pD-t3t">
+                    <connections>
+                        <action selector="showImagePickingOptions:" destination="Tdh-bJ-dOE" id="sis-bV-UTq"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

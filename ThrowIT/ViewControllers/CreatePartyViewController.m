@@ -31,6 +31,15 @@
 - (IBAction)chooseLocation:(id)sender {
     [self autocompleteClicked];
 }
+- (IBAction)showImagePickingOptions:(id)sender {
+    [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPARTYPHOTO];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    [self.partyImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(500, 500)]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)throwParty:(id)sender {
     if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY]){
@@ -38,7 +47,7 @@
     }
     else{
         Party *party = [Party new];
-        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:nil withEndTime:nil withSchoolName:nil withBackGroundImage:nil withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:nil withEndTime:nil withSchoolName:nil withPartyPhoto:self.partyImageView.image withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
                 NSLog(@"%@", error.localizedDescription);
             }

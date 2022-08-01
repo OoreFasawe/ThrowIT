@@ -108,6 +108,7 @@
 
 #pragma mark - Profile Picture Constants
 #define ADDPROFILEPHOTO @"Add Profile photo"
+#define ADDPARTYPHOTO @"Add Party Poster / Photo"
 #define TAKEPHOTO @"Take Photo"
 #define CHOOSEFROMLIBRARY @"Choose from library"
 #define CANCEL @"Cancel"
