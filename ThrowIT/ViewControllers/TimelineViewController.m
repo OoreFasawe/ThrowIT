@@ -144,11 +144,17 @@
     partyCell.partyName.text = party.name;
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
+    partyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    partyCell.throwerProfilePicture.layer.cornerRadius = partyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery includeKey:THROWERKEY];
     [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
     [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-        if(!error)
+        if(!error){
             partyCell.partyRating.text = [NSString stringWithFormat:PARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+            partyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+            [partyCell.throwerProfilePicture loadInBackground];
+        }
         else
             NSLog(@"%@", error.localizedDescription);
     }];
@@ -247,7 +253,8 @@
     topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
-    
+    topPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    topPartyCell.throwerProfilePicture.layer.cornerRadius = topPartyCell.throwerProfilePicture.frame.size.height/2;
     if(party){
         PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
         [goingQuery whereKey:PARTYKEY equalTo:party];
@@ -276,10 +283,14 @@
                 NSLog(@"%@", error.localizedDescription);
             }
             PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+            [throwerQuery includeKey:THROWERKEY];
             [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
             [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-                if(!error)
+                if(!error){
                     topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+                    topPartyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+                    [topPartyCell.throwerProfilePicture loadInBackground];
+                }
                 else
                     NSLog(@"%@", error.localizedDescription);
             }];
