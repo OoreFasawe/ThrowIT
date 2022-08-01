@@ -50,9 +50,9 @@
                     [query findObjectsInBackgroundWithBlock:^(NSArray  *throwersList, NSError *error) {
                         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
                         if (throwersList.count){
-                            UINavigationController *throwerTimelineNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERTIMELINENAVIGATIONVIEWCONTROLLER];
+                            UINavigationController *throwerTimelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:THROWERTIMELINETABBARCONTROLLER];
                             self.view.window.rootViewController
-                            = throwerTimelineNavigationController;
+                            = throwerTimelineTabBarController;
                         }
                         else{
                             UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERWAITSCREENNAVIGATIONCONTROLLER];
