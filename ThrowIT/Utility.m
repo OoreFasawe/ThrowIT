@@ -21,6 +21,31 @@ static int filterRunCount;
     [viewController presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
++(void)showImageTakeOptionSheetOnViewController:(UIViewController *) viewController withTitleString:(NSString *)titleString{
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:titleString message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:TAKEPHOTO style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [Utility TakeOrChooseImage:viewController withSourceType:UIImagePickerControllerSourceTypeCamera];
+    }]];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:CHOOSEFROMLIBRARY style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [Utility TakeOrChooseImage:viewController withSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }]];
+    [[actionSheet popoverPresentationController] setSourceRect:viewController.view.bounds];
+    [[actionSheet popoverPresentationController] setSourceView:viewController.view];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:CANCEL style:UIAlertActionStyleCancel handler:nil]];
+    [viewController presentViewController:actionSheet animated:YES completion:^{}];
+}
+
++ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 +(NSMutableArray *)getDistancesFromArray:(NSArray *)array withCompletionHandler:(void (^)(BOOL success ))completion{
     NSMutableArray *distances = [NSMutableArray new];
     NSMutableArray *place_Ids = [self initLocationsWithArray:array];
