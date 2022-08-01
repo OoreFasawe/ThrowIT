@@ -15,7 +15,11 @@
 @property (strong, nonatomic) IBOutlet UITextField *partyLocationField;
 @property (strong, nonatomic) NSString *partyLocationName;
 @property (strong, nonatomic) NSString *partyLocationId;
+@property (strong, nonatomic) NSDate *partyDateStart;
+@property (strong, nonatomic) NSDate *partyDateEnd;
 @property (strong, nonatomic) IBOutlet PFImageView *partyImageView;
+@property (strong, nonatomic) IBOutlet UIDatePicker *partyDateTimePicker;
+@property (strong, nonatomic) IBOutlet UIDatePicker *partyDateTimePickerEnd;
 @property (nonatomic) CLLocationCoordinate2D partyCoordinate;
 @end
 
@@ -38,7 +42,7 @@
     }
     else{
         Party *party = [Party new];
-        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:nil withEndTime:nil withSchoolName:nil withBackGroundImage:nil withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:self.partyDateStart withEndTime:self.partyDateEnd withSchoolName:nil withBackGroundImage:nil withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -91,6 +95,18 @@ didFailAutocompleteWithError:(NSError *)error {
 
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:true];
+}
+
+- (IBAction)didSetPartyStartDate:(id)sender {
+    UIDatePicker* datePicker = sender;
+    self.partyDateStart = datePicker.date;
+    self.partyDateTimePickerEnd.date = [NSDate dateWithTimeInterval:FOURHOURS sinceDate: datePicker.date];
+    self.partyDateEnd = self.partyDateTimePickerEnd.date;
+}
+
+- (IBAction)didSetPartyEndDate:(id)sender {
+    UIDatePicker* datePicker = sender;
+    self.partyDateTimePickerEnd.date = datePicker.date;
 }
 
 @end
