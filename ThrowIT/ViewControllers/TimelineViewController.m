@@ -134,7 +134,6 @@
     CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     partyCell.soundGenerator = soundGenerator;
     Party *party = self.filteredList[indexPath.row + SHIFTNUMBER];
-    
     if(party.distancesFromUser != nil)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
     else
@@ -158,14 +157,11 @@
     [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
         if (!error){
             Attendance *attendance;
-            //if there's not an attendance object, create one
             if(!attendanceList.count){
                 [partyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
             }
-            //if there's an attendance object, check it's attendance type
             else{
                 attendance = attendanceList[0];
-                //if attendancetype is going, change to maybe, if type is maybe, delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     [partyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
                 }
@@ -260,22 +256,17 @@
         else
             NSLog(@"%@", error.localizedDescription);
     }];
-    
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
     [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
     [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
         if (!error){
             Attendance *attendance;
-            //if there's not attendance object, create one
             if(!attendanceList.count){
                 [topPartyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
             }
-            //if there's an attendance object, check it's attendance type
             else{
                 attendance = attendanceList[0];
-
-                //if attendancetype is going, change to maybe, if maybe delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     [topPartyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
                 }
