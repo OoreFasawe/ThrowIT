@@ -100,7 +100,7 @@ didFailAutocompleteWithError:(NSError *)error {
 - (IBAction)didSetPartyStartDate:(id)sender {
     UIDatePicker* datePicker = sender;
     self.partyDateStart = datePicker.date;
-    self.partyDateTimePickerEnd.date = [NSDate dateWithTimeInterval:FOURHOURS sinceDate: datePicker.date];
+    self.partyDateTimePickerEnd.date = [NSDate dateWithTimeInterval:TIMEINTERVAL sinceDate: datePicker.date];
     self.partyDateEnd = self.partyDateTimePickerEnd.date;
 }
 
