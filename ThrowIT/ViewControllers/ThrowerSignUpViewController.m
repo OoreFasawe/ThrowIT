@@ -30,6 +30,12 @@
     UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
     self.view.window.rootViewController = loginViewController;
 }
+- (IBAction)goToUserSignUp:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+    UIViewController *signUpViewController = [storyboard instantiateViewControllerWithIdentifier:SIGNUPVIEWCONTROLLER];
+    self.view.window.rootViewController
+    = signUpViewController;
+}
 
 - (IBAction)registerThrower:(id)sender {
     if([self.throwerNameField.text isEqual:EMPTY] || [self.throwerSchoolField.text isEqual:EMPTY] || [self.throwerEmailField.text isEqual:EMPTY] || [self.throwerPasswordField.text isEqual:@""]){

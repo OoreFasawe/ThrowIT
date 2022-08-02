@@ -72,8 +72,7 @@
 - (IBAction)goToSignUp:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *signUpViewController = [storyboard instantiateViewControllerWithIdentifier:SIGNUPVIEWCONTROLLER];
-    self.view.window.rootViewController
-    = signUpViewController;
+    self.view.window.rootViewController = signUpViewController;
 }
 
 -(void)checkVerified{
