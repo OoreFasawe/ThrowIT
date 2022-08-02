@@ -70,6 +70,7 @@
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
 #define PARTYIMAGEDEFAULT @"step2"
 #define EMPTY @""
+#define TIMEINTERVAL 4*3600
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
