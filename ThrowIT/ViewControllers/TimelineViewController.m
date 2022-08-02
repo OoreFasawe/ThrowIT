@@ -197,7 +197,7 @@
             partyCell.party = party;
             }
         else if(topPartyCell != nil){
-            topPartyCell.Label.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
+            topPartyCell.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
             topPartyCell.topParty = party;
         }
     }];
@@ -270,10 +270,14 @@
     topPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
     topPartyCell.throwerProfilePicture.layer.cornerRadius = topPartyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery includeKey:THROWERKEY];
     [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
     [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-        if(!error)
+        if(!error){
             topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+            topPartyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+            [topPartyCell.throwerProfilePicture loadInBackground];
+        }
         else
             NSLog(@"%@", error.localizedDescription);
     }];
