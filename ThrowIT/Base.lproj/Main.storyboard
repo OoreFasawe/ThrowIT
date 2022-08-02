@@ -918,7 +918,6 @@
                                                 <outlet property="partyNameLabel" destination="jPe-lp-m9r" id="gRF-bw-EHv"/>
                                                 <outlet property="partyRatingLabel" destination="5VP-pO-MZ6" id="0O9-2e-JtZ"/>
                                                 <outlet property="throwerProfilePicture" destination="Kfv-oq-ZsO" id="zGC-zL-WNO"/>
-                                                <segue destination="Zk2-eP-YQZ" kind="presentation" identifier="toDetailsViewControllerForCollectionCell" id="s2E-pg-iGe"/>
                                             </connections>
                                         </collectionViewCell>
                                     </cells>
