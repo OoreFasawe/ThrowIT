@@ -51,7 +51,7 @@
     }
     else{
         Party *party = [Party new];
-        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:self.partyDateStart withEndTime:self.partyDateEnd withSchoolName:nil withBackGroundImage:nil withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:self.partyDateStart withEndTime:self.partyDateEnd withSchoolName:nil withPartyPhoto:self.partyImageView.image withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
                 NSLog(@"%@", error.localizedDescription);
             }
