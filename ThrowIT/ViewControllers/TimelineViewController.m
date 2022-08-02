@@ -79,7 +79,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.filteredList[myIndexPath.row + SHIFTNUMBER];
+        Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
@@ -91,7 +91,6 @@
 }
 
 -(void)fetchParties{
-
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query includeKey:PARTYTHROWERKEY];
@@ -131,24 +130,29 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
+    partyCell.layer.cornerRadius = 10;
     CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     partyCell.soundGenerator = soundGenerator;
-    Party *party = self.filteredList[indexPath.row + SHIFTNUMBER];
-    
+    Party *party = self.filteredList[indexPath.section + SHIFTNUMBER];
     if(party.distancesFromUser != nil)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
     else
         partyCell.partyDistance.text = PARTYDISTANCELABELPLACEHOLDER;
     
-    
     partyCell.partyName.text = party.name;
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
+    partyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    partyCell.throwerProfilePicture.layer.cornerRadius = partyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery includeKey:THROWERKEY];
     [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
     [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-        if(!error)
+        if(!error){
             partyCell.partyRating.text = [NSString stringWithFormat:PARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+            partyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+            [partyCell.throwerProfilePicture loadInBackground];
+        }
         else
             NSLog(@"%@", error.localizedDescription);
     }];
@@ -159,14 +163,11 @@
     [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
         if (!error){
             Attendance *attendance;
-            //if there's not an attendance object, create one
             if(!attendanceList.count){
                 [partyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
             }
-            //if there's an attendance object, check it's attendance type
             else{
                 attendance = attendanceList[0];
-                //if attendancetype is going, change to maybe, if type is maybe, delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     [partyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
                 }
@@ -179,28 +180,46 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    [self partyGoingCountQuery:party withPartyCell:partyCell];
+    [self partyGoingCountQuery:party withPartyCell:partyCell orWithTopPartyCell:nil];
     return partyCell;
 }
 
--(void)partyGoingCountQuery:(Party *) party withPartyCell: (PartyCell *) partyCell{
+-(void)partyGoingCountQuery:(Party *) party withPartyCell: (PartyCell * _Nullable) partyCell orWithTopPartyCell:(TopPartyCell * _Nullable) topPartyCell{
     PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
     [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
         [party saveInBackground];
-        partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
-        partyCell.party = party;
+        if(partyCell != nil){
+            partyCell.partyGoingCount.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
+            partyCell.party = party;
+            }
+        else if(topPartyCell != nil){
+            topPartyCell.goingCountLabel.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
+            topPartyCell.topParty = party;
+        }
     }];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return NUMBEROFROWSINSECTION;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(self.filteredList.count > SHIFTNUMBER)
         return self.filteredList.count - SHIFTNUMBER;
     else
         return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return EMPTY;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -247,50 +266,72 @@
     topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
-    
-    if(party){
-        PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
-        [goingQuery whereKey:PARTYKEY equalTo:party];
-        [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
-        [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
-            if (!error){
-                Attendance *attendance;
-                //if there's not attendance object, create one
-                if(!attendanceList.count){
-                    [topPartyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
-                }
-                //if there's an attendance object, check it's attendance type
-                else{
-                    attendance = attendanceList[0];
-
-                    //if attendancetype is going, change to maybe, if maybe delete;
-                    if([attendance.attendanceType isEqualToString:GOING]){
-                        [topPartyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
-                    }
-                    else{
-                        [topPartyCell.goingButton setTitle:MAYBE forState:UIControlStateNormal];
-                    }
-                }
+    topPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    topPartyCell.throwerProfilePicture.layer.cornerRadius = topPartyCell.throwerProfilePicture.frame.size.height/2;
+    PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery includeKey:THROWERKEY];
+    [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
+    [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
+        if(!error){
+            topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+            topPartyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+            [topPartyCell.throwerProfilePicture loadInBackground];
+        }
+        else
+            NSLog(@"%@", error.localizedDescription);
+    }];
+    PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
+    [goingQuery whereKey:PARTYKEY equalTo:party];
+    [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
+    [goingQuery findObjectsInBackgroundWithBlock:^(NSArray  *attendanceList, NSError *error) {
+        if (!error){
+            Attendance *attendance;
+            if(!attendanceList.count){
+                [topPartyCell.goingButton setTitle:NOTGOING forState:UIControlStateNormal];
             }
             else{
-                NSLog(@"%@", error.localizedDescription);
+                attendance = attendanceList[0];
+                if([attendance.attendanceType isEqualToString:GOING]){
+                    [topPartyCell.goingButton setTitle:GOING forState:UIControlStateNormal];
+                }
+                else{
+                    [topPartyCell.goingButton setTitle:MAYBE forState:UIControlStateNormal];
+                }
             }
-            PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
-            [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
-            [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-                if(!error)
-                    topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
-                else
-                    NSLog(@"%@", error.localizedDescription);
-            }];
-        }];
-    }
-    topPartyCell.topParty = party;
+        }
+        else{
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [self partyGoingCountQuery:party withPartyCell:nil orWithTopPartyCell:topPartyCell];
     return topPartyCell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    self.tapCount++;
+    switch (self.tapCount) {
+        case 1: //single tap
+            [self performSelector:@selector(singleTapOnCCell:) withObject:indexPath afterDelay: .4];
+            break;
+        case 2: //double tap
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(singleTapOnCCell:) object:indexPath];
+            [self doubleTapOnCCell:indexPath];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)singleTapOnCCell:(NSIndexPath *)indexPath {
+    TopPartyCell *topPartyCell = (TopPartyCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:DETAILSVIEWCONTROLLERFORCOLLECTIONCELL sender:topPartyCell];
+    self.tapCount = 0;
+}
+
+- (void)doubleTapOnCCell:(NSIndexPath *)indexPath {
+    TopPartyCell *topPartyCell = (TopPartyCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    [topPartyCell didTapLike:topPartyCell.goingButton];
+    self.tapCount = 0;
 }
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout

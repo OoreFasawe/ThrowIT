@@ -17,7 +17,6 @@
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
 }
-
 - (IBAction)didTapLike:(id)sender {
     [Attendance setAvailability:self.topParty withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];

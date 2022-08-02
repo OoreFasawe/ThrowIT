@@ -35,6 +35,15 @@
 - (IBAction)chooseLocation:(id)sender {
     [self autocompleteClicked];
 }
+- (IBAction)showImagePickingOptions:(id)sender {
+    [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPARTYPHOTO];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    [self.partyImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(500, 500)]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)throwParty:(id)sender {
     if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY]){

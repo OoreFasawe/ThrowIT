@@ -183,8 +183,6 @@
 				891EF8A9286E519000F5947E /* AppDelegate.h */,
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
-				89855E2A289302A4006D1A13 /* ThrowerProfileViewController.h */,
-				89855E2B289302A4006D1A13 /* ThrowerProfileViewController.m */,
 				89AC10ED2886125500F35820 /* APIManager.h */,
 				89AC10EE2886125500F35820 /* APIManager.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
@@ -192,8 +190,6 @@
 				899D92612881EF9D007BCC72 /* Utility.h */,
 				899D92622881EF9D007BCC72 /* Utility.m */,
 				89D525A9289097900075C464 /* Haptics */,
-				89AC10F8288A855F00F35820 /* PartyFilterViewController.h */,
-				89AC10F9288A855F00F35820 /* PartyFilterViewController.m */,
 				89824500287D0F8100744255 /* ViewComponents */,
 				891EF8EF28760ECF00F5947E /* Models */,
 				891EF8E2287550C200F5947E /* ViewControllers */,
@@ -226,6 +222,10 @@
 		891EF8E2287550C200F5947E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				89855E2A289302A4006D1A13 /* ThrowerProfileViewController.h */,
+				89855E2B289302A4006D1A13 /* ThrowerProfileViewController.m */,
+				89AC10F8288A855F00F35820 /* PartyFilterViewController.h */,
+				89AC10F9288A855F00F35820 /* PartyFilterViewController.m */,
 				893969242884F1F9004DD10E /* ProfileViewController.h */,
 				893969252884F1F9004DD10E /* ProfileViewController.m */,
 				89824510287DE2EA00744255 /* DetailsViewController.h */,

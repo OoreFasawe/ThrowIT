@@ -9,7 +9,7 @@
 @import Parse;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ThrowerProfileViewController : UIViewController
+@interface ThrowerProfileViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 

@@ -8,6 +8,7 @@
 #import "Party.h"
 #import "CoreHapticsGenerator.h"
 #import "Utility.h"
+@import Parse;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *goingButton;
 @property (strong, nonatomic) IBOutlet UILabel *goingCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyRatingLabel;
+@property (strong, nonatomic) IBOutlet PFImageView *throwerProfilePicture;
 @property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
+- (IBAction)didTapLike:(id)sender;
 @end
 
 NS_ASSUME_NONNULL_END

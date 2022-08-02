@@ -23,17 +23,7 @@
 }
 
 - (IBAction)onTapProfilePicture:(id)sender {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:ADDPROFILEPHOTO message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
-    [actionSheet addAction:[UIAlertAction actionWithTitle:TAKEPHOTO style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        [Utility TakeOrChooseImage:self withSourceType:UIImagePickerControllerSourceTypeCamera];
-    }]];
-    [actionSheet addAction:[UIAlertAction actionWithTitle:CHOOSEFROMLIBRARY style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        [Utility TakeOrChooseImage:self withSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    }]];
-    [[actionSheet popoverPresentationController] setSourceRect:self.view.bounds];
-    [[actionSheet popoverPresentationController] setSourceView:self.view];
-    [actionSheet addAction:[UIAlertAction actionWithTitle:CANCEL style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:actionSheet animated:YES completion:^{}];
+    [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPROFILEPHOTO];
 }
 
 -(void)fetchUser{
@@ -53,22 +43,11 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    [self.profilePicture setImage:[self resizeImage:editedImage withSize:CGSizeMake(500, 500)]];
+    [self.profilePicture setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(500, 500)]];
     PFUser *user = [PFUser currentUser];
     user[USERPROFILEPHOTOKEY] = [Utility getPFFileFromImage:self.profilePicture.image];
     [user saveInBackground];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 - (IBAction)didLongPressOnProfileImage:(id)sender {
