@@ -79,7 +79,7 @@
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
         // Pass the selected object to the new view controller.
-        Party *party = self.filteredList[myIndexPath.row + SHIFTNUMBER];
+        Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
     }
@@ -91,7 +91,6 @@
 }
 
 -(void)fetchParties{
-
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query includeKey:PARTYTHROWERKEY];
@@ -131,9 +130,10 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
+    partyCell.layer.cornerRadius = 10;
     CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     partyCell.soundGenerator = soundGenerator;
-    Party *party = self.filteredList[indexPath.row + SHIFTNUMBER];
+    Party *party = self.filteredList[indexPath.section + SHIFTNUMBER];
     if(party.distancesFromUser != nil)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
     else
@@ -142,11 +142,17 @@
     partyCell.partyName.text = party.name;
     partyCell.partyDescription.text= party.partyDescription;
     partyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", party.partyThrower[USERUSERNAMEKEY]];
+    partyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    partyCell.throwerProfilePicture.layer.cornerRadius = partyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery includeKey:THROWERKEY];
     [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
     [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-        if(!error)
+        if(!error){
             partyCell.partyRating.text = [NSString stringWithFormat:PARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+            partyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+            [partyCell.throwerProfilePicture loadInBackground];
+        }
         else
             NSLog(@"%@", error.localizedDescription);
     }];
@@ -198,10 +204,22 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return NUMBEROFROWSINSECTION;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(self.filteredList.count > SHIFTNUMBER)
         return self.filteredList.count - SHIFTNUMBER;
     else
         return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return EMPTY;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -248,11 +266,17 @@
     topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
+    topPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    topPartyCell.throwerProfilePicture.layer.cornerRadius = topPartyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
+    [throwerQuery includeKey:THROWERKEY];
     [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
     [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
-        if(!error)
+        if(!error){
             topPartyCell.partyRatingLabel.text = [NSString stringWithFormat:TOPPARTYCELLPARTYRATINGTEXTFORMAT, thrower[THROWERRATING]];
+            topPartyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
+            [topPartyCell.throwerProfilePicture loadInBackground];
+        }
         else
             NSLog(@"%@", error.localizedDescription);
     }];

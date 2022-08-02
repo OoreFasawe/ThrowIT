@@ -20,7 +20,6 @@
 @dynamic numberAttending;
 @dynamic isGoing;
 @dynamic maybe;
-@dynamic backgroundImage;
 @dynamic isPublic;
 @dynamic rating;
 @dynamic partyCoordinateLongitude;
@@ -29,12 +28,13 @@
 @dynamic partyLocationAddress;
 @dynamic partyLocationId;
 @dynamic distancesFromUser;
+@dynamic partyPhoto;
 
 + (nonnull NSString *)parseClassName {
     return PARTYCLASS;
 }
 
-+ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withBackGroundImage:(UIImage* _Nullable)backgroundImage withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withLocationId:(NSString *) partyLocationId withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate* _Nullable)endTime withSchoolName:(NSString *_Nullable)school withPartyPhoto:(UIImage* _Nullable)partyPhoto withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withLocationId:(NSString *) partyLocationId withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Party *newParty = party;
     newParty.name = partyName;
     newParty.partyDescription = partyDescription;
@@ -44,7 +44,7 @@
     newParty.numberAttending= 0;
     newParty.isGoing=NO;
     newParty.maybe=NO;
-    newParty.backgroundImage = [self getPFFileFromImage:backgroundImage];
+    newParty.partyPhoto = [self getPFFileFromImage:partyPhoto];
     newParty.isPublic=NO;
     newParty.partyLocationName = partyLocationName;
     newParty.partyLocationAddress = partyLocationAddress;

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didCreateParty:(Party *)party;
 @end
 
-@interface CreatePartyViewController : UIViewController
+@interface CreatePartyViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, weak) id<CreatePartyViewControllerDelegate> delegate;
 
 @end

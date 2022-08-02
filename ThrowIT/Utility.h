@@ -108,6 +108,7 @@
 
 #pragma mark - Profile Picture Constants
 #define ADDPROFILEPHOTO @"Add Profile photo"
+#define ADDPARTYPHOTO @"Add Party Poster / Photo"
 #define TAKEPHOTO @"Take Photo"
 #define CHOOSEFROMLIBRARY @"Choose from library"
 #define CANCEL @"Cancel"
@@ -119,6 +120,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType;
++(void)showImageTakeOptionSheetOnViewController:(UIViewController *) viewController withTitleString:(NSString *)titleString;
++ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 -(void)setAttendanceState:(UIButton *)attendanceButton;
 +(NSMutableArray*)initLocationsWithArray:(NSArray *)array;
