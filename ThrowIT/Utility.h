@@ -119,6 +119,11 @@
 #define DEFAULTDURATION 0.3
 #define SIZEMULTIPLIER 2.5
 
+#pragma mark - Login/SignUp Animation Constants
+#define TOSIGNUPSANIMATIONDEFAULTDURATION 0.5
+#define SIGNUPBARSCALEFACTOR 25.f
+#define LOGINANIMATIONVIEWSCALEFACTOR 2.f
+
 NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType;

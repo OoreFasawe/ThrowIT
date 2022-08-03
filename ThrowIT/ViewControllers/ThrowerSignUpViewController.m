@@ -30,16 +30,15 @@
     UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGINVIEWCONTROLLER];
     self.view.window.rootViewController = loginViewController;
 }
+
 - (IBAction)goToUserSignUp:(id)sender {
     UIButton *toThrowerSignUpButton = sender;
-    
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:TOSIGNUPSANIMATIONDEFAULTDURATION animations:^{
         toThrowerSignUpButton.layer.zPosition = MAXFLOAT;
         [toThrowerSignUpButton setTitle:EMPTY forState:UIControlStateNormal];
-        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(1.f, 25.f);
+        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(1.f, SIGNUPBARSCALEFACTOR);
     } completion:nil];
-    
-    [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: 0.5];
+    [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: TOSIGNUPSANIMATIONDEFAULTDURATION];
 }
 
 -(void)transitionToUserSignUp{
