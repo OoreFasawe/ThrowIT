@@ -261,7 +261,7 @@
                                     <constraint firstAttribute="height" constant="84" id="kDF-Ip-5gl"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign Up As A Party Goer">
+                                <buttonConfiguration key="configuration" style="plain" title="Sign Up As Party Goer">
                                     <backgroundConfiguration key="background">
                                         <color key="backgroundColor" red="0.5491510034" green="0.47288751600000001" blue="0.75721257929999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </backgroundConfiguration>
