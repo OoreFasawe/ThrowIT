@@ -31,6 +31,18 @@
     self.view.window.rootViewController = loginViewController;
 }
 - (IBAction)goToUserSignUp:(id)sender {
+    UIButton *toThrowerSignUpButton = sender;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        toThrowerSignUpButton.layer.zPosition = MAXFLOAT;
+        [toThrowerSignUpButton setTitle:EMPTY forState:UIControlStateNormal];
+        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(1.f, 25.f);
+    } completion:nil];
+    
+    [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: 0.5];
+}
+
+-(void)transitionToUserSignUp{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *signUpViewController = [storyboard instantiateViewControllerWithIdentifier:SIGNUPVIEWCONTROLLER];
     self.view.window.rootViewController

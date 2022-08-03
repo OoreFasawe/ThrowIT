@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic, strong) NSArray *throwersList;
+@property (strong, nonatomic) IBOutlet UIView *viewToAnimate;
 
 @end
 
@@ -70,6 +71,20 @@
 }
     
 - (IBAction)goToSignUp:(id)sender {
+    UIButton *toThrowerSignUpButton = sender;
+    [UIView animateWithDuration:0.5 animations:^{
+        toThrowerSignUpButton.hidden = YES;
+        self.viewToAnimate.transform = CGAffineTransformMakeScale(-2.f, 1.f);
+    } completion:nil];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.viewToAnimate.layer.zPosition = MAXFLOAT;
+        self.viewToAnimate.transform = CGAffineTransformMakeScale(2.f, 1.f);
+    } completion:nil];
+    
+    [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: 1];
+}
+-(void)transitionToUserSignUp{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *signUpViewController = [storyboard instantiateViewControllerWithIdentifier:SIGNUPVIEWCONTROLLER];
     self.view.window.rootViewController = signUpViewController;

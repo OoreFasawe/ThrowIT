@@ -80,7 +80,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-dV-CQA">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-dV-CQA">
                                 <rect key="frame" x="0.0" y="842" width="428" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="wvh-DN-vTx"/>
@@ -806,9 +806,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkN-P8-5bN">
-                                <rect key="frame" x="214" y="0.0" width="214" height="926"/>
-                                <color key="backgroundColor" red="0.9489689469" green="0.76125174760000003" blue="0.60458487270000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-dM-Ndr">
+                                <rect key="frame" x="-214" y="0.0" width="428" height="926"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.54901963470000004" green="0.47450977560000002" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chocolate City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p0H-Po-zPQ">
                                 <rect key="frame" x="20" y="270" width="388" height="34"/>
@@ -854,9 +855,9 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up">
                                     <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                     </backgroundConfiguration>
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="goToSignUp:" destination="aUh-8j-bzq" eventType="touchUpInside" id="GZh-W0-xW6"/>
@@ -870,7 +871,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5zl-YL-dki"/>
-                        <color key="backgroundColor" red="0.5491510034" green="0.47288751600000001" blue="0.75721257929999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.94901961089999998" green="0.7607843876" blue="0.60000002379999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="x0h-Dp-ggK" firstAttribute="top" secondItem="0Ai-mF-Uwg" secondAttribute="bottom" constant="11" id="4fR-ak-5sd"/>
@@ -885,14 +886,10 @@
                             <constraint firstItem="jvg-hs-WIB" firstAttribute="trailing" secondItem="jbA-ES-fa1" secondAttribute="trailing" id="Jbo-pP-fWQ"/>
                             <constraint firstItem="p0H-Po-zPQ" firstAttribute="leading" secondItem="jvg-hs-WIB" secondAttribute="leading" id="L4Z-y0-7pd"/>
                             <constraint firstItem="x0h-Dp-ggK" firstAttribute="trailing" secondItem="jvg-hs-WIB" secondAttribute="trailing" id="Nxq-6H-OnW"/>
-                            <constraint firstItem="MkN-P8-5bN" firstAttribute="leading" secondItem="5zl-YL-dki" secondAttribute="centerX" id="Tgb-Yr-0Ga"/>
-                            <constraint firstItem="MkN-P8-5bN" firstAttribute="bottom" secondItem="5zl-YL-dki" secondAttribute="bottom" constant="34" id="Xnh-o4-D4g"/>
                             <constraint firstItem="5zl-YL-dki" firstAttribute="trailing" secondItem="yOk-WZ-FUS" secondAttribute="trailing" id="Xs8-lQ-IGE"/>
-                            <constraint firstItem="5zl-YL-dki" firstAttribute="top" secondItem="MkN-P8-5bN" secondAttribute="top" constant="44" id="bvG-Bn-bIK"/>
                             <constraint firstItem="0Ai-mF-Uwg" firstAttribute="top" secondItem="p0H-Po-zPQ" secondAttribute="bottom" constant="8" symbolic="YES" id="cbh-HM-B2I"/>
                             <constraint firstItem="0Ai-mF-Uwg" firstAttribute="leading" secondItem="jvg-hs-WIB" secondAttribute="leading" id="g7N-zc-2oM"/>
                             <constraint firstItem="0Ai-mF-Uwg" firstAttribute="trailing" secondItem="jvg-hs-WIB" secondAttribute="trailing" id="iH9-ZQ-iSB"/>
-                            <constraint firstItem="5zl-YL-dki" firstAttribute="trailing" secondItem="MkN-P8-5bN" secondAttribute="trailing" id="lQL-5u-S7S"/>
                             <constraint firstItem="jbA-ES-fa1" firstAttribute="top" secondItem="5zl-YL-dki" secondAttribute="top" constant="92" id="tmJ-AE-uUs"/>
                             <constraint firstItem="p0H-Po-zPQ" firstAttribute="top" secondItem="jvg-hs-WIB" secondAttribute="bottom" constant="12" id="w6A-eJ-0d0"/>
                             <constraint firstItem="5zl-YL-dki" firstAttribute="trailing" secondItem="p0H-Po-zPQ" secondAttribute="trailing" constant="20" id="wTC-3p-PTK"/>
@@ -906,6 +903,7 @@
                     <connections>
                         <outlet property="passwordField" destination="x0h-Dp-ggK" id="nrN-H2-Ds6"/>
                         <outlet property="usernameField" destination="p0H-Po-zPQ" id="E1c-5R-57g"/>
+                        <outlet property="viewToAnimate" destination="5rf-dM-Ndr" id="UAi-iK-uAC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDJ-r0-VaQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
