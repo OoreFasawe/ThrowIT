@@ -44,8 +44,7 @@
 -(void)transitionToUserSignUp{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *signUpViewController = [storyboard instantiateViewControllerWithIdentifier:SIGNUPVIEWCONTROLLER];
-    self.view.window.rootViewController
-    = signUpViewController;
+    self.view.window.rootViewController = signUpViewController;
 }
 
 - (IBAction)registerThrower:(id)sender {
