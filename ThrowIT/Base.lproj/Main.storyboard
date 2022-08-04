@@ -806,8 +806,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-dM-Ndr">
-                                <rect key="frame" x="-214" y="0.0" width="428" height="926"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-dM-Ndr">
+                                <rect key="frame" x="-214" y="-29" width="428" height="955"/>
                                 <color key="backgroundColor" red="0.54901963470000004" green="0.47450977560000002" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="428" id="8iy-cE-49K"/>
@@ -894,7 +894,7 @@
                             <constraint firstItem="0Ai-mF-Uwg" firstAttribute="top" secondItem="p0H-Po-zPQ" secondAttribute="bottom" constant="8" symbolic="YES" id="cbh-HM-B2I"/>
                             <constraint firstItem="0Ai-mF-Uwg" firstAttribute="leading" secondItem="jvg-hs-WIB" secondAttribute="leading" id="g7N-zc-2oM"/>
                             <constraint firstItem="0Ai-mF-Uwg" firstAttribute="trailing" secondItem="jvg-hs-WIB" secondAttribute="trailing" id="iH9-ZQ-iSB"/>
-                            <constraint firstItem="5zl-YL-dki" firstAttribute="top" secondItem="5rf-dM-Ndr" secondAttribute="top" constant="44" id="lRu-vm-VZ2"/>
+                            <constraint firstItem="5zl-YL-dki" firstAttribute="top" secondItem="5rf-dM-Ndr" secondAttribute="top" constant="50" id="lRu-vm-VZ2"/>
                             <constraint firstItem="jbA-ES-fa1" firstAttribute="top" secondItem="5zl-YL-dki" secondAttribute="top" constant="92" id="tmJ-AE-uUs"/>
                             <constraint firstItem="p0H-Po-zPQ" firstAttribute="top" secondItem="jvg-hs-WIB" secondAttribute="bottom" constant="12" id="w6A-eJ-0d0"/>
                             <constraint firstItem="5zl-YL-dki" firstAttribute="trailing" secondItem="p0H-Po-zPQ" secondAttribute="trailing" constant="20" id="wTC-3p-PTK"/>

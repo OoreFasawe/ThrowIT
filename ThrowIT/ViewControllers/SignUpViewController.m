@@ -67,8 +67,7 @@
 -(void)transitionToThrowerSignUp{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *throwerSignUpViewController = [storyboard instantiateViewControllerWithIdentifier:THROWERSIGNUPVIEWCONTROLLER];
-    self.view.window.rootViewController
-    = throwerSignUpViewController;
+    self.view.window.rootViewController = throwerSignUpViewController;
 }
 
 - (IBAction)didTapScreen:(id)sender {
