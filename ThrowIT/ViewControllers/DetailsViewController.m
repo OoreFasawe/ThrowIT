@@ -16,7 +16,7 @@
 @implementation DetailsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.partyNameLabel.text = self.party.name;
+    [self loadPartyDetails];
     [self showMap];
 }
 - (IBAction)goToMapDirections:(id)sender {
@@ -36,4 +36,31 @@
     GMSMarker *marker = [GMSMarker markerWithPosition:mapCenter];
     marker.map = self.mapView;
 }
+
+-(void)loadPartyDetails{
+    self.partyNameLabel.text = self.party.name;
+    if([[NSDate now] earlierDate:self.party.startTime] == self.party.startTime && [[NSDate now] laterDate:self.party.endTime] == self.party.endTime){
+        self.checkInButton.hidden = false;
+    }
+    else{
+        self.checkInButton.hidden = true;
+        //if check in already happened(save checkin to parse)
+            //make button filler green and unclickable
+        //else
+            //make button filler transparent
+    }
+}
+
+- (IBAction)didTapCheckIn:(id)sender {
+    //if check in hasn't already happened
+        //if location is within 2 miles of party location
+            //checkin
+            //turn button green
+        //else
+            //display error message
+    //else
+        //do nothing
+        //display message that they already checked in
+}
+
 @end

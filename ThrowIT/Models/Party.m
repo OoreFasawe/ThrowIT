@@ -54,7 +54,6 @@
     newParty.rating = 0;
     newParty.partyLocationId = partyLocationId;
     [newParty saveInBackgroundWithBlock: completion];
-
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {

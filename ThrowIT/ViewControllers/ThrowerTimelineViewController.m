@@ -112,7 +112,12 @@
     throwerPartyCell.partyDescription.text = party.partyDescription;
     throwerPartyCell.layer.cornerRadius = 10;
     throwerPartyCell.layer.borderWidth = 0.1;
-    [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
+    if(party.partyPhoto == nil)
+        [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
+    else{
+        throwerPartyCell.partyImageView.file = party.partyPhoto;
+        [throwerPartyCell.partyImageView loadInBackground];
+    }
     [self partyGoingCountQuery:party withPartyCell:throwerPartyCell];
     return throwerPartyCell;
 }

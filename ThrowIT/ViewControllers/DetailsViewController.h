@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DetailsViewController : UIViewController
 @property (nonatomic, strong) Party *party;
 @property (nonatomic, strong) GMSMapView *mapView;
+@property (strong, nonatomic) IBOutlet UIButton *checkInButton;
 @end
 
 NS_ASSUME_NONNULL_END
