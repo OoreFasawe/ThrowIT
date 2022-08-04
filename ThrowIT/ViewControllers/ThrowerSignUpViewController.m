@@ -31,6 +31,22 @@
     self.view.window.rootViewController = loginViewController;
 }
 
+- (IBAction)goToUserSignUp:(id)sender {
+    UIButton *toThrowerSignUpButton = sender;
+    [UIView animateWithDuration:TOSIGNUPSANIMATIONDEFAULTDURATION animations:^{
+        toThrowerSignUpButton.layer.zPosition = MAXFLOAT;
+        [toThrowerSignUpButton setTitle:EMPTY forState:UIControlStateNormal];
+        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(1.f, SIGNUPBARSCALEFACTOR);
+    } completion:nil];
+    [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: TOSIGNUPSANIMATIONDEFAULTDURATION];
+}
+
+-(void)transitionToUserSignUp{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+    UIViewController *signUpViewController = [storyboard instantiateViewControllerWithIdentifier:SIGNUPVIEWCONTROLLER];
+    self.view.window.rootViewController = signUpViewController;
+}
+
 - (IBAction)registerThrower:(id)sender {
     if([self.throwerNameField.text isEqual:EMPTY] || [self.throwerSchoolField.text isEqual:EMPTY] || [self.throwerEmailField.text isEqual:EMPTY] || [self.throwerPasswordField.text isEqual:@""]){
         //TODO: [self showAlert];

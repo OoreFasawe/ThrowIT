@@ -55,11 +55,21 @@
 }
 
 - (IBAction)goToThrowerSignUp:(id)sender {
+    UIButton *toThrowerSignUpButton = sender;
+    [UIView animateWithDuration:TOSIGNUPSANIMATIONDEFAULTDURATION animations:^{
+        toThrowerSignUpButton.layer.zPosition = MAXFLOAT;
+        [toThrowerSignUpButton setTitle:EMPTY forState:UIControlStateNormal];
+        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(1.f, SIGNUPBARSCALEFACTOR);
+    } completion:nil];
+    [self performSelector:@selector(transitionToThrowerSignUp) withObject:nil afterDelay: TOSIGNUPSANIMATIONDEFAULTDURATION];
+}
+
+-(void)transitionToThrowerSignUp{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
     UIViewController *throwerSignUpViewController = [storyboard instantiateViewControllerWithIdentifier:THROWERSIGNUPVIEWCONTROLLER];
-    self.view.window.rootViewController
-    = throwerSignUpViewController;
+    self.view.window.rootViewController = throwerSignUpViewController;
 }
+
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:true];
 }
