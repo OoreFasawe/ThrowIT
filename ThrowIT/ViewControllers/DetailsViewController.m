@@ -39,7 +39,7 @@
 
 -(void)loadPartyDetails{
     self.partyNameLabel.text = self.party.name;
-    if([[NSDate now] earlierDate:self.party.startTime] == self.party.startTime && [[NSDate now] laterDate:self.party.endTime] == self.party.endTime){
+    if([self.party isGoingOn]){
         self.checkInButton.hidden = false;
     }
     else{

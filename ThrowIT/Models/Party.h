@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate * _Nullable)endTime withSchoolName:(NSString * _Nullable)school withPartyPhoto:(UIImage* _Nullable)partyPhoto withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withLocationId:(NSString *) partyLocationId withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
-
+-(BOOL)isGoingOn;
 
 @end
 
