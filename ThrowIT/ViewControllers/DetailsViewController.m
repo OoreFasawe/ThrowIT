@@ -68,20 +68,17 @@
                         });
                     }
                     else{
-                        NSLog(@"User too far from check in");
-                        //TODO: display user too far from party
+                        //TODO: display user too far from party: @"User too far from party to check in"
                     }
                 }];
             }
             else{
-                NSLog(@"User already checked in");
-                //TODO: display already checked in message
+                //TODO: display already checked in message: @"User already checked in"
             }
         }];
     }
     else{
-        NSLog(@"The party already ended");
-        //TODO: display party over message
+        //TODO: display party over message: @"The party already ended"
     }
 }
 
