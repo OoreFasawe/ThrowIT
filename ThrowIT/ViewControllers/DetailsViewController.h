@@ -8,6 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "Party.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "Check In.h"
+#import "APIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

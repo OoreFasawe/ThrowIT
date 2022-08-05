@@ -40,27 +40,49 @@
 -(void)loadPartyDetails{
     self.partyNameLabel.text = self.party.name;
     if([self.party isGoingOn]){
+        [Check_In userIsCheckedIn:self.party withCompletion:^(BOOL checkInExists) {
+            if(checkInExists){
+                self.checkInButton.layer.backgroundColor = [[UIColor greenColor] CGColor];
+                self.checkInButton.userInteractionEnabled = NO;
+            }
+        }];
         self.checkInButton.hidden = false;
     }
     else{
         self.checkInButton.hidden = true;
-        //if check in already happened(save checkin to parse)
-            //make button filler green and unclickable
-        //else
-            //make button filler transparent
     }
 }
 
 - (IBAction)didTapCheckIn:(id)sender {
-    //if check in hasn't already happened
-        //if location is within 2 miles of party location
-            //checkin
-            //turn button green
-        //else
-            //display error message
-    //else
-        //do nothing
-        //display message that they already checked in
+    if([self.party isGoingOn]){
+        [Check_In userIsCheckedIn:self.party withCompletion:^(BOOL checkInExists) {
+            if(!checkInExists){
+                [[APIManager shared] loadDistanceDataFromLocation:self.party.partyLocationId withCompletionHandler:^(NSString * _Nonnull distance) {
+                    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+                    f.numberStyle = NSNumberFormatterDecimalStyle;
+                    if(1.0 >= [[f numberFromString:[distance componentsSeparatedByString:SPACE][0]] doubleValue] || [[distance componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
+                        [Check_In postNewCheckInForParty:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];   //checkin
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.checkInButton.layer.backgroundColor = [[UIColor greenColor] CGColor];
+                            self.checkInButton.userInteractionEnabled = NO;
+                        });
+                    }
+                    else{
+                        NSLog(@"User too far from check in");
+                        //TODO: display user too far from party
+                    }
+                }];
+            }
+            else{
+                NSLog(@"User already checked in");
+                //TODO: display already checked in message
+            }
+        }];
+    }
+    else{
+        NSLog(@"The party already ended");
+        //TODO: display party over message
+    }
 }
 
 @end

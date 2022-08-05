@@ -1265,7 +1265,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Check in">
                                     <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="strokeColor" systemColor="labelColor"/>
                                     </backgroundConfiguration>
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
