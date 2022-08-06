@@ -12,11 +12,17 @@
 #import "APIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol DetailsViewControllerDelegate <NSObject>
+
+-(void)reloadCells;
+
+@end
 
 @interface DetailsViewController : UIViewController
 @property (nonatomic, strong) Party *party;
 @property (nonatomic, strong) GMSMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIButton *checkInButton;
+@property (nonatomic, weak) id<DetailsViewControllerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -886,6 +886,14 @@
                                                             <constraint firstAttribute="height" constant="1" id="oCz-j4-uEm"/>
                                                         </constraints>
                                                     </view>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fW-MA-Rpm">
+                                                        <rect key="frame" x="90" y="117" width="38" height="11"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.76942896839999997" blue="0.085222583020000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="38" id="1gF-gr-38J"/>
+                                                            <constraint firstAttribute="height" constant="11" id="7Sj-F0-Snx"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.61568629740000003" green="0.52941179279999995" blue="0.84313726430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -897,6 +905,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="8qy-bE-8iA" secondAttribute="trailing" constant="10" id="8vB-2q-F7l"/>
                                                     <constraint firstItem="K6D-Aj-72B" firstAttribute="centerY" secondItem="rvn-rW-SAH" secondAttribute="centerY" id="AFF-kg-eR4"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5VP-pO-MZ6" secondAttribute="trailing" constant="8" id="AGC-fD-CVl"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2fW-MA-Rpm" secondAttribute="bottom" id="GJf-Ep-K7F"/>
                                                     <constraint firstItem="rvn-rW-SAH" firstAttribute="leading" secondItem="8qy-bE-8iA" secondAttribute="leading" id="HX6-VF-6Ys"/>
                                                     <constraint firstItem="K6D-Aj-72B" firstAttribute="leading" secondItem="rvn-rW-SAH" secondAttribute="trailing" constant="4" id="HaP-LJ-9UR"/>
                                                     <constraint firstItem="8qy-bE-8iA" firstAttribute="leading" secondItem="ezw-yu-tls" secondAttribute="leading" constant="10" id="M4q-rX-vOq"/>
@@ -904,6 +913,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="5Pq-xO-uKV" secondAttribute="trailing" constant="10" id="dVm-R8-fCS"/>
                                                     <constraint firstItem="5VP-pO-MZ6" firstAttribute="leading" secondItem="K6D-Aj-72B" secondAttribute="trailing" constant="4" id="gvc-Et-qzD"/>
                                                     <constraint firstItem="jPe-lp-m9r" firstAttribute="centerY" secondItem="Kfv-oq-ZsO" secondAttribute="centerY" id="jk8-Ed-79n"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2fW-MA-Rpm" secondAttribute="trailing" constant="0.99999999999997158" id="lsc-ji-8ls"/>
                                                     <constraint firstItem="Kfv-oq-ZsO" firstAttribute="leading" secondItem="ezw-yu-tls" secondAttribute="leading" constant="10" id="mSz-ek-tL7"/>
                                                     <constraint firstItem="5VP-pO-MZ6" firstAttribute="bottom" secondItem="rvn-rW-SAH" secondAttribute="bottom" id="nfs-ee-ZWH"/>
                                                     <constraint firstItem="jPe-lp-m9r" firstAttribute="top" secondItem="ezw-yu-tls" secondAttribute="top" constant="16" id="r2P-vS-1R0"/>
@@ -912,6 +922,7 @@
                                             </collectionViewCellContentView>
                                             <gestureRecognizers/>
                                             <connections>
+                                                <outlet property="checkInTag" destination="2fW-MA-Rpm" id="P5O-Yf-627"/>
                                                 <outlet property="goingButton" destination="K6D-Aj-72B" id="CPk-Eg-W7Z"/>
                                                 <outlet property="goingCountLabel" destination="rvn-rW-SAH" id="ALk-AQ-Ymv"/>
                                                 <outlet property="partyDescriptionLabel" destination="8qy-bE-8iA" id="OYB-CS-h4T"/>
@@ -996,6 +1007,14 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="labelColor"/>
                                                 </view>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cv9-Hr-hgO">
+                                                    <rect key="frame" x="390" y="94.999999999999943" width="38" height="11"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.76942896842956543" blue="0.085222583021309917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="38" id="JEm-UQ-xP7"/>
+                                                        <constraint firstAttribute="height" constant="11" id="Z36-V5-nst"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.54901963470000004" green="0.47450977560000002" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
@@ -1024,6 +1043,8 @@
                                                 <constraint firstItem="bqB-qT-VmZ" firstAttribute="leading" secondItem="mlC-3g-wJ6" secondAttribute="trailing" constant="4" id="hAB-2q-rvs"/>
                                                 <constraint firstItem="Bnq-Oz-Yub" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fQd-Tk-xLn" secondAttribute="trailing" constant="16" id="iEv-fl-Sbt"/>
                                                 <constraint firstItem="mlC-3g-wJ6" firstAttribute="top" secondItem="Ugx-vf-K6a" secondAttribute="top" constant="8" id="lsA-Rr-8oc"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cv9-Hr-hgO" secondAttribute="bottom" id="mhY-Zf-ntd"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cv9-Hr-hgO" secondAttribute="trailing" id="pjO-sN-edc"/>
                                                 <constraint firstItem="Jd4-vs-7CF" firstAttribute="leading" secondItem="Ugx-vf-K6a" secondAttribute="leading" constant="10" id="pxU-zF-7BB"/>
                                                 <constraint firstItem="Lp1-ip-iWu" firstAttribute="leading" secondItem="2Qn-Nn-HH0" secondAttribute="trailing" constant="4" id="sUw-jl-dcm"/>
                                                 <constraint firstItem="bqB-qT-VmZ" firstAttribute="top" secondItem="mlC-3g-wJ6" secondAttribute="top" id="t64-lq-4kY"/>
@@ -1035,6 +1056,7 @@
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
+                                            <outlet property="checkInTag" destination="Cv9-Hr-hgO" id="fS6-ta-WEC"/>
                                             <outlet property="goingButton" destination="Bnq-Oz-Yub" id="Gmd-8Z-ZI5"/>
                                             <outlet property="partyDescription" destination="fQd-Tk-xLn" id="NSP-cY-xvZ"/>
                                             <outlet property="partyDistance" destination="45Z-F5-ZLA" id="tGa-g9-zpy"/>
