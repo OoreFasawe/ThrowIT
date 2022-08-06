@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyRatingLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *throwerProfilePicture;
 @property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
+@property (strong, nonatomic) IBOutlet UIView *checkInTag;
 - (IBAction)didTapLike:(id)sender;
 @end
 

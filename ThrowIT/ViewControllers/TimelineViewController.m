@@ -74,6 +74,7 @@
         Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
+        detailsController.delegate = self;
     }
     else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
         UITableViewCell *partyCell = sender;
@@ -82,6 +83,7 @@
         Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
+        detailsController.delegate = self;
     }
     else if([[segue identifier] isEqualToString:FILTERSEGUE]){
         UINavigationController *partyFilterNavigationController = [segue destinationViewController];
@@ -125,6 +127,11 @@
             [self.collectionView reloadData];
         }
     }];
+}
+
+-(void)reloadCells{
+    [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -179,6 +186,12 @@
         else{
             NSLog(@"%@", error.localizedDescription);
         }
+    }];
+    [Check_In userIsCheckedIn:party withCompletion:^(BOOL checkInExists) {
+        if(checkInExists)
+            partyCell.checkInTag.hidden = false;
+        else
+            partyCell.checkInTag.hidden = true;
     }];
     [self partyGoingCountQuery:party withPartyCell:partyCell orWithTopPartyCell:nil];
     return partyCell;
@@ -302,6 +315,12 @@
         else{
             NSLog(@"%@", error.localizedDescription);
         }
+    }];
+    [Check_In userIsCheckedIn:party withCompletion:^(BOOL checkInExists) {
+        if(checkInExists)
+            topPartyCell.checkInTag.hidden = false;
+        else
+            topPartyCell.checkInTag.hidden = true;
     }];
     [self partyGoingCountQuery:party withPartyCell:nil orWithTopPartyCell:topPartyCell];
     return topPartyCell;

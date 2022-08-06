@@ -26,5 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *goingButton;
 @property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
 - (IBAction)didTapLike:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *checkInTag;
 NS_ASSUME_NONNULL_END
 @end

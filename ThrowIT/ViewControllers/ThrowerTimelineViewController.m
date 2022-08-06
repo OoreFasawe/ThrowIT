@@ -110,9 +110,14 @@
     Party *party = self.throwerPartyList[indexPath.section];
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.partyDescription.text = party.partyDescription;
-    throwerPartyCell.partyImageView.layer.cornerRadius = 10;
-    throwerPartyCell.partyImageView.layer.borderWidth = 0.1;
-    [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
+    throwerPartyCell.layer.cornerRadius = 10;
+    throwerPartyCell.layer.borderWidth = 0.1;
+    if(party.partyPhoto == nil)
+        [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
+    else{
+        throwerPartyCell.partyImageView.file = party.partyPhoto;
+        [throwerPartyCell.partyImageView loadInBackground];
+    }
     [self partyGoingCountQuery:party withPartyCell:throwerPartyCell];
     return throwerPartyCell;
 }

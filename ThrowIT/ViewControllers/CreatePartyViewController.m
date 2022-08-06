@@ -46,7 +46,7 @@
 }
 
 - (IBAction)throwParty:(id)sender {
-    if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY]){
+    if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY] || self.partyDateStart){
         //TODO: show missing fields alert
     }
     else{
@@ -108,6 +108,10 @@ didFailAutocompleteWithError:(NSError *)error {
 
 - (IBAction)didSetPartyStartDate:(id)sender {
     UIDatePicker* datePicker = sender;
+    if([datePicker.date earlierDate:[NSDate now]] == datePicker.date){
+        //TODO: show error: @set start date to be later than current date
+        datePicker.date = [NSDate now];
+    }
     self.partyDateStart = datePicker.date;
     self.partyDateTimePickerEnd.date = [NSDate dateWithTimeInterval:TIMEINTERVAL sinceDate: datePicker.date];
     self.partyDateEnd = self.partyDateTimePickerEnd.date;
@@ -115,6 +119,10 @@ didFailAutocompleteWithError:(NSError *)error {
 
 - (IBAction)didSetPartyEndDate:(id)sender {
     UIDatePicker* datePicker = sender;
+    if([datePicker.date earlierDate:self.partyDateTimePicker.date] == datePicker.date){
+        //TODO: show error: @set end date to be later than start date
+        datePicker.date = [NSDate dateWithTimeInterval:TIMEINTERVAL sinceDate: self.partyDateTimePicker.date];;
+    }
     self.partyDateTimePickerEnd.date = datePicker.date;
 }
 

@@ -54,7 +54,6 @@
     newParty.rating = 0;
     newParty.partyLocationId = partyLocationId;
     [newParty saveInBackgroundWithBlock: completion];
-
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
@@ -69,6 +68,13 @@
         return nil;
     }
     return [PFFileObject fileObjectWithName:PARSEIMAGEDEFAULTFILENAME data:imageData];
+}
+
+-(BOOL)isGoingOn{
+    if([[NSDate now] earlierDate:self.startTime] == self.startTime && [[NSDate now] laterDate:self.endTime] == self.endTime)
+        return true;
+    else
+        return false;
 }
 
 
