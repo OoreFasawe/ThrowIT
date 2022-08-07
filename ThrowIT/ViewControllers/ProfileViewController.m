@@ -13,6 +13,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *partiesAttendedLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (strong, nonatomic) IBOutlet UITableView *profileTableView;
+@property (strong, nonatomic) IBOutlet UITableView *seenPartiesTableView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *profileSegmentedControl;
 @property (strong, nonatomic) NSMutableArray *users;
 @end
 
@@ -24,6 +26,9 @@
     self.profileTableView.delegate = self;
     self.profileTableView.dataSource = self;
     self.profileTableView.rowHeight = UITableViewAutomaticDimension;
+    self.seenPartiesTableView.delegate = self;
+    self.seenPartiesTableView.dataSource = self;
+    self.seenPartiesTableView.rowHeight = 106;
     [self fetchUsers];
 }
 
@@ -55,8 +60,13 @@
         if(!error){
             self.users = (NSMutableArray *) objects;
             [self.profileTableView reloadData];
+            [self.seenPartiesTableView reloadData];
         }
     }];
+}
+
+-(void)fetchSeenParties{
+    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -88,20 +98,28 @@
             profileImageExpand.view.transform = CGAffineTransformMakeTranslation(ORIGINALXPOSITION, ORIGINALYPOSITION);
         } completion:nil];
     }
-    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    PartyBoardCell *partyBoardCell = [self.profileTableView dequeueReusableCellWithIdentifier:@"RankCell"];
-    PFUser *user = self.users[indexPath.section];
-    partyBoardCell.userRankLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section + 1];
-    partyBoardCell.usernameLabel.text = user[USERUSERNAMEKEY];
-    partyBoardCell.userPartiesAttendedLabel.text = [NSString stringWithFormat:@"%@", user[PARTIESATTENDEDKEY]];
-    partyBoardCell.userProfilePhotoView.layer.cornerRadius = partyBoardCell.userProfilePhotoView.frame.size.height / 2;
-    partyBoardCell.userProfilePhotoView.layer.borderWidth = 0.05;
-    partyBoardCell.userProfilePhotoView.file = user[USERPROFILEPHOTOKEY];
-    [partyBoardCell.userProfilePhotoView loadInBackground];
-    return partyBoardCell;
+    UITableViewCell *profileCell;
+    if(tableView == self.seenPartiesTableView){
+        PartyCell *seenPartyCell = [self.seenPartiesTableView dequeueReusableCellWithIdentifier:@"PartyCell"];
+        
+        profileCell = seenPartyCell;
+    }
+    if(tableView == self.profileTableView){
+        PartyBoardCell *partyBoardCell = [self.profileTableView dequeueReusableCellWithIdentifier:@"RankCell"];
+        PFUser *user = self.users[indexPath.section];
+        partyBoardCell.userRankLabel.text = [NSString stringWithFormat:@"%ld. ", (long)indexPath.section + 1];
+        partyBoardCell.usernameLabel.text = user[USERUSERNAMEKEY];
+        partyBoardCell.userPartiesAttendedLabel.text = [NSString stringWithFormat:@"%@", user[PARTIESATTENDEDKEY]];
+        partyBoardCell.userProfilePhotoView.layer.cornerRadius = partyBoardCell.userProfilePhotoView.frame.size.height / 2;
+        partyBoardCell.userProfilePhotoView.layer.borderWidth = 0.05;
+        partyBoardCell.userProfilePhotoView.file = user[USERPROFILEPHOTOKEY];
+        [partyBoardCell.userProfilePhotoView loadInBackground];
+        profileCell = partyBoardCell;
+    }
+    return profileCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

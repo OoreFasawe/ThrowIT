@@ -46,7 +46,7 @@
 }
 
 - (IBAction)throwParty:(id)sender {
-    if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY] || self.partyDateStart){
+    if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY] || !self.partyDateStart){
         //TODO: show missing fields alert
     }
     else{

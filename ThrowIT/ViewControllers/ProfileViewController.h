@@ -9,6 +9,7 @@
 #import "Utility.h"
 @import Parse;
 #import "PartyBoardCell.h"
+#import "PartyCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

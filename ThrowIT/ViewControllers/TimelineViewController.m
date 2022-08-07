@@ -16,6 +16,7 @@
 #import "Party.h"
 #import "Thrower.h"
 #import <Parse/Parse.h>
+#import "DateTools.h"
 
 
 @interface TimelineViewController () <PartyFilterViewControllerDelegate>
@@ -50,8 +51,7 @@
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.collectionView insertSubview:self.refreshControl atIndex:0];
 }
 - (IBAction)logoutUser:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -95,6 +95,7 @@
 -(void)fetchParties{
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
+    [query whereKey:@"endTime" greaterThan:[NSDate now]];
     [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
@@ -163,7 +164,11 @@
         else
             NSLog(@"%@", error.localizedDescription);
     }];
-    partyCell.partyDescription.text= party.partyDescription; 
+    partyCell.partyDescription.text= party.partyDescription;
+    if([party.startTime earlierDate:[NSDate now]] == party.startTime)
+        partyCell.partyTime.text = @". Now";
+    else
+        partyCell.partyTime.text = [NSString stringWithFormat:@". In %@", [NSDate shortTimeAgoSinceDate:party.startTime]];
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
     [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
