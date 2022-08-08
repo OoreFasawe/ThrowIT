@@ -29,6 +29,7 @@
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
 @property (nonatomic)int tapCount;
+@property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
 
 @end
 
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     [[APIManager shared] locationManagerInit];
     [self fetchParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
@@ -51,7 +53,7 @@
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
-    [self.collectionView insertSubview:self.refreshControl atIndex:0];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 - (IBAction)logoutUser:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -74,7 +76,7 @@
         Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
-        detailsController.delegate = self;
+        detailsController.delegate = (id) self;
     }
     else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
         UITableViewCell *partyCell = sender;
@@ -83,7 +85,7 @@
         Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
-        detailsController.delegate = self;
+        detailsController.delegate = (id) self;
     }
     else if([[segue identifier] isEqualToString:FILTERSEGUE]){
         UINavigationController *partyFilterNavigationController = [segue destinationViewController];
@@ -139,8 +141,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
     partyCell.layer.cornerRadius = 10;
-    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
-    partyCell.soundGenerator = soundGenerator;
+    partyCell.soundGenerator = self.soundGenerator;
     Party *party = self.filteredList[indexPath.section + SHIFTNUMBER];
     if(party.distancesFromUser != nil)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
@@ -164,7 +165,6 @@
         else
             NSLog(@"%@", error.localizedDescription);
     }];
-    partyCell.partyDescription.text= party.partyDescription;
     if([party.startTime earlierDate:[NSDate now]] == party.startTime)
         partyCell.partyTime.text = @". Now";
     else

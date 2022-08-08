@@ -10,6 +10,9 @@
 @import Parse;
 #import "PartyBoardCell.h"
 #import "PartyCell.h"
+#import "AttendedPartyCell.h"
+#import "Check In.h"
+#import "DateTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
