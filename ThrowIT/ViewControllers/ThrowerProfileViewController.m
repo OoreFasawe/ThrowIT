@@ -186,7 +186,7 @@
     }
     else if(throwerProfileSegmentedControl.selectedSegmentIndex == 2){
         [UIView animateWithDuration:DEFAULTDURATION animations:^{
-            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
             self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
             self.throwerProfileView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
         } completion:nil];
@@ -195,7 +195,7 @@
         [UIView animateWithDuration:DEFAULTDURATION animations:^{
         self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
         self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-        self.throwerProfileView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+        self.throwerProfileView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width, 1.f);
         }completion:nil];
     }
 }

@@ -501,7 +501,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JuD-Nb-tR4">
-                                <rect key="frame" x="20" y="100" width="388" height="32"/>
+                                <rect key="frame" x="20" y="88" width="388" height="32"/>
                                 <segments>
                                     <segment title="Thrown Parties"/>
                                     <segment title="Throwboard"/>
@@ -512,7 +512,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-t9-AjH">
-                                <rect key="frame" x="5" y="139" width="418" height="704"/>
+                                <rect key="frame" x="5" y="134" width="418" height="709"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThrownPartyCell" rowHeight="139" id="ZaH-uW-K2d" customClass="ThrownPartyCell">
@@ -598,7 +598,7 @@
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Z7t-ON-qA0">
-                                <rect key="frame" x="433" y="139" width="418" height="704"/>
+                                <rect key="frame" x="433" y="134" width="418" height="709"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="labelColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -663,10 +663,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Apc-aD-pH2">
-                                <rect key="frame" x="433" y="139" width="418" height="704"/>
+                                <rect key="frame" x="433" y="134" width="418" height="709"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UsB-YK-xkv" customClass="PFImageView">
-                                        <rect key="frame" x="84" y="9.6666666666666714" width="250" height="247.33333333333334"/>
+                                        <rect key="frame" x="84" y="1.6666666666666714" width="250" height="247.33333333333334"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -684,7 +684,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zuck's Frat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ih3-39-29j">
-                                        <rect key="frame" x="145.66666666666663" y="284" width="127" height="30"/>
+                                        <rect key="frame" x="145.66666666666663" y="276" width="127" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -692,7 +692,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="UsB-YK-xkv" firstAttribute="top" secondItem="Apc-aD-pH2" secondAttribute="top" constant="7.9999999999984848" id="Jsj-Vp-Nvu"/>
+                                    <constraint firstItem="UsB-YK-xkv" firstAttribute="top" secondItem="Apc-aD-pH2" secondAttribute="top" id="Jsj-Vp-Nvu"/>
                                     <constraint firstItem="bk0-pl-58A" firstAttribute="centerX" secondItem="Apc-aD-pH2" secondAttribute="centerX" id="N2W-5v-Oiu"/>
                                     <constraint firstItem="UsB-YK-xkv" firstAttribute="centerX" secondItem="Apc-aD-pH2" secondAttribute="centerX" id="fBK-su-HYh"/>
                                     <constraint firstItem="ih3-39-29j" firstAttribute="top" secondItem="UsB-YK-xkv" secondAttribute="bottom" constant="26" id="l6X-Qo-bbA"/>
@@ -707,11 +707,11 @@
                             <constraint firstItem="Apc-aD-pH2" firstAttribute="leading" secondItem="RhE-t9-AjH" secondAttribute="trailing" constant="10" id="0HK-Ls-cbf"/>
                             <constraint firstItem="JuD-Nb-tR4" firstAttribute="leading" secondItem="bCL-DL-Rau" secondAttribute="leading" constant="20" id="9bi-rH-diU"/>
                             <constraint firstItem="RhE-t9-AjH" firstAttribute="width" secondItem="Z7t-ON-qA0" secondAttribute="width" id="DZ5-3P-PFb"/>
-                            <constraint firstItem="JuD-Nb-tR4" firstAttribute="top" secondItem="bCL-DL-Rau" secondAttribute="top" constant="12" id="EYy-Vk-p42"/>
+                            <constraint firstItem="JuD-Nb-tR4" firstAttribute="top" secondItem="bCL-DL-Rau" secondAttribute="top" id="EYy-Vk-p42"/>
                             <constraint firstItem="bCL-DL-Rau" firstAttribute="trailing" secondItem="JuD-Nb-tR4" secondAttribute="trailing" constant="20" id="JDU-1X-Ruv"/>
                             <constraint firstItem="Z7t-ON-qA0" firstAttribute="top" secondItem="RhE-t9-AjH" secondAttribute="top" id="NmQ-aO-0eR"/>
                             <constraint firstItem="Z7t-ON-qA0" firstAttribute="bottom" secondItem="RhE-t9-AjH" secondAttribute="bottom" id="V6o-lX-1Rj"/>
-                            <constraint firstItem="RhE-t9-AjH" firstAttribute="top" secondItem="JuD-Nb-tR4" secondAttribute="bottom" constant="8" symbolic="YES" id="Xzx-6M-3Kz"/>
+                            <constraint firstItem="RhE-t9-AjH" firstAttribute="top" secondItem="JuD-Nb-tR4" secondAttribute="bottom" constant="15" id="Xzx-6M-3Kz"/>
                             <constraint firstItem="Apc-aD-pH2" firstAttribute="width" secondItem="RhE-t9-AjH" secondAttribute="width" id="dal-Gt-9It"/>
                             <constraint firstItem="Apc-aD-pH2" firstAttribute="bottom" secondItem="RhE-t9-AjH" secondAttribute="bottom" id="dlx-Fd-RzM"/>
                             <constraint firstItem="RhE-t9-AjH" firstAttribute="leading" secondItem="bCL-DL-Rau" secondAttribute="leading" constant="5" id="gGa-Vh-Ai1"/>
