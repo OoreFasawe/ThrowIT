@@ -25,6 +25,8 @@
 		89220011289EDF8700EDF9A1 /* PartyBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89220010289EDF8700EDF9A1 /* PartyBoardCell.m */; };
 		8922001428A097B400EDF9A1 /* AttendedPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8922001328A097B400EDF9A1 /* AttendedPartyCell.m */; };
 		893969262884F1F9004DD10E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 893969252884F1F9004DD10E /* ProfileViewController.m */; };
+		8970CB3328A1ABA500963F59 /* ThrowBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */; };
+		8970CB3928A1B9FF00963F59 /* ThrownPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */; };
 		898244E728762FCC00744255 /* PartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244E628762FCC00744255 /* PartyCell.m */; };
 		898244ED28775E6400744255 /* TopPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244EC28775E6400744255 /* TopPartyCell.m */; };
 		898244F028779F9300744255 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 898244EF28779F9300744255 /* Party.m */; };
@@ -97,6 +99,10 @@
 		8922001328A097B400EDF9A1 /* AttendedPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AttendedPartyCell.m; path = ViewComponents/AttendedPartyCell.m; sourceTree = "<group>"; };
 		893969242884F1F9004DD10E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		893969252884F1F9004DD10E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThrowBoardCell.h; path = ViewComponents/ThrowBoardCell.h; sourceTree = "<group>"; };
+		8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ThrowBoardCell.m; path = ViewComponents/ThrowBoardCell.m; sourceTree = "<group>"; };
+		8970CB3728A1B9FF00963F59 /* ThrownPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThrownPartyCell.h; sourceTree = "<group>"; };
+		8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrownPartyCell.m; sourceTree = "<group>"; };
 		898244E528762FCC00744255 /* PartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyCell.h; sourceTree = "<group>"; };
 		898244E628762FCC00744255 /* PartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyCell.m; sourceTree = "<group>"; };
 		898244EB28775E6400744255 /* TopPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopPartyCell.h; sourceTree = "<group>"; };
@@ -194,6 +200,8 @@
 				8922001228A097B400EDF9A1 /* AttendedPartyCell.h */,
 				8922001328A097B400EDF9A1 /* AttendedPartyCell.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
+				8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */,
+				8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */,
 				89AC10ED2886125500F35820 /* APIManager.h */,
 				89AC10EE2886125500F35820 /* APIManager.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
@@ -211,6 +219,8 @@
 				891EF8BA286E519000F5947E /* Info.plist */,
 				891EF8BB286E519000F5947E /* main.m */,
 				890F5C9328822948006E549B /* Keys.plist */,
+				8970CB3728A1B9FF00963F59 /* ThrownPartyCell.h */,
+				8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */,
 			);
 			path = ThrowIT;
 			sourceTree = "<group>";
@@ -516,6 +526,7 @@
 			files = (
 				898244F028779F9300744255 /* Party.m in Sources */,
 				891EF8E5287551DD00F5947E /* SignUpViewController.m in Sources */,
+				8970CB3928A1B9FF00963F59 /* ThrownPartyCell.m in Sources */,
 				89220011289EDF8700EDF9A1 /* PartyBoardCell.m in Sources */,
 				8922001428A097B400EDF9A1 /* AttendedPartyCell.m in Sources */,
 				891EF8AB286E519000F5947E /* AppDelegate.m in Sources */,
@@ -540,6 +551,7 @@
 				891EF8E82875530400F5947E /* TimelineViewController.m in Sources */,
 				898244E728762FCC00744255 /* PartyCell.m in Sources */,
 				89AC10F72889C00000F35820 /* CoreHapticsGenerator.m in Sources */,
+				8970CB3328A1ABA500963F59 /* ThrowBoardCell.m in Sources */,
 				89824509287D15F000744255 /* CreatePartyViewController.m in Sources */,
 				898244F62878B00300744255 /* ThrowerSignUpViewController.m in Sources */,
 			);

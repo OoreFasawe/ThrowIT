@@ -49,6 +49,7 @@
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
+    [query whereKey:@"endTime" greaterThan:[NSDate now]];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
@@ -112,6 +113,8 @@
     throwerPartyCell.partyDescription.text = party.partyDescription;
     throwerPartyCell.layer.cornerRadius = 10;
     throwerPartyCell.layer.borderWidth = 0.1;
+    throwerPartyCell.partyImageView.layer.cornerRadius = 5;
+    throwerPartyCell.partyImageView.layer.borderWidth = 0.1;
     if(party.partyPhoto == nil)
         [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
     else{
@@ -132,7 +135,7 @@
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
         party.numberAttending = (int)partyGoingList.count;
-        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
+        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld coming", (long)party.numberAttending];
         throwerPartyCell.party = party;
         [party saveInBackground];
     }]; 

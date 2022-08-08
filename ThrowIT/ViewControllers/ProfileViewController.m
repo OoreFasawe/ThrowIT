@@ -137,7 +137,7 @@
         if([party.endTime laterDate:[NSDate now]] == party.endTime)
             attendedPartyCell.partyTimeLabel.text = @". Now";
         else
-            attendedPartyCell.partyTimeLabel.text = [NSString stringWithFormat:@". In %@", [NSDate shortTimeAgoSinceDate:party.startTime]];
+            attendedPartyCell.partyTimeLabel.text = [NSString stringWithFormat:@". %@", [NSDate shortTimeAgoSinceDate:party.startTime]];
         [self partyHeadCountQuery:party withAttendedPartyCell:attendedPartyCell];
         profileCell = attendedPartyCell;
     }
@@ -145,8 +145,16 @@
     if(tableView == self.profileTableView){
         PartyBoardCell *partyBoardCell = [self.profileTableView dequeueReusableCellWithIdentifier:@"RankCell"];
         PFUser *user = self.users[indexPath.section];
+        
+        if([user[USERUSERNAMEKEY] isEqualToString:[PFUser currentUser][USERUSERNAMEKEY]]){
+            partyBoardCell.usernameLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+            partyBoardCell.userPartiesAttendedLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+            partyBoardCell.userRankLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+            partyBoardCell.usernameLabel.text = @"You";
+        }
+        else
+            partyBoardCell.usernameLabel.text = user[USERUSERNAMEKEY];
         partyBoardCell.userRankLabel.text = [NSString stringWithFormat:@"%ld. ", (long)indexPath.section + 1];
-        partyBoardCell.usernameLabel.text = user[USERUSERNAMEKEY];
         partyBoardCell.userPartiesAttendedLabel.text = [NSString stringWithFormat:@"%@", user[PARTIESATTENDEDKEY]];
         partyBoardCell.userProfilePhotoView.layer.cornerRadius = partyBoardCell.userProfilePhotoView.frame.size.height / 2;
         partyBoardCell.userProfilePhotoView.layer.borderWidth = 0.05;
