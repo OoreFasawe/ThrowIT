@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (strong, nonatomic) IBOutlet UITableView *profileTableView;
 @property (strong, nonatomic) IBOutlet UITableView *seenPartiesTableView;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *profileSegmentedControl;
 @property (strong, nonatomic) NSMutableArray *users;
 @end
 
@@ -104,7 +103,8 @@
     UITableViewCell *profileCell;
     if(tableView == self.seenPartiesTableView){
         PartyCell *seenPartyCell = [self.seenPartiesTableView dequeueReusableCellWithIdentifier:@"PartyCell"];
-        
+        seenPartyCell.layer.cornerRadius = 10;
+        seenPartyCell.layer.borderWidth = 0.05;
         profileCell = seenPartyCell;
     }
     if(tableView == self.profileTableView){
@@ -137,5 +137,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 5;
 }
+
+- (IBAction)didChangeSegment:(id)sender {
+    UISegmentedControl *profileSegmentedControl = sender;
+    
+    if(profileSegmentedControl.selectedSegmentIndex == 1){
+        [UIView animateWithDuration:DEFAULTDURATION animations:^{
+            self.profileTableView.layer.zPosition = MAXFLOAT;
+            self.profileTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+            self.seenPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+        } completion:nil];
+    }
+    else
+    {
+        [UIView animateWithDuration:DEFAULTDURATION animations:^{
+            self.seenPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+            self.profileTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+        } completion:nil];
+    }
+}
+
 
 @end
