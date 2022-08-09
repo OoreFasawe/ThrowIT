@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "Check In.h"
 #import "APIManager.h"
+#import "Errorhandler.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol DetailsViewControllerDelegate <NSObject>

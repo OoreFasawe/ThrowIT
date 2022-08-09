@@ -124,6 +124,13 @@
 #define SIGNUPBARSCALEFACTOR 25.f
 #define LOGINANIMATIONVIEWSCALEFACTOR 2.f
 
+#pragma mark - Error Handling Constants
+#define CHECKINFAILED @"Check-in failed"
+#define TOOFARFROMPARTY @"Too far from party to check in"
+#define CHECKINEXISTS @"Already checked in"
+#define PARTYENDED @"Party ended"
+#define OK @"Ok"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject
 +(void)TakeOrChooseImage:(UIViewController *)viewController withSourceType:(UIImagePickerControllerSourceType)sourceType;
