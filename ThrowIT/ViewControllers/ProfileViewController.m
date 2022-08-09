@@ -120,12 +120,12 @@
         attendedPartyCell.partyThemeLabel.text= party.partyDescription;
         attendedPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
         attendedPartyCell.throwerProfilePicture.layer.cornerRadius = attendedPartyCell.throwerProfilePicture.frame.size.height/2;
+        attendedPartyCell.partyRatingLabel.text = [NSString stringWithFormat:ATTENDEDPARTYRATINGFORMAT, party.rating];
         PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
         [throwerQuery includeKey:THROWERKEY];
         [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
         [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
             if(!error){
-                attendedPartyCell.partyRatingLabel.text = [NSString stringWithFormat:ATTENDEDPARTYRATINGFORMAT, thrower[THROWERRATING]];
                 attendedPartyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
                 [attendedPartyCell.throwerProfilePicture loadInBackground];
                 attendedPartyCell.throwerNameLabel.text = [NSString stringWithFormat:OBJECTTEXTAFTERPERIOD, thrower[THROWERNAMEKEY]];

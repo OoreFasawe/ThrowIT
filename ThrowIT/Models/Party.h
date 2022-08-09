@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL maybe;
 @property (nonatomic, strong) PFFileObject *partyPhoto;
 @property (nonatomic) BOOL isPublic;
-@property (nonatomic) int rating;
+@property (nonatomic) float rating;
 @property (nonatomic) double partyCoordinateLongitude;
 @property (nonatomic) double partyCoordinateLatitude;
 @property (nonatomic, strong) NSString *partyLocationName;

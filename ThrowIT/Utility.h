@@ -81,7 +81,7 @@
 #define SPACE @" "
 #define TIMEINTERVAL 4*3600
 #define NOW @". Now"
-#define ATTENDEDPARTYRATINGFORMAT @"Rating: %@ / 5"
+#define ATTENDEDPARTYRATINGFORMAT @"Rating: %.1f / 5"
 #define OBJECTTEXTAFTERPERIOD @". %@"
 #define HEADCOUNTTEXT @"Headcount: %d"
 #define YOU @"You"

@@ -42,7 +42,6 @@
                 attendance.party = party;
                 attendance.user = [PFUser currentUser];
                 attendance.attendanceType = GOING;
-                
                 [attendance saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
             }
             else{
