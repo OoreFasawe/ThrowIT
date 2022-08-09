@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIAlertController* customAlert;
 +(instancetype)shared;
 -(void)showCheckInErrorMessage:(NSString* )message onViewController:(UIViewController *)viewController;
+-(void)showNetworkErrorMessageOnViewController:(UIViewController *)viewController withCompletion:(void (^)(BOOL tryAgain))completion;
 @end
 
 NS_ASSUME_NONNULL_END

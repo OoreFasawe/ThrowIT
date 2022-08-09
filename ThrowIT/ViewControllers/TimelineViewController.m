@@ -16,6 +16,7 @@
 #import "Party.h"
 #import "Thrower.h"
 #import <Parse/Parse.h>
+#import "Errorhandler.h"
 
 
 @interface TimelineViewController () <PartyFilterViewControllerDelegate>
@@ -114,7 +115,10 @@
             [self.collectionView reloadData];
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            [[ErrorHandler shared] showNetworkErrorMessageOnViewController:self withCompletion:^(BOOL tryAgain) {
+                if(tryAgain)
+                   [self fetchParties];
+            }];
         }
     }];
 }
