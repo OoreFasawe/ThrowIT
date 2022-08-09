@@ -15,18 +15,10 @@
     return errorHandler;
 }
 
-//UIAlertController *networkAlert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
-//UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//    [self fetchMovies];
-//[self presentViewController:networkAlert animated:YES completion:^{
-//    //optional code for what happens after the alert controller has finished presenting
-//}];
-
 -(void)showCheckInErrorMessage:(NSString* )message onViewController:(UIViewController *)viewController{
     dispatch_async(dispatch_get_main_queue(), ^{
     UIAlertController *checkInAlert = [UIAlertController alertControllerWithTitle:CHECKINFAILED message:message preferredStyle:UIAlertControllerStyleAlert];
     [checkInAlert addAction:[self addOkAction]];
-    
     self.customAlert = checkInAlert;
     [viewController presentViewController:self.customAlert animated:YES completion:nil];
     });
@@ -42,6 +34,7 @@
     [viewController presentViewController:self.customAlert animated:YES completion:nil];
 }
 
+//seperate method for OK action because of redundance
 -(UIAlertAction *)addOkAction{
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault handler:nil];
     return okAction;
