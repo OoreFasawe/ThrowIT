@@ -49,7 +49,7 @@
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
-    [query whereKey:@"endTime" greaterThan:[NSDate now]];
+    [query whereKey:ENDTIME greaterThan:[NSDate now]];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
@@ -99,7 +99,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
-    return @" ";
+    return SPACE;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -133,19 +133,19 @@
     PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
     [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
+    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray *partyGoingList, NSError *error) {
         party.numberAttending = (int)partyGoingList.count;
-        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld coming", (long)party.numberAttending];
+        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:THROWERPARTYCELLHEADCOUNTTEXTFORMAT, (long)party.numberAttending];
         throwerPartyCell.party = party;
         [party saveInBackground];
     }]; 
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return NUMBEROFROWSINSECTION;
 }
 
-- (void)didCreateParty:(nonnull Party *)party {
+- (void)didCreateParty:(Party *)party {
     [self.throwerPartyList insertObject:party atIndex:0];
     [self.tableView reloadData];
 }

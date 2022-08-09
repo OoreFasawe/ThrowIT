@@ -97,7 +97,7 @@
 -(void)fetchParties{
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
-    [query whereKey:@"endTime" greaterThan:[NSDate now]];
+    [query whereKey:ENDTIME greaterThan:[NSDate now]];
     [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
@@ -166,9 +166,9 @@
             NSLog(@"%@", error.localizedDescription);
     }];
     if([party.startTime earlierDate:[NSDate now]] == party.startTime)
-        partyCell.partyTime.text = @". Now";
+        partyCell.partyTime.text = NOW;
     else
-        partyCell.partyTime.text = [NSString stringWithFormat:@". In %@", [NSDate shortTimeAgoSinceDate:party.startTime]];
+        partyCell.partyTime.text = [NSString stringWithFormat:PARTYCELLPARTTIMETEXTFORMAT, [NSDate shortTimeAgoSinceDate:party.startTime]];
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
     [goingQuery whereKey:USER equalTo:[PFUser currentUser]];

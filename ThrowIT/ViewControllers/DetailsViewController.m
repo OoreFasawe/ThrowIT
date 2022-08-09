@@ -57,15 +57,15 @@
     if([self.party isGoingOn]){
         [Check_In userIsCheckedIn:self.party withCompletion:^(BOOL checkInExists) {
             if(!checkInExists){
-                [[APIManager shared] loadDistanceDataFromLocation:self.party.partyLocationId withCompletionHandler:^(NSString * _Nonnull distance) {
+                [[APIManager shared] loadDistanceDataFromLocation:self.party.partyLocationId withCompletionHandler:^(NSString *distance) {
                     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                     f.numberStyle = NSNumberFormatterDecimalStyle;
                     if(1.0 >= [[f numberFromString:[distance componentsSeparatedByString:SPACE][0]] doubleValue] || [[distance componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
-                        [Check_In postNewCheckInForParty:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                        [Check_In postNewCheckInForParty:self.party withCompletion:^(BOOL succeeded, NSError *error) {
                             [self.delegate reloadCells];
                         }];
                         PFUser *user = [PFUser currentUser];
-                        [user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                        [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                             int partiesAttendedCount = [user[PARTIESATTENDEDKEY] intValue];
                             partiesAttendedCount += 1;
                             user[PARTIESATTENDEDKEY] = [NSNumber numberWithInt:partiesAttendedCount];

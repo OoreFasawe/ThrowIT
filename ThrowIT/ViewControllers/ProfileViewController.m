@@ -57,7 +57,7 @@
     [userQuery includeKey:PARTIESATTENDEDKEY];
     [userQuery whereKey:USERISTHROWERKEY equalTo:@NO];
     [userQuery orderByDescending:PARTIESATTENDEDKEY];
-    [userQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable users, NSError * _Nullable error) {
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         if(!error){
             self.users = (NSMutableArray *) users;
             [self.profileTableView reloadData];
@@ -66,12 +66,11 @@
 }
 
 -(void)fetchAttendedParties{
-    PFQuery *partyQuery = [PFQuery queryWithClassName:@"Check_In"];
+    PFQuery *partyQuery = [PFQuery queryWithClassName:CHECKINCLASS];
     [partyQuery whereKey:USER equalTo:[PFUser currentUser]];
     [partyQuery includeKey:PARTYKEY];
     [partyQuery orderByDescending:CREATEDAT];
-    //[partyQuery whereKey:PARTYKEY[@"endDate"] lessThan:[NSDate now]];
-    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable checkIns, NSError * _Nullable error) {
+    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray *checkIns, NSError *error) {
             if(!error)
             {
                 self.partiesAttended = (NSMutableArray *) checkIns;
@@ -109,10 +108,10 @@
     }
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *profileCell;
     if(tableView == self.seenPartiesTableView){
-        AttendedPartyCell *attendedPartyCell = [self.seenPartiesTableView dequeueReusableCellWithIdentifier:@"AttendedPartyCell"];
+        AttendedPartyCell *attendedPartyCell = [self.seenPartiesTableView dequeueReusableCellWithIdentifier:ATTENDEDPARTYCELL];
         attendedPartyCell.layer.cornerRadius = 10;
         attendedPartyCell.layer.borderWidth = 0.05;
         Check_In *checkIn = self.partiesAttended[indexPath.section];
@@ -126,31 +125,31 @@
         [throwerQuery whereKey:THROWERKEY equalTo:party.partyThrower];
         [throwerQuery getFirstObjectInBackgroundWithBlock:^(PFObject * thrower, NSError * error) {
             if(!error){
-                attendedPartyCell.partyRatingLabel.text = [NSString stringWithFormat:@"Rating: %@ / 5", thrower[THROWERRATING]];
+                attendedPartyCell.partyRatingLabel.text = [NSString stringWithFormat:ATTENDEDPARTYRATINGFORMAT, thrower[THROWERRATING]];
                 attendedPartyCell.throwerProfilePicture.file = thrower[THROWERKEY][USERPROFILEPHOTOKEY];
                 [attendedPartyCell.throwerProfilePicture loadInBackground];
-                attendedPartyCell.throwerNameLabel.text = [NSString stringWithFormat:@". %@", thrower[@"throwerName"]];
+                attendedPartyCell.throwerNameLabel.text = [NSString stringWithFormat:OBJECTTEXTAFTERPERIOD, thrower[THROWERNAMEKEY]];
             }
             else
                 NSLog(@"%@", error.localizedDescription);
         }];
         if([party.endTime laterDate:[NSDate now]] == party.endTime)
-            attendedPartyCell.partyTimeLabel.text = @". Now";
+            attendedPartyCell.partyTimeLabel.text = NOW;
         else
-            attendedPartyCell.partyTimeLabel.text = [NSString stringWithFormat:@". %@", [NSDate shortTimeAgoSinceDate:party.startTime]];
+            attendedPartyCell.partyTimeLabel.text = [NSString stringWithFormat:OBJECTTEXTAFTERPERIOD, [NSDate shortTimeAgoSinceDate:party.startTime]];
         [self partyHeadCountQuery:party withAttendedPartyCell:attendedPartyCell];
         profileCell = attendedPartyCell;
     }
     
     if(tableView == self.profileTableView){
-        PartyBoardCell *partyBoardCell = [self.profileTableView dequeueReusableCellWithIdentifier:@"RankCell"];
+        PartyBoardCell *partyBoardCell = [self.profileTableView dequeueReusableCellWithIdentifier:RANKCELL];
         PFUser *user = self.users[indexPath.section];
         
         if([user[USERUSERNAMEKEY] isEqualToString:[PFUser currentUser][USERUSERNAMEKEY]]){
             partyBoardCell.usernameLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
             partyBoardCell.userPartiesAttendedLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
             partyBoardCell.userRankLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
-            partyBoardCell.usernameLabel.text = @"You";
+            partyBoardCell.usernameLabel.text = YOU;
         }
         else
             partyBoardCell.usernameLabel.text = user[USERUSERNAMEKEY];
@@ -166,14 +165,14 @@
 }
 
 -(void)partyHeadCountQuery:(Party *) party withAttendedPartyCell:(AttendedPartyCell *) attendedPartyCell{
-    PFQuery *headCountQuery = [PFQuery queryWithClassName:@"Check_In"];
+    PFQuery *headCountQuery = [PFQuery queryWithClassName:CHECKINCLASS];
     [headCountQuery whereKey:PARTYKEY equalTo:party];
-    [headCountQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
-        attendedPartyCell.partyHeadCountLabel.text = [NSString stringWithFormat:@"Headcount: %d", number];
+    [headCountQuery countObjectsInBackgroundWithBlock:^(int number, NSError * error) {
+        attendedPartyCell.partyHeadCountLabel.text = [NSString stringWithFormat:HEADCOUNTTEXT, number];
     }];
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 

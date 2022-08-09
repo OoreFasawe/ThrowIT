@@ -36,6 +36,10 @@
 #define PARTYDISTANCELABELPLACEHOLDER @" ..."
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
+#define ATTENDEDPARTYCELL @"AttendedPartyCell"
+#define THROWBOARDCELL @"ThrowBoardCell"
+#define THROWNPARTYCELL @"ThrownPartyCell"
+#define RANKCELL @"RankCell"
 #define SHIFTNUMBER 3
 #define NUMBEROFROWSINSECTION 1
 
@@ -44,6 +48,7 @@
 #define THROWERCLASS @"Thrower"
 #define ATTENDANCECLASS @"Attendance"
 #define USERCLASS @"_User"
+#define CHECKINCLASS @"Check_In"
 
 #pragma mark - Parse Keys
 #define USER @"user"
@@ -66,12 +71,24 @@
 #define MAYBE @"Maybe"
 
 #define CREATEDAT @"createdAt"
+#define ENDTIME @"endTime"
+
+#pragma mark - Helper Constants
 
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
 #define PARTYIMAGEDEFAULT @"step2"
 #define EMPTY @""
 #define SPACE @" "
 #define TIMEINTERVAL 4*3600
+#define NOW @". Now"
+#define ATTENDEDPARTYRATINGFORMAT @"Rating: %@ / 5"
+#define OBJECTTEXTAFTERPERIOD @". %@"
+#define HEADCOUNTTEXT @"Headcount: %d"
+#define YOU @"You"
+#define PARTYTHROWNCOUNT @"Parties Thrown: %d"
+#define PARTYCELLPARTTIMETEXTFORMAT @". In %@"
+#define THROWERPARTYCELLHEADCOUNTTEXTFORMAT @"%ld coming"
+
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20

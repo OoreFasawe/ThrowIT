@@ -76,8 +76,8 @@
 -(void)fetchThrownParties{
     PFQuery *thrownPartyQuery = [PFQuery queryWithClassName:PARTYCLASS];
     [thrownPartyQuery whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
-    [thrownPartyQuery whereKey:@"endTime" lessThan:[NSDate now]];
-    [thrownPartyQuery orderByDescending:@"endTime"];
+    [thrownPartyQuery whereKey:ENDTIME lessThan:[NSDate now]];
+    [thrownPartyQuery orderByDescending:ENDTIME];
     
     [thrownPartyQuery findObjectsInBackgroundWithBlock:^(NSArray * thrownParties, NSError *error) {
         if(!error){
@@ -92,14 +92,14 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *profileCell;
     if(tableView == self.throwerBoardTableView){
-        ThrowBoardCell *throwBoardCell = [self.throwerBoardTableView dequeueReusableCellWithIdentifier:@"ThrowBoardCell"];
+        ThrowBoardCell *throwBoardCell = [self.throwerBoardTableView dequeueReusableCellWithIdentifier:THROWBOARDCELL];
         PFUser *user = self.throwerList[indexPath.section];
         
         if([user[USERUSERNAMEKEY] isEqualToString:[PFUser currentUser][USERUSERNAMEKEY]]){
             throwBoardCell.throwerNameLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
             throwBoardCell.thrownPartyCountLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
             throwBoardCell.throwerRankLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
-            throwBoardCell.throwerNameLabel.text = @"You";
+            throwBoardCell.throwerNameLabel.text = YOU;
         }
         else
             throwBoardCell.throwerNameLabel.text = user[USERUSERNAMEKEY];
@@ -113,7 +113,7 @@
     }
     
     if(tableView == self.thrownPartiesTableView){
-        ThrownPartyCell *thrownPartyCell = [self.thrownPartiesTableView dequeueReusableCellWithIdentifier:@"ThrownPartyCell"];
+        ThrownPartyCell *thrownPartyCell = [self.thrownPartiesTableView dequeueReusableCellWithIdentifier:THROWNPARTYCELL];
         Party *party = self.thrownPartiesList[indexPath.section];
         thrownPartyCell.layer.cornerRadius = 10;
         thrownPartyCell.thrownPartyImageView.layer.cornerRadius = 5;
@@ -123,7 +123,7 @@
         thrownPartyCell.partyRatingLabel.text = [NSString stringWithFormat:@"%.1f / 5", (float)party.rating];
         thrownPartyCell.thrownPartyImageView.file = party.partyPhoto;
         if([party.endTime laterDate:[NSDate now]] == party.endTime)
-            thrownPartyCell.thrownPartyTimeAgoLabel.text = @". Now";
+            thrownPartyCell.thrownPartyTimeAgoLabel.text = NOW;
         else
             thrownPartyCell.thrownPartyTimeAgoLabel.text = [party.startTime shortTimeAgoSinceNow];
         [thrownPartyCell.thrownPartyImageView loadInBackground];
@@ -136,11 +136,11 @@
 -(void)getPartyThrownCount:(PFUser *) user forCell:(ThrowBoardCell *) throwBoardCell{
     PFQuery *partyThrownQuery = [PFQuery queryWithClassName:PARTYCLASS];
     [partyThrownQuery whereKey:PARTYTHROWERKEY equalTo: user];
-    [partyThrownQuery whereKey:@"endTime" lessThan:[NSDate now]];
+    [partyThrownQuery whereKey:ENDTIME lessThan:[NSDate now]];
     [partyThrownQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         if(!error){
             throwBoardCell.thrownPartyCountLabel.text = [NSString stringWithFormat:@"%d", number];
-            self.throwerPartiesThrownCount.text = [NSString stringWithFormat:@"Parties Thrown: %d", number];
+            self.throwerPartiesThrownCount.text = [NSString stringWithFormat:PARTYTHROWNCOUNT, number];
         }
         else
             NSLog(@"%@", error.localizedDescription);
@@ -148,10 +148,10 @@
 }
 
 -(void)partyHeadCountQuery:(Party *) party withThrownPartyCell:(ThrownPartyCell *) thrownPartyCell{
-    PFQuery *headCountQuery = [PFQuery queryWithClassName:@"Check_In"];
+    PFQuery *headCountQuery = [PFQuery queryWithClassName:CHECKINCLASS];
     [headCountQuery whereKey:PARTYKEY equalTo:party];
     [headCountQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
-        thrownPartyCell.partyHeadCountLabel.text = [NSString stringWithFormat:@"Headcount: %d", number];
+        thrownPartyCell.partyHeadCountLabel.text = [NSString stringWithFormat:HEADCOUNTTEXT, number];
     }];
 }
 
