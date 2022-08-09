@@ -27,6 +27,7 @@
     self.throwerProfileImageView.layer.borderWidth = 0.05;
     self.throwerBoardTableView.delegate = self;
     self.throwerBoardTableView.dataSource = self;
+    self.throwerBoardTableView.rowHeight = 44;
     self.thrownPartiesTableView.delegate = self;
     self.thrownPartiesTableView.dataSource = self;
     [self fetchThrower];

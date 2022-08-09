@@ -398,7 +398,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ToF-ye-Jf3" customClass="PFImageView">
-                                                    <rect key="frame" x="50" y="24" width="318" height="326"/>
+                                                    <rect key="frame" x="30" y="24" width="358" height="326"/>
                                                     <color key="backgroundColor" systemColor="labelColor"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -425,12 +425,12 @@
                                                 <constraint firstItem="OlK-nw-V0z" firstAttribute="top" secondItem="ToF-ye-Jf3" secondAttribute="bottom" constant="12" id="E5W-3w-26z"/>
                                                 <constraint firstItem="09U-9n-SqB" firstAttribute="leading" secondItem="Q0v-Gn-8uf" secondAttribute="leading" id="E9k-j8-14K"/>
                                                 <constraint firstItem="09U-9n-SqB" firstAttribute="top" secondItem="Q0v-Gn-8uf" secondAttribute="bottom" constant="8" id="EAn-ps-fH3"/>
-                                                <constraint firstItem="ToF-ye-Jf3" firstAttribute="leading" secondItem="ice-t6-zpx" secondAttribute="leading" constant="50" id="Jm2-MU-zT4"/>
+                                                <constraint firstItem="ToF-ye-Jf3" firstAttribute="leading" secondItem="ice-t6-zpx" secondAttribute="leading" constant="30" id="Jm2-MU-zT4"/>
                                                 <constraint firstItem="09U-9n-SqB" firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" id="KQv-Wg-sBU"/>
                                                 <constraint firstItem="ToF-ye-Jf3" firstAttribute="top" secondItem="09U-9n-SqB" secondAttribute="bottom" constant="8" id="Mre-a0-Oew"/>
                                                 <constraint firstItem="OlK-nw-V0z" firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" id="OCo-sp-BOa"/>
                                                 <constraint firstAttribute="trailing" secondItem="Q0v-Gn-8uf" secondAttribute="trailing" constant="20" symbolic="YES" id="bPv-Hc-xjX"/>
-                                                <constraint firstAttribute="trailing" secondItem="ToF-ye-Jf3" secondAttribute="trailing" constant="50" id="cjX-iu-wic"/>
+                                                <constraint firstAttribute="trailing" secondItem="ToF-ye-Jf3" secondAttribute="trailing" constant="30" id="cjX-iu-wic"/>
                                                 <constraint firstItem="Q0v-Gn-8uf" firstAttribute="leading" secondItem="ice-t6-zpx" secondAttribute="leading" constant="20" symbolic="YES" id="jPT-O2-ciU"/>
                                                 <constraint firstItem="Q0v-Gn-8uf" firstAttribute="top" secondItem="ice-t6-zpx" secondAttribute="top" constant="8" id="m0H-h2-Y75"/>
                                                 <constraint firstAttribute="bottom" secondItem="OlK-nw-V0z" secondAttribute="bottom" constant="12" id="z3B-zm-9RB"/>
