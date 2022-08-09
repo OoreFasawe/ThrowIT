@@ -17,10 +17,10 @@
 
 -(void)showCheckInErrorMessage:(NSString* )message onViewController:(UIViewController *)viewController{
     dispatch_async(dispatch_get_main_queue(), ^{
-    UIAlertController *checkInAlert = [UIAlertController alertControllerWithTitle:CHECKINFAILED message:message preferredStyle:UIAlertControllerStyleAlert];
-    [checkInAlert addAction:[self addOkAction]];
-    self.customAlert = checkInAlert;
-    [viewController presentViewController:self.customAlert animated:YES completion:nil];
+       UIAlertController *checkInAlert = [UIAlertController alertControllerWithTitle:CHECKINFAILED message:message preferredStyle:UIAlertControllerStyleAlert];
+       [checkInAlert addAction:[self addOkAction]];
+       self.customAlert = checkInAlert;
+       [viewController presentViewController:self.customAlert animated:YES completion:nil];
     });
 }
 
