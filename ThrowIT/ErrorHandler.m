@@ -25,7 +25,7 @@
 }
 
 -(void)showNetworkErrorMessageOnViewController:(UIViewController *)viewController withCompletion:(void (^)(BOOL tryAgain))completion{
-    UIAlertController *networkAlert = [UIAlertController alertControllerWithTitle:CANNNOGETPARTIES message:NOINTERNET preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *networkAlert = [UIAlertController alertControllerWithTitle:CANNNOTGETPARTIES message:NOINTERNET preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:TRYAGAIN style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completion(YES);
     }];
