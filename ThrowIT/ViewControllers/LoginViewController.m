@@ -36,10 +36,10 @@
             if (error == nil) {
                 //if login is from regular user
                 if([user[USERISTHROWERKEY] isEqual:@0]){
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
-                UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:TIMELINETABBARCONTROLLER];
-                self.view.window.rootViewController
-                = timelineTabBarController;
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];
+                    UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:TIMELINETABBARCONTROLLER];
+                    self.view.window.rootViewController
+                    = timelineTabBarController;
                 }
                 //if login is from thrower
                 else{
