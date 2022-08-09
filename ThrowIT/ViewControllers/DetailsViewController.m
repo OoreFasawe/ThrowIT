@@ -43,7 +43,6 @@
         [Check_In userIsCheckedIn:self.party withCompletion:^(BOOL checkInExists) {
             if(checkInExists){
                 self.checkInButton.layer.backgroundColor = [[UIColor greenColor] CGColor];
-                //self.checkInButton.userInteractionEnabled = NO;
             }
         }];
         self.checkInButton.hidden = false;
