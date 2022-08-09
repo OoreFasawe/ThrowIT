@@ -95,12 +95,12 @@
 		8922000B289C8CAA00EDF9A1 /* Check In.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Check In.m"; sourceTree = "<group>"; };
 		8922000F289EDF8600EDF9A1 /* PartyBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyBoardCell.h; sourceTree = "<group>"; };
 		89220010289EDF8700EDF9A1 /* PartyBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyBoardCell.m; sourceTree = "<group>"; };
-		8922001228A097B400EDF9A1 /* AttendedPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AttendedPartyCell.h; path = ViewComponents/AttendedPartyCell.h; sourceTree = "<group>"; };
-		8922001328A097B400EDF9A1 /* AttendedPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AttendedPartyCell.m; path = ViewComponents/AttendedPartyCell.m; sourceTree = "<group>"; };
+		8922001228A097B400EDF9A1 /* AttendedPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendedPartyCell.h; sourceTree = "<group>"; };
+		8922001328A097B400EDF9A1 /* AttendedPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendedPartyCell.m; sourceTree = "<group>"; };
 		893969242884F1F9004DD10E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		893969252884F1F9004DD10E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThrowBoardCell.h; path = ViewComponents/ThrowBoardCell.h; sourceTree = "<group>"; };
-		8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ThrowBoardCell.m; path = ViewComponents/ThrowBoardCell.m; sourceTree = "<group>"; };
+		8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThrowBoardCell.h; sourceTree = "<group>"; };
+		8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrowBoardCell.m; sourceTree = "<group>"; };
 		8970CB3728A1B9FF00963F59 /* ThrownPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThrownPartyCell.h; sourceTree = "<group>"; };
 		8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThrownPartyCell.m; sourceTree = "<group>"; };
 		898244E528762FCC00744255 /* PartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyCell.h; sourceTree = "<group>"; };
@@ -197,11 +197,7 @@
 			children = (
 				891EF8A9286E519000F5947E /* AppDelegate.h */,
 				891EF8AA286E519000F5947E /* AppDelegate.m */,
-				8922001228A097B400EDF9A1 /* AttendedPartyCell.h */,
-				8922001328A097B400EDF9A1 /* AttendedPartyCell.m */,
 				891EF8B2286E519000F5947E /* Main.storyboard */,
-				8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */,
-				8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */,
 				89AC10ED2886125500F35820 /* APIManager.h */,
 				89AC10EE2886125500F35820 /* APIManager.m */,
 				891EF8AC286E519000F5947E /* SceneDelegate.h */,
@@ -213,14 +209,10 @@
 				891EF8EF28760ECF00F5947E /* Models */,
 				891EF8E2287550C200F5947E /* ViewControllers */,
 				891EF8B5286E519000F5947E /* Assets.xcassets */,
-				8922000F289EDF8600EDF9A1 /* PartyBoardCell.h */,
-				89220010289EDF8700EDF9A1 /* PartyBoardCell.m */,
 				891EF8B7286E519000F5947E /* LaunchScreen.storyboard */,
 				891EF8BA286E519000F5947E /* Info.plist */,
 				891EF8BB286E519000F5947E /* main.m */,
 				890F5C9328822948006E549B /* Keys.plist */,
-				8970CB3728A1B9FF00963F59 /* ThrownPartyCell.h */,
-				8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */,
 			);
 			path = ThrowIT;
 			sourceTree = "<group>";
@@ -293,12 +285,20 @@
 		89824500287D0F8100744255 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				8922001228A097B400EDF9A1 /* AttendedPartyCell.h */,
+				8922001328A097B400EDF9A1 /* AttendedPartyCell.m */,
+				8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */,
+				8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */,
 				89824501287D104400744255 /* ThrowerPartyCell.h */,
 				89824502287D104400744255 /* ThrowerPartyCell.m */,
 				898244EB28775E6400744255 /* TopPartyCell.h */,
 				898244EC28775E6400744255 /* TopPartyCell.m */,
 				898244E528762FCC00744255 /* PartyCell.h */,
 				898244E628762FCC00744255 /* PartyCell.m */,
+				8970CB3728A1B9FF00963F59 /* ThrownPartyCell.h */,
+				8922000F289EDF8600EDF9A1 /* PartyBoardCell.h */,
+				89220010289EDF8700EDF9A1 /* PartyBoardCell.m */,
+				8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
