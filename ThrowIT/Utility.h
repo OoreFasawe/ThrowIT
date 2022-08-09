@@ -130,7 +130,7 @@
 #define CHECKINEXISTS @"Already checked in."
 #define PARTYENDED @"Party ended."
 #define OK @"Ok"
-#define CANNNOGETPARTIES @"Cannot Get Parties"
+#define CANNNOTGETPARTIES @"Cannot Get Parties"
 #define NOINTERNET @"The internet connection appears to be offline."
 #define TRYAGAIN @"Try Again"
 
