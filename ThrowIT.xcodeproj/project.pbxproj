@@ -24,6 +24,7 @@
 		8922000C289C8CAA00EDF9A1 /* Check In.m in Sources */ = {isa = PBXBuildFile; fileRef = 8922000B289C8CAA00EDF9A1 /* Check In.m */; };
 		89220011289EDF8700EDF9A1 /* PartyBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89220010289EDF8700EDF9A1 /* PartyBoardCell.m */; };
 		8922001428A097B400EDF9A1 /* AttendedPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8922001328A097B400EDF9A1 /* AttendedPartyCell.m */; };
+		8926D45A28A2C6BF0070839D /* ErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8926D45928A2C6BF0070839D /* ErrorHandler.m */; };
 		893969262884F1F9004DD10E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 893969252884F1F9004DD10E /* ProfileViewController.m */; };
 		8970CB3328A1ABA500963F59 /* ThrowBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8970CB3228A1ABA500963F59 /* ThrowBoardCell.m */; };
 		8970CB3928A1B9FF00963F59 /* ThrownPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */; };
@@ -97,6 +98,8 @@
 		89220010289EDF8700EDF9A1 /* PartyBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyBoardCell.m; sourceTree = "<group>"; };
 		8922001228A097B400EDF9A1 /* AttendedPartyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendedPartyCell.h; sourceTree = "<group>"; };
 		8922001328A097B400EDF9A1 /* AttendedPartyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendedPartyCell.m; sourceTree = "<group>"; };
+		8926D45828A2C6BF0070839D /* ErrorHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
+		8926D45928A2C6BF0070839D /* ErrorHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorHandler.m; sourceTree = "<group>"; };
 		893969242884F1F9004DD10E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		893969252884F1F9004DD10E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		8970CB3128A1ABA500963F59 /* ThrowBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThrowBoardCell.h; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				891EF8AD286E519000F5947E /* SceneDelegate.m */,
 				899D92612881EF9D007BCC72 /* Utility.h */,
 				899D92622881EF9D007BCC72 /* Utility.m */,
+				8926D45828A2C6BF0070839D /* ErrorHandler.h */,
+				8926D45928A2C6BF0070839D /* ErrorHandler.m */,
 				89D525A9289097900075C464 /* Haptics */,
 				89824500287D0F8100744255 /* ViewComponents */,
 				891EF8EF28760ECF00F5947E /* Models */,
@@ -545,6 +550,7 @@
 				89AC10FA288A855F00F35820 /* PartyFilterViewController.m in Sources */,
 				898244F9287D084300744255 /* ThrowerTimelineViewController.m in Sources */,
 				891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */,
+				8926D45A28A2C6BF0070839D /* ErrorHandler.m in Sources */,
 				893969262884F1F9004DD10E /* ProfileViewController.m in Sources */,
 				89824517287DE8E100744255 /* ThrowerDetailsViewController.m in Sources */,
 				899D925E28813B11007BCC72 /* OpenMapDirections.m in Sources */,
