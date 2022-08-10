@@ -12,7 +12,7 @@
 @dynamic party;
 
 + (nonnull NSString *)parseClassName {
-    return @"Check_In";
+    return CHECKINCLASS;
 }
 
 +(void)postNewCheckInForParty:(Party *) party withCompletion: (PFBooleanResultBlock  _Nullable)completion{

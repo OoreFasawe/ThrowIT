@@ -56,20 +56,6 @@
     [newParty saveInBackgroundWithBlock: completion];
 }
 
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
-
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-
-    NSData *imageData = UIImagePNGRepresentation(image);
-    if (!imageData) {
-        return nil;
-    }
-    return [PFFileObject fileObjectWithName:PARSEIMAGEDEFAULTFILENAME data:imageData];
-}
-
 -(BOOL)isGoingOn{
     if([[NSDate now] earlierDate:self.startTime] == self.startTime && [[NSDate now] laterDate:self.endTime] == self.endTime)
         return true;

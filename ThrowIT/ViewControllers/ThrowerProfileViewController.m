@@ -24,10 +24,9 @@
 
 - (void)viewDidLoad {
     self.throwerProfileImageView.layer.cornerRadius = self.throwerProfileImageView.frame.size.height/10;
-    self.throwerProfileImageView.layer.borderWidth = 0.05;
+    self.throwerProfileImageView.layer.borderWidth = BORDERWIDTH;
     self.throwerBoardTableView.delegate = self;
     self.throwerBoardTableView.dataSource = self;
-    self.throwerBoardTableView.rowHeight = 44;
     self.thrownPartiesTableView.delegate = self;
     self.thrownPartiesTableView.dataSource = self;
     [self fetchThrower];
@@ -42,7 +41,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    [self.throwerProfileImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(500, 500)]];
+    [self.throwerProfileImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(IMAGERESIZECONSTANT, IMAGERESIZECONSTANT)]];
     PFUser *user = [PFUser currentUser];
     user[USERPROFILEPHOTOKEY] = [Utility getPFFileFromImage:self.throwerProfileImageView.image];
     [user saveInBackground];
@@ -105,7 +104,7 @@
             throwBoardCell.throwerNameLabel.text = user[USERUSERNAMEKEY];
         throwBoardCell.throwerRankLabel.text = [NSString stringWithFormat:@"%ld. ", (long)indexPath.section + 1];
         throwBoardCell.throwerProfilePictureView.layer.cornerRadius = throwBoardCell.throwerProfilePictureView.frame.size.height / 2;
-        throwBoardCell.throwerProfilePictureView.layer.borderWidth = 0.05;
+        throwBoardCell.throwerProfilePictureView.layer.borderWidth = BORDERWIDTH;
         throwBoardCell.throwerProfilePictureView.file = user[USERPROFILEPHOTOKEY];
         [throwBoardCell.throwerProfilePictureView loadInBackground];
         [self getPartyThrownCount:user forCell:throwBoardCell];
@@ -115,9 +114,9 @@
     if(tableView == self.thrownPartiesTableView){
         ThrownPartyCell *thrownPartyCell = [self.thrownPartiesTableView dequeueReusableCellWithIdentifier:THROWNPARTYCELL];
         Party *party = self.thrownPartiesList[indexPath.section];
-        thrownPartyCell.layer.cornerRadius = 10;
-        thrownPartyCell.thrownPartyImageView.layer.cornerRadius = 5;
-        thrownPartyCell.thrownPartyImageView.layer.borderWidth = 0.05;
+        thrownPartyCell.layer.cornerRadius = CELLCORNERRADIUS;
+        thrownPartyCell.thrownPartyImageView.layer.cornerRadius = IMAGECORNERRADIUS;
+        thrownPartyCell.thrownPartyImageView.layer.borderWidth = BORDERWIDTH;
         thrownPartyCell.thrownPartyNameLabel.text = party.name;
         thrownPartyCell.partyThemeLabel.text = party.partyDescription;
         thrownPartyCell.partyRatingLabel.text = [NSString stringWithFormat:RATINGLABELTEXTFORMAT, (float)party.rating];
@@ -156,7 +155,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5;
+    return FOOTERHEIGHTCONSTANT;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
@@ -164,7 +163,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return NUMBEROFROWSINSECTION;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -181,25 +180,25 @@
     switch (throwerProfileSegmentedControl.selectedSegmentIndex) {
         case 0:{
             [UIView animateWithDuration:DEFAULTDURATION animations:^{
-            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-            self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-            self.throwerProfileView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width, 1.f);
+            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(ORIGINALXPOSITION, ORIGINALYPOSITION);
+            self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(ORIGINALXPOSITION, ORIGINALYPOSITION);
+            self.throwerProfileView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width, ORIGINALYPOSITION);
             }completion:nil];
             break;
         }
         case 1:{
             [UIView animateWithDuration:DEFAULTDURATION animations:^{
                 self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-                self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-                self.throwerProfileView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+                self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, ORIGINALYPOSITION);
+                self.throwerProfileView.transform = CGAffineTransformMakeTranslation(ORIGINALXPOSITION, ORIGINALYPOSITION);
             } completion:nil];
             break;
         }
         case 2:{
             [UIView animateWithDuration:DEFAULTDURATION animations:^{
-                self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
-                self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
-                self.throwerProfileView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+                self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, ORIGINALYPOSITION);
+                self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, ORIGINALYPOSITION);
+                self.throwerProfileView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, ORIGINALYPOSITION);
             } completion:nil];
         }
         default:

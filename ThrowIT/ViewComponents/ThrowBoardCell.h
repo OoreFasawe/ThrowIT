@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet PFImageView *throwerProfilePictureView;
 @property (strong, nonatomic) IBOutlet UILabel *throwerNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thrownPartyCountLabel;
-
 @end
 
 NS_ASSUME_NONNULL_END

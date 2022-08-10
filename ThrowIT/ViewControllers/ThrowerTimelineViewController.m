@@ -111,10 +111,10 @@
     Party *party = self.throwerPartyList[indexPath.section];
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.partyDescription.text = party.partyDescription;
-    throwerPartyCell.layer.cornerRadius = 10;
-    throwerPartyCell.layer.borderWidth = 0.1;
-    throwerPartyCell.partyImageView.layer.cornerRadius = 5;
-    throwerPartyCell.partyImageView.layer.borderWidth = 0.1;
+    throwerPartyCell.layer.cornerRadius = CELLCORNERRADIUS;
+    throwerPartyCell.layer.borderWidth = BORDERWIDTH;
+    throwerPartyCell.partyImageView.layer.cornerRadius = IMAGECORNERRADIUS;
+    throwerPartyCell.partyImageView.layer.borderWidth = BORDERWIDTH;
     if(party.partyPhoto == nil)
         [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
     else{

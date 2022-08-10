@@ -44,8 +44,8 @@
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height)],
-    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.66 - 2.5)],
-    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.34 - 2.5)],
+    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.66 - COLLECTIONVIEWBORDER)],
+    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.34 - COLLECTIONVIEWBORDER)],
     ];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -144,7 +144,7 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    partyCell.layer.cornerRadius = 10;
+    partyCell.layer.cornerRadius = CELLCORNERRADIUS;
     partyCell.soundGenerator = self.soundGenerator;
     Party *party = self.filteredList[indexPath.section + SHIFTNUMBER];
     if(party.distancesFromUser != nil)
@@ -241,7 +241,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5.0f;
+    return FOOTERHEIGHTCONSTANT;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -282,13 +282,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
-    topPartyCell.layer.cornerRadius = 10;
+    topPartyCell.layer.cornerRadius = CELLCORNERRADIUS;
     Party *party = self.filteredList[indexPath.item];
     CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
-    topPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    topPartyCell.throwerProfilePicture.layer.borderWidth = BORDERWIDTH;
     topPartyCell.throwerProfilePicture.layer.cornerRadius = topPartyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
     [throwerQuery includeKey:THROWERKEY];

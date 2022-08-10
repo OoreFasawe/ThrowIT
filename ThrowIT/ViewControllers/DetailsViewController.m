@@ -24,12 +24,12 @@
     [OpenMapDirections presentWithViewController:self withSourceView:self.view withLocationCoordinate:self.partyLocation];
 }
 -(void)showMap{
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.party.partyCoordinateLatitude longitude:self.party.partyCoordinateLongitude zoom:16];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.party.partyCoordinateLatitude longitude:self.party.partyCoordinateLongitude zoom:MAPZOOMCONSTANT];
     self.mapView = [GMSMapView mapWithFrame:self.viewForMapView.frame camera:camera];
     self.mapView.myLocationEnabled = YES;
     [self.view addSubview:self.mapView];
-    self.mapView.layer.cornerRadius = 20;
-    self.mapView.layer.borderWidth = 0.05;
+    self.mapView.layer.cornerRadius = CELLCORNERRADIUS;
+    self.mapView.layer.borderWidth = BORDERWIDTH;
     self.viewForMapView.hidden = YES;
     self.mapView.delegate = self;
     CLLocationCoordinate2D mapCenter = CLLocationCoordinate2DMake(self.mapView.camera.target.latitude, self.mapView.camera.target.longitude);
@@ -59,7 +59,7 @@
                 [[APIManager shared] loadDistanceDataFromLocation:self.party.partyLocationId withCompletionHandler:^(NSString *distance) {
                     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                     f.numberStyle = NSNumberFormatterDecimalStyle;
-                    if(1.0 >= [[f numberFromString:[distance componentsSeparatedByString:SPACE][0]] doubleValue] || [[distance componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
+                    if(MINDISTANCE >= [[f numberFromString:[distance componentsSeparatedByString:SPACE][0]] doubleValue] || [[distance componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
                         [Check_In postNewCheckInForParty:self.party withCompletion:^(BOOL succeeded, NSError *error) {
                             [self.delegate reloadCells];
                         }];

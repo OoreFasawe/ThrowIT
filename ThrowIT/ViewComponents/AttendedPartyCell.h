@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *partyTimeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyHeadCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyRatingLabel;
-
 @end
 
 NS_ASSUME_NONNULL_END
