@@ -49,6 +49,9 @@
             self.usernameLabel.text = user[USERUSERNAMEKEY];
             self.partiesAttendedLabel.text = [NSString stringWithFormat:@"%@", user[PARTIESATTENDEDKEY]];
         }
+        else{
+            NSLog(@"%@", error.localizedDescription);
+        }
     }];
 }
 
@@ -97,7 +100,7 @@
         [UIView animateWithDuration:DEFAULTDURATION animations:^{
             profileImageExpand.view.layer.cornerRadius = profileImageExpand.view.frame.size.height/5;
             profileImageExpand.view.layer.zPosition = MAXFLOAT;
-            profileImageExpand.view.transform = CGAffineTransformScale(translateCenter, 2.5, 2.5);
+            profileImageExpand.view.transform = CGAffineTransformScale(translateCenter, SIZEMULTIPLIER, SIZEMULTIPLIER);
         } completion:nil];
     }
     if(profileImageExpand.state == UIGestureRecognizerStateEnded){
@@ -195,18 +198,23 @@
 
 - (IBAction)didChangeSegment:(id)sender {
     UISegmentedControl *profileSegmentedControl = sender;
-    if(profileSegmentedControl.selectedSegmentIndex == 1){
-        [UIView animateWithDuration:DEFAULTDURATION animations:^{
-            self.profileTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-            self.seenPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-        } completion:nil];
-    }
-    else
-    {
-        [UIView animateWithDuration:DEFAULTDURATION animations:^{
-            self.seenPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-            self.profileTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-        } completion:nil];
+    switch (profileSegmentedControl.selectedSegmentIndex) {
+        case 0:{
+            [UIView animateWithDuration:DEFAULTDURATION animations:^{
+                self.seenPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+                self.profileTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+            } completion:nil];
+            break;
+        }
+        case 1:{
+            [UIView animateWithDuration:DEFAULTDURATION animations:^{
+                self.profileTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+                self.seenPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+            } completion:nil];
+            break;
+        }
+        default:
+            break;
     }
 }
 

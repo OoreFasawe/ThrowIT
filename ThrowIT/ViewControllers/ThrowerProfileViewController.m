@@ -120,7 +120,7 @@
         thrownPartyCell.thrownPartyImageView.layer.borderWidth = 0.05;
         thrownPartyCell.thrownPartyNameLabel.text = party.name;
         thrownPartyCell.partyThemeLabel.text = party.partyDescription;
-        thrownPartyCell.partyRatingLabel.text = [NSString stringWithFormat:@"%.1f / 5", (float)party.rating];
+        thrownPartyCell.partyRatingLabel.text = [NSString stringWithFormat:RATINGLABELTEXTFORMAT, (float)party.rating];
         thrownPartyCell.thrownPartyImageView.file = party.partyPhoto;
         if([party.endTime laterDate:[NSDate now]] == party.endTime)
             thrownPartyCell.thrownPartyTimeAgoLabel.text = NOW;
@@ -178,26 +178,32 @@
 
 - (IBAction)didChangeSegment:(id)sender {
     UISegmentedControl *throwerProfileSegmentedControl = sender;
-    if(throwerProfileSegmentedControl.selectedSegmentIndex == 1){
-        [UIView animateWithDuration:DEFAULTDURATION animations:^{
-            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-            self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-            self.throwerProfileView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-        } completion:nil];
-    }
-    else if(throwerProfileSegmentedControl.selectedSegmentIndex == 2){
-        [UIView animateWithDuration:DEFAULTDURATION animations:^{
-            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
-            self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
-            self.throwerProfileView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
-        } completion:nil];
-    }
-    else{
-        [UIView animateWithDuration:DEFAULTDURATION animations:^{
-        self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-        self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
-        self.throwerProfileView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width, 1.f);
-        }completion:nil];
+    switch (throwerProfileSegmentedControl.selectedSegmentIndex) {
+        case 0:{
+            [UIView animateWithDuration:DEFAULTDURATION animations:^{
+            self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+            self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+            self.throwerProfileView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width, 1.f);
+            }completion:nil];
+            break;
+        }
+        case 1:{
+            [UIView animateWithDuration:DEFAULTDURATION animations:^{
+                self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+                self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+                self.throwerProfileView.transform = CGAffineTransformMakeTranslation(1.f, 1.f);
+            } completion:nil];
+            break;
+        }
+        case 2:{
+            [UIView animateWithDuration:DEFAULTDURATION animations:^{
+                self.thrownPartiesTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
+                self.throwerBoardTableView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width * 2, 1.f);
+                self.throwerProfileView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 1.f);
+            } completion:nil];
+        }
+        default:
+            break;
     }
 }
 
