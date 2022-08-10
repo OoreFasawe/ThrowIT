@@ -68,7 +68,7 @@
             [self.throwerBoardTableView reloadData];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
 }
 
@@ -84,7 +84,7 @@
             [self.thrownPartiesTableView reloadData];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
 }
 
@@ -142,7 +142,7 @@
             self.throwerPartiesThrownCount.text = [NSString stringWithFormat:PARTYTHROWNCOUNT, number];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
 }
 

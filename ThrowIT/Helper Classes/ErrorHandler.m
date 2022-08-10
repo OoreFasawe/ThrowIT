@@ -26,7 +26,7 @@
 
 -(void)showNetworkErrorMessageOnViewController:(UIViewController *)viewController withCompletion:(void (^)(BOOL tryAgain))completion{
     UIAlertController *networkAlert = [UIAlertController alertControllerWithTitle:CANNNOTGETPARTIES message:NOINTERNET preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:TRYAGAIN style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:TRYAGAIN style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         completion(YES);
     }];
     [networkAlert addAction:tryAgainAction];
@@ -34,7 +34,14 @@
     [viewController presentViewController:self.customAlert animated:YES completion:nil];
 }
 
-//seperate method for OK action because of redundance
+-(void)showMissingFieldsErrorMessageOnViewController:(UIViewController *)viewController{
+    UIAlertController *missingFieldsAlert = [UIAlertController alertControllerWithTitle:MISSINGFIELDS message:COMPLETEFIELDS preferredStyle:UIAlertControllerStyleAlert];
+    [missingFieldsAlert addAction:[self addOkAction]];
+    self.customAlert = missingFieldsAlert;
+    [viewController presentViewController:self.customAlert animated:YES completion:nil];
+}
+
+//has seperate method because of redundance
 -(UIAlertAction *)addOkAction{
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault handler:nil];
     return okAction;

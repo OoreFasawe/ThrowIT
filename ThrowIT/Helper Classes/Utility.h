@@ -74,7 +74,6 @@
 #define ENDTIME @"endTime"
 
 #pragma mark - Helper Constants
-
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
 #define PARTYIMAGEDEFAULT @"step2"
 #define EMPTY @""
@@ -95,7 +94,9 @@
 #define FONTSIZEFORUSERNAME 17
 #define MAPZOOMCONSTANT 16
 #define MINDISTANCE 1.0
-#define COLLECTIONVIEWBORDER
+#define COLLECTIONVIEWBORDER 2.5
+#define ERRORTEXTFORMAT @"Error: %@"
+
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
@@ -158,6 +159,12 @@
 #define CANNNOTGETPARTIES @"Cannot Get Parties"
 #define NOINTERNET @"The internet connection appears to be offline."
 #define TRYAGAIN @"Try Again"
+#define MISSINGFIELDS @"Missing Fields"
+#define COMPLETEFIELDS @"Please fill in all fields"
+#define UNHANDLEDEDITINGSTYLE @"Unhandled editing style! %ld"
+#define DATEERRORMESSAGE @"Invalid Date"
+#define STARTDATEERRORMESSAGE @"Set start date later than current date"
+#define ENDDATEERRORMESSAGE @"Set end date later than start date"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject

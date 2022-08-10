@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.partyImageView.layer.cornerRadius = 10;
+    self.partyImageView.layer.cornerRadius = IMAGECORNERRADIUS;
 }
 
 - (IBAction)chooseLocation:(id)sender {
@@ -41,19 +41,19 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    [self.partyImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(500, 500)]];
+    [self.partyImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(IMAGERESIZECONSTANT, IMAGECORNERRADIUS)]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)throwParty:(id)sender {
     if([self.partyNameField.text isEqual:EMPTY] || [self.partyDescriptionField.text isEqual:EMPTY] || [self.partyLocationField.text isEqual:EMPTY] || !self.partyDateStart){
-        //TODO: show missing fields alert
+        [[ErrorHandler shared] showMissingFieldsErrorMessageOnViewController:self];
     }
     else{
         Party *party = [Party new];
-        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:self.partyDateStart withEndTime:self.partyDateEnd withSchoolName:nil withPartyPhoto:self.partyImageView.image withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Party postNewParty:party withPartyName:self.partyNameField.text withDescription:self.partyDescriptionField.text withStartTime:self.partyDateStart withEndTime:self.partyDateEnd withSchoolName:nil withPartyPhoto:self.partyImageView.image ? self.partyImageView.image : [UIImage imageNamed:PARTYIMAGEDEFAULT] withLocationName:self.partyLocationName withLocationAddress:self.partyLocationField.text withLocationCoordinate:self.partyCoordinate withLocationId:self.partyLocationId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(ERRORTEXTFORMAT, error.localizedDescription);
             }
             else{
                 [self.delegate didCreateParty:party];
@@ -86,8 +86,7 @@
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didFailAutocompleteWithError:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:nil];
-    // TODO: handle the error.
-    NSLog(@"Error: %@", [error description]);
+    NSLog(ERRORTEXTFORMAT, [error description]);
 }
 
 - (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
@@ -109,7 +108,6 @@ didFailAutocompleteWithError:(NSError *)error {
 - (IBAction)didSetPartyStartDate:(id)sender {
     UIDatePicker* datePicker = sender;
     if([datePicker.date earlierDate:[NSDate now]] == datePicker.date){
-        //TODO: show error: @set start date to be later than current date
         datePicker.date = [NSDate now];
     }
     self.partyDateStart = datePicker.date;
@@ -120,7 +118,6 @@ didFailAutocompleteWithError:(NSError *)error {
 - (IBAction)didSetPartyEndDate:(id)sender {
     UIDatePicker* datePicker = sender;
     if([datePicker.date earlierDate:self.partyDateTimePicker.date] == datePicker.date){
-        //TODO: show error: @set end date to be later than start date
         datePicker.date = [NSDate dateWithTimeInterval:TIMEINTERVAL sinceDate: self.partyDateTimePicker.date];;
     }
     self.partyDateTimePickerEnd.date = datePicker.date;

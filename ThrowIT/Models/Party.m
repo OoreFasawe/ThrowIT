@@ -44,7 +44,7 @@
     newParty.numberAttending= 0;
     newParty.isGoing=NO;
     newParty.maybe=NO;
-    newParty.partyPhoto = [self getPFFileFromImage:partyPhoto];
+    newParty.partyPhoto = [Utility getPFFileFromImage:partyPhoto];
     newParty.isPublic=NO;
     newParty.partyLocationName = partyLocationName;
     newParty.partyLocationAddress = partyLocationAddress;

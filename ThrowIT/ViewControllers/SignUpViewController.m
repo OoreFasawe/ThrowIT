@@ -8,6 +8,7 @@
 #import "SignUpViewController.h"
 #import "Utility.h"
 #import <Parse/Parse.h>
+#import "ErrorHandler.h"
 
 @interface SignUpViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
@@ -23,8 +24,8 @@
 }
 
 - (IBAction)registerUser:(id)sender {
-    if([self.usernameField.text isEqual:EMPTY] || [self.passwordField.text isEqual:EMPTY]){
-        //TODO: [self showAlert];
+    if([self.usernameField.text isEqual:EMPTY] || [self.passwordField.text isEqual:EMPTY] ||[self.emailField.text isEqual:EMPTY]){
+        [[ErrorHandler shared] showMissingFieldsErrorMessageOnViewController:self];
     }
     else{
         PFUser *newUser = [PFUser user];
@@ -36,7 +37,7 @@
     
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
+                NSLog(ERRORTEXTFORMAT, error.localizedDescription);
             } 
             else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];

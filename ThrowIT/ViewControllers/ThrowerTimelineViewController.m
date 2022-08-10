@@ -58,7 +58,7 @@
             [self.tableView reloadData];
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
 }
@@ -80,7 +80,6 @@
     }
 }
 #pragma mark - Navigation end
- 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -94,7 +93,7 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else{
-        NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
+        NSLog(UNHANDLEDEDITINGSTYLE, (long)editingStyle);
     }
 }
 
@@ -103,7 +102,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5;
+    return FOOTERHEIGHTCONSTANT;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

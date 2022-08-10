@@ -73,7 +73,6 @@
     if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORCOLLECTIONCELL]){
         UICollectionViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.collectionView indexPathForCell:partyCell];
-        // Pass the selected object to the new view controller.
         Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
@@ -82,7 +81,6 @@
     else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
-        // Pass the selected object to the new view controller.
         Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
@@ -167,7 +165,7 @@
             [partyCell.throwerProfilePicture loadInBackground];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
     if([party.startTime earlierDate:[NSDate now]] == party.startTime)
         partyCell.partyTime.text = NOW;
@@ -193,7 +191,7 @@
             }
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
     [Check_In userIsCheckedIn:party withCompletion:^(BOOL checkInExists) {
@@ -300,7 +298,7 @@
             [topPartyCell.throwerProfilePicture loadInBackground];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
@@ -322,7 +320,7 @@
             }
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
     [Check_In userIsCheckedIn:party withCompletion:^(BOOL checkInExists) {

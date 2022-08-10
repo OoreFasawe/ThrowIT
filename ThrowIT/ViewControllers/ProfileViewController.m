@@ -50,7 +50,7 @@
             self.partiesAttendedLabel.text = [NSString stringWithFormat:@"%@", user[PARTIESATTENDEDKEY]];
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
 }
@@ -80,7 +80,7 @@
                 [self.seenPartiesTableView reloadData];
             }
             else
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
 }
 
@@ -176,7 +176,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return NUMBEROFROWSINSECTION;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
