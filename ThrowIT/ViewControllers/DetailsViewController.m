@@ -43,7 +43,6 @@
         [Check_In userIsCheckedIn:self.party withCompletion:^(BOOL checkInExists) {
             if(checkInExists){
                 self.checkInButton.layer.backgroundColor = [[UIColor greenColor] CGColor];
-                self.checkInButton.userInteractionEnabled = NO;
             }
         }];
         self.checkInButton.hidden = false;
@@ -77,17 +76,17 @@
                         });
                     }
                     else{
-                        //TODO: display user too far from party: @"User too far from party to check in"
+                        [[ErrorHandler shared] showCheckInErrorMessage:TOOFARFROMPARTY onViewController:self];
                     }
                 }];
             }
             else{
-                //TODO: display already checked in message: @"User already checked in"
+                [[ErrorHandler shared] showCheckInErrorMessage:CHECKINEXISTS onViewController:self];
             }
         }];
     }
     else{
-        //TODO: display party over message: @"The party already ended"
+        [[ErrorHandler shared] showCheckInErrorMessage:PARTYENDED onViewController:self];
     }
 }
 
