@@ -10,6 +10,7 @@
 #import "SceneDelegate.h"
 #import "Thrower.h"
 #import "Utility.h"
+#import "ErrorHandler.h"
 
 @interface LoginViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
@@ -29,7 +30,7 @@
     NSString *password = self.passwordField.text;
     
     if([self.usernameField.text isEqual:EMPTY] || [self.passwordField.text isEqual:EMPTY]){
-       // TODO: [self showAlert];
+        [[ErrorHandler shared] showMissingFieldsErrorMessageOnViewController:self];
     }
     else{
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
@@ -64,7 +65,7 @@
                 }
             }
             else{
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(ERRORTEXTFORMAT, error.localizedDescription);
             }
         }];
     }
@@ -74,11 +75,11 @@
     UIButton *toThrowerSignUpButton = sender;
     [UIView animateWithDuration:TOSIGNUPSANIMATIONDEFAULTDURATION animations:^{
         toThrowerSignUpButton.hidden = YES;
-        self.viewToAnimate.transform = CGAffineTransformMakeScale(-LOGINANIMATIONVIEWSCALEFACTOR, 1.f);
+        self.viewToAnimate.transform = CGAffineTransformMakeScale(-LOGINANIMATIONVIEWSCALEFACTOR, ORIGINALYPOSITION);
     } completion:nil];
     [UIView animateWithDuration:TOSIGNUPSANIMATIONDEFAULTDURATION animations:^{
         self.viewToAnimate.layer.zPosition = MAXFLOAT;
-        self.viewToAnimate.transform = CGAffineTransformMakeScale(LOGINANIMATIONVIEWSCALEFACTOR, 1.f);
+        self.viewToAnimate.transform = CGAffineTransformMakeScale(LOGINANIMATIONVIEWSCALEFACTOR, ORIGINALYPOSITION);
     } completion:nil];
     [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: TOSIGNUPSANIMATIONDEFAULTDURATION];
 }

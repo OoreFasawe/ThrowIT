@@ -16,13 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="knuckles" translatesAutoresizingMaskIntoConstraints="NO" id="BNC-dC-xaG">
-                                <rect key="frame" x="50" y="326" width="314" height="243"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="APP LAUNCH IMAGE" translatesAutoresizingMaskIntoConstraints="NO" id="1i2-U8-gYW">
+                                <rect key="frame" x="102.5" y="348.5" width="209" height="199"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="209" id="hTN-QZ-Sss"/>
+                                    <constraint firstAttribute="height" constant="199" id="iIH-5r-Oxb"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1i2-U8-gYW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fkc-Ve-G7P"/>
+                            <constraint firstItem="1i2-U8-gYW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="q8T-d0-wcK"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -31,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="knuckles" width="860" height="586"/>
+        <image name="APP LAUNCH IMAGE" width="400" height="400"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

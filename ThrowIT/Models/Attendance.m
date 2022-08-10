@@ -24,9 +24,7 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable attendanceObject, NSError * _Nullable error) {
         Attendance *attendance;
         if (!error){
-            //if there's an attendance object, check it's attendance type
                 attendance = (Attendance *) attendanceObject;
-                //if attendancetype is going, change to maybe, if maybe delete;
                 if([attendance.attendanceType isEqualToString:GOING]){
                     attendance.attendanceType = MAYBE;
                     [attendance saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
@@ -36,13 +34,11 @@
                 }
         }
         else{
-            //if there's not attendance object, create one
             if(!attendanceObject){
                 attendance = [Attendance new];
                 attendance.party = party;
                 attendance.user = [PFUser currentUser];
                 attendance.attendanceType = GOING;
-                
                 [attendance saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
             }
             else{

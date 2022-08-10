@@ -12,7 +12,7 @@
 @dynamic party;
 
 + (nonnull NSString *)parseClassName {
-    return @"Check_In";
+    return CHECKINCLASS;
 }
 
 +(void)postNewCheckInForParty:(Party *) party withCompletion: (PFBooleanResultBlock  _Nullable)completion{
@@ -23,7 +23,7 @@
 }
 
 +(void)userIsCheckedIn:(Party *) party withCompletion:(void (^)(BOOL checkInExists))completion{
-    PFQuery *checkInQuery = [PFQuery queryWithClassName:@"Check_In"];
+    PFQuery *checkInQuery = [PFQuery queryWithClassName:CHECKINCLASS];
     [checkInQuery whereKey:USER equalTo:[PFUser currentUser]];
     [checkInQuery whereKey:PARTYKEY equalTo:party];
     [checkInQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
@@ -35,7 +35,7 @@
                 completion(NO);
         }
         else
-            NSLog(@"ERROR: %@", error.localizedDescription);
+            NSLog(@"error: %@", error.localizedDescription);
     }];
 }
 @end

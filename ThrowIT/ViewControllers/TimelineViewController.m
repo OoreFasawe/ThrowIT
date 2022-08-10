@@ -16,6 +16,7 @@
 #import "Party.h"
 #import "Thrower.h"
 #import <Parse/Parse.h>
+#import "DateTools.h"
 #import "Errorhandler.h"
 
 
@@ -29,6 +30,7 @@
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic)int goingListCount;
 @property (nonatomic)int tapCount;
+@property (nonatomic, strong) CoreHapticsGenerator *soundGenerator;
 
 @end
 
@@ -36,13 +38,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     [[APIManager shared] locationManagerInit];
     [self fetchParties];
     [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height)],
-    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.66 - 2.5)],
-    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.34 - 2.5)],
+    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.66 - COLLECTIONVIEWBORDER)],
+    [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.34 - COLLECTIONVIEWBORDER)],
     ];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -51,7 +54,6 @@
     self.collectionView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchParties) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 - (IBAction)logoutUser:(id)sender {
@@ -71,20 +73,18 @@
     if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORCOLLECTIONCELL]){
         UICollectionViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.collectionView indexPathForCell:partyCell];
-        // Pass the selected object to the new view controller.
         Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
-        detailsController.delegate = self;
+        detailsController.delegate = (id) self;
     }
     else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
-        // Pass the selected object to the new view controller.
         Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
-        detailsController.delegate = self;
+        detailsController.delegate = (id) self;
     }
     else if([[segue identifier] isEqualToString:FILTERSEGUE]){
         UINavigationController *partyFilterNavigationController = [segue destinationViewController];
@@ -96,6 +96,7 @@
 -(void)fetchParties{
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
+    [query whereKey:ENDTIME greaterThan:[NSDate now]];
     [query includeKey:PARTYTHROWERKEY];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
@@ -141,9 +142,8 @@
 #pragma mark - UITableViewDataSource
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PartyCell *partyCell = [self.tableView dequeueReusableCellWithIdentifier:PARTYCELL];
-    partyCell.layer.cornerRadius = 10;
-    CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
-    partyCell.soundGenerator = soundGenerator;
+    partyCell.layer.cornerRadius = CELLCORNERRADIUS;
+    partyCell.soundGenerator = self.soundGenerator;
     Party *party = self.filteredList[indexPath.section + SHIFTNUMBER];
     if(party.distancesFromUser != nil)
         partyCell.partyDistance.text = [NSString stringWithFormat:@". %@", party.distancesFromUser ];
@@ -165,9 +165,12 @@
             [partyCell.throwerProfilePicture loadInBackground];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
-    partyCell.partyDescription.text= party.partyDescription; 
+    if([party.startTime earlierDate:[NSDate now]] == party.startTime)
+        partyCell.partyTime.text = NOW;
+    else
+        partyCell.partyTime.text = [NSString stringWithFormat:PARTYCELLPARTTIMETEXTFORMAT, [NSDate shortTimeAgoSinceDate:party.startTime]];
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
     [goingQuery whereKey:USER equalTo:[PFUser currentUser]];
@@ -188,7 +191,7 @@
             }
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
     [Check_In userIsCheckedIn:party withCompletion:^(BOOL checkInExists) {
@@ -236,7 +239,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5.0f;
+    return FOOTERHEIGHTCONSTANT;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -277,13 +280,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TopPartyCell *topPartyCell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:TOPPARTYCELL forIndexPath:indexPath];
-    topPartyCell.layer.cornerRadius = 10;
+    topPartyCell.layer.cornerRadius = CELLCORNERRADIUS;
     Party *party = self.filteredList[indexPath.item];
     CoreHapticsGenerator *soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     topPartyCell.soundGenerator = soundGenerator;
     topPartyCell.partyNameLabel.text = party.name;
     topPartyCell.partyDescriptionLabel.text = party.partyDescription;
-    topPartyCell.throwerProfilePicture.layer.borderWidth = 0.1;
+    topPartyCell.throwerProfilePicture.layer.borderWidth = BORDERWIDTH;
     topPartyCell.throwerProfilePicture.layer.cornerRadius = topPartyCell.throwerProfilePicture.frame.size.height/2;
     PFQuery *throwerQuery = [PFQuery queryWithClassName:THROWERCLASS];
     [throwerQuery includeKey:THROWERKEY];
@@ -295,7 +298,7 @@
             [topPartyCell.throwerProfilePicture loadInBackground];
         }
         else
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
     }];
     PFQuery *goingQuery = [PFQuery queryWithClassName:ATTENDANCECLASS];
     [goingQuery whereKey:PARTYKEY equalTo:party];
@@ -317,7 +320,7 @@
             }
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
     [Check_In userIsCheckedIn:party withCompletion:^(BOOL checkInExists) {

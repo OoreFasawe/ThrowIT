@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)shared;
 -(void)showCheckInErrorMessage:(NSString* )message onViewController:(UIViewController *)viewController;
 -(void)showNetworkErrorMessageOnViewController:(UIViewController *)viewController withCompletion:(void (^)(BOOL tryAgain))completion;
+-(void)showMissingFieldsErrorMessageOnViewController:(UIViewController *)viewController;
 @end
 
 NS_ASSUME_NONNULL_END

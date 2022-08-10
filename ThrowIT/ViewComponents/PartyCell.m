@@ -19,7 +19,7 @@
     [super setSelected:selected animated:animated];
 }
 - (IBAction)didTapLike:(id)sender {
-    [Attendance setAvailability:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Attendance setAvailability:self.party withCompletion:^(BOOL succeeded, NSError *error) {
     }];
     if (self.soundGenerator != nil){
         [self.soundGenerator playAttendanceSound];

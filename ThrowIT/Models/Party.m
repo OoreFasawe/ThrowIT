@@ -44,7 +44,7 @@
     newParty.numberAttending= 0;
     newParty.isGoing=NO;
     newParty.maybe=NO;
-    newParty.partyPhoto = [self getPFFileFromImage:partyPhoto];
+    newParty.partyPhoto = [Utility getPFFileFromImage:partyPhoto];
     newParty.isPublic=NO;
     newParty.partyLocationName = partyLocationName;
     newParty.partyLocationAddress = partyLocationAddress;
@@ -54,20 +54,6 @@
     newParty.rating = 0;
     newParty.partyLocationId = partyLocationId;
     [newParty saveInBackgroundWithBlock: completion];
-}
-
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
-
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-
-    NSData *imageData = UIImagePNGRepresentation(image);
-    if (!imageData) {
-        return nil;
-    }
-    return [PFFileObject fileObjectWithName:PARSEIMAGEDEFAULTFILENAME data:imageData];
 }
 
 -(BOOL)isGoingOn{

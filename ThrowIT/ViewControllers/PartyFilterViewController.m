@@ -24,7 +24,6 @@
     [self setDistanceLabeltext];
     [self setAttendanceLabeltext];
     [self setRatingLabeltext];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)didPickDistance:(id)sender {
     [self setDistanceLabeltext];

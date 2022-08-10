@@ -26,19 +26,6 @@
     [partyThrower saveInBackgroundWithBlock: completion];
 }
 
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
- 
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-    NSData *imageData = UIImagePNGRepresentation(image);
-    if (!imageData) {
-        return nil;
-    }
-    return [PFFileObject fileObjectWithName:PARSEIMAGEDEFAULTFILENAME data:imageData];
-}
-
 + (BOOL)isThowerVerified: (NSString* )throwerUsername{
     __block BOOL isVerified = FALSE;
     PFQuery *query = [PFQuery queryWithClassName:THROWERCLASS];

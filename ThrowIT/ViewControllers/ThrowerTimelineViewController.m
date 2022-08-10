@@ -49,6 +49,7 @@
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
     [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
+    [query whereKey:ENDTIME greaterThan:[NSDate now]];
     query.limit = QUERYLIMIT;
     [query findObjectsInBackgroundWithBlock:^(NSArray  *partyList, NSError *error) {
         if (!error){
@@ -57,7 +58,7 @@
             [self.tableView reloadData];
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }];
 }
@@ -79,7 +80,6 @@
     }
 }
 #pragma mark - Navigation end
- 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -93,16 +93,16 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else{
-        NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
+        NSLog(UNHANDLEDEDITINGSTYLE, (long)editingStyle);
     }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
-    return @" ";
+    return SPACE;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5;
+    return FOOTERHEIGHTCONSTANT;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -110,8 +110,10 @@
     Party *party = self.throwerPartyList[indexPath.section];
     throwerPartyCell.partyName.text = party.name;
     throwerPartyCell.partyDescription.text = party.partyDescription;
-    throwerPartyCell.layer.cornerRadius = 10;
-    throwerPartyCell.layer.borderWidth = 0.1;
+    throwerPartyCell.layer.cornerRadius = CELLCORNERRADIUS;
+    throwerPartyCell.layer.borderWidth = BORDERWIDTH;
+    throwerPartyCell.partyImageView.layer.cornerRadius = IMAGECORNERRADIUS;
+    throwerPartyCell.partyImageView.layer.borderWidth = BORDERWIDTH;
     if(party.partyPhoto == nil)
         [throwerPartyCell.partyImageView setImage:[UIImage imageNamed:PARTYIMAGEDEFAULT]];
     else{
@@ -130,19 +132,19 @@
     PFQuery *partyQuery = [PFQuery queryWithClassName:(ATTENDANCECLASS)];
     [partyQuery whereKey:PARTYKEY equalTo:party];
     [partyQuery whereKey:ATTENDANCETYPEKEY equalTo:GOING];
-    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable partyGoingList, NSError * _Nullable error) {
+    [partyQuery findObjectsInBackgroundWithBlock:^(NSArray *partyGoingList, NSError *error) {
         party.numberAttending = (int)partyGoingList.count;
-        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:@"%ld", (long)party.numberAttending];
+        throwerPartyCell.numberAttendingParty.text = [NSString stringWithFormat:THROWERPARTYCELLHEADCOUNTTEXTFORMAT, (long)party.numberAttending];
         throwerPartyCell.party = party;
         [party saveInBackground];
     }]; 
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return NUMBEROFROWSINSECTION;
 }
 
-- (void)didCreateParty:(nonnull Party *)party {
+- (void)didCreateParty:(Party *)party {
     [self.throwerPartyList insertObject:party atIndex:0];
     [self.tableView reloadData];
 }

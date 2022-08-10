@@ -23,9 +23,7 @@
         UITabBarController *timelineTabBarController = [storyboard instantiateViewControllerWithIdentifier:TIMELINETABBARCONTROLLER];
         self.window.rootViewController = timelineTabBarController;
         }
-        //if login is from thrower
         else{
-            //if thrower is verified
             PFQuery *query = [PFQuery queryWithClassName:THROWERCLASS];
             [query whereKey:THROWERNAMEKEY equalTo:user.username];
             [query whereKey:VERIFIEDKEY equalTo:YESKEYWORD];
@@ -40,7 +38,6 @@
                     UINavigationController *throwerWaitScreenNavigationController = [storyboard instantiateViewControllerWithIdentifier:THROWERWAITSCREENNAVIGATIONCONTROLLER];
                     self.window.rootViewController = throwerWaitScreenNavigationController;
                 }
-
             }];
         }
     }
