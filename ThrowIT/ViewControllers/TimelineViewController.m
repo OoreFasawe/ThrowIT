@@ -75,6 +75,7 @@
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
         detailsController.delegate = self;
+        detailsController.contentViewColor = [UIColor colorWithRed:0.614652 green:0.550665 blue:0.675719 alpha:1];
     }
     else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
         UITableViewCell *partyCell = sender;
@@ -84,6 +85,7 @@
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
         detailsController.delegate = self;
+        detailsController.contentViewColor = [UIColor colorWithRed:0.614652 green:0.550665 blue:0.675719 alpha:1];
     }
     else if([[segue identifier] isEqualToString:FILTERSEGUE]){
         UINavigationController *partyFilterNavigationController = [segue destinationViewController];

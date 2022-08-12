@@ -61,8 +61,8 @@
 #define PARTYTHROWERKEY @"partyThrower"
 
 #define ATTENDANCETYPEKEY @"attendanceType"
-#define NOTGOING @"Pass"
-#define GOING @"Crash"
+#define NOTGOING @"Not going"
+#define GOING @"Going"
 #define MAYBE @"Maybe"
 
 #define CREATEDAT @"createdAt"
@@ -72,6 +72,11 @@
 #define EMPTY @""
 #define SPACE @" "
 #define TIMEINTERVAL 4*3600
+#define TIMEFORMAT @"hh:mm a"
+#define CHECKED @"Checked"
+#define MAPOFFSET 60
+#define MAPDISTANCEFROMDIRBUTTON 16
+#define MAPHEIGHT 388
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
