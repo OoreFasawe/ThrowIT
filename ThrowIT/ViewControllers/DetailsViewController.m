@@ -36,7 +36,7 @@
     [OpenMapDirections presentWithViewController:self withSourceView:self.view withLocationCoordinate:self.partyLocation];
 }
 -(void)showMap{
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.party.partyCoordinateLatitude longitude:self.party.partyCoordinateLongitude zoom:16];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.party.partyCoordinateLatitude longitude:self.party.partyCoordinateLongitude zoom:MAPZOOMCONSTANT];
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, self.detailsScrollView.frame.size.height - (self.view.safeAreaInsets.bottom) - MAPOFFSET, self.view.frame.size.width, MAPHEIGHT) camera:camera];
     self.mapView.myLocationEnabled = YES;
     self.mapView.delegate = self;
@@ -106,15 +106,15 @@
     if([self.party isGoingOn]){
         [Check_In userIsCheckedIn:self.party withCompletion:^(BOOL checkInExists) {
             if(!checkInExists){
-                [[APIManager shared] loadDistanceDataFromLocation:self.party.partyLocationId withCompletionHandler:^(NSString * _Nonnull distance) {
+                [[APIManager shared] loadDistanceDataFromLocation:self.party.partyLocationId withCompletionHandler:^(NSString *distance) {
                     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                     f.numberStyle = NSNumberFormatterDecimalStyle;
-                    if(1.0 >= [[f numberFromString:[distance componentsSeparatedByString:SPACE][0]] doubleValue] || [[distance componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
-                        [Check_In postNewCheckInForParty:self.party withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                    if(MINDISTANCE >= [[f numberFromString:[distance componentsSeparatedByString:SPACE][0]] doubleValue] || [[distance componentsSeparatedByString:SPACE][1] isEqualToString:FEET]){
+                        [Check_In postNewCheckInForParty:self.party withCompletion:^(BOOL succeeded, NSError *error) {
                             [self.delegate reloadCells];
                         }];
                         PFUser *user = [PFUser currentUser];
-                        [user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                        [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                             int partiesAttendedCount = [user[PARTIESATTENDEDKEY] intValue];
                             partiesAttendedCount += 1;
                             user[PARTIESATTENDEDKEY] = [NSNumber numberWithInt:partiesAttendedCount];
@@ -128,17 +128,17 @@
                         });
                     }
                     else{
-                        //TODO: display user too far from party: @"User too far from party to check in"
+                        [[ErrorHandler shared] showCheckInErrorMessage:TOOFARFROMPARTY onViewController:self];
                     }
                 }];
             }
             else{
-                //TODO: display already checked in message: @"User already checked in"
+                [[ErrorHandler shared] showCheckInErrorMessage:CHECKINEXISTS onViewController:self];
             }
         }];
     }
     else{
-        //TODO: display party over message: @"The party already ended"
+        [[ErrorHandler shared] showCheckInErrorMessage:PARTYENDED onViewController:self];
     }
 }
 

@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "Thrower.h"
 #import "Utility.h"
+#import "ErrorHandler.h"
 
 @interface ThrowerSignUpViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *throwerNameField;
@@ -36,7 +37,7 @@
     [UIView animateWithDuration:TOSIGNUPSANIMATIONDEFAULTDURATION animations:^{
         toThrowerSignUpButton.layer.zPosition = MAXFLOAT;
         [toThrowerSignUpButton setTitle:EMPTY forState:UIControlStateNormal];
-        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(1.f, SIGNUPBARSCALEFACTOR);
+        toThrowerSignUpButton.transform = CGAffineTransformMakeScale(ORIGINALXPOSITION, SIGNUPBARSCALEFACTOR);
     } completion:nil];
     [self performSelector:@selector(transitionToUserSignUp) withObject:nil afterDelay: TOSIGNUPSANIMATIONDEFAULTDURATION];
 }
@@ -48,15 +49,15 @@
 }
 
 - (IBAction)registerThrower:(id)sender {
-    if([self.throwerNameField.text isEqual:EMPTY] || [self.throwerSchoolField.text isEqual:EMPTY] || [self.throwerEmailField.text isEqual:EMPTY] || [self.throwerPasswordField.text isEqual:@""]){
-        //TODO: [self showAlert];
+    if([self.throwerNameField.text isEqual:EMPTY] || [self.throwerSchoolField.text isEqual:EMPTY] || [self.throwerEmailField.text isEqual:EMPTY] || [self.throwerPasswordField.text isEqual:EMPTY]){
+        [[ErrorHandler shared] showMissingFieldsErrorMessageOnViewController:self];
     }
     else{
     PFUser *newUser = [PFUser user];
     newUser.username = self.throwerNameField.text;
     newUser.password = self.throwerPasswordField.text;
     newUser.email = self.throwerEmailField.text;
-    newUser[USERISTHROWERKEY] = @YES;
+    newUser[USERISTHROWERKEY] = YESKEYWORD;
     newUser[PARTIESATTENDEDKEY] = ZERO;
     Thrower *partyThrower = [Thrower new];
     partyThrower.throwerName = self.throwerNameField.text;
@@ -64,12 +65,12 @@
     partyThrower.thrower = newUser;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
         else {
             [Thrower postNewThrower:partyThrower withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                 if (error != nil) {
-                            NSLog(@"Error: %@", error.localizedDescription);
+                            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
                 }
                 else{
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN bundle:nil];

@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "Party.h"
 #import "Utility.h"
+#import "ErrorHandler.h"
 @import Parse;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -36,6 +36,10 @@
 #define PARTYDISTANCELABELPLACEHOLDER @" ..."
 #define THROWERPARTYCELL @"ThrowerPartyCell"
 #define TOPPARTYCELL @"TopPartyCell"
+#define ATTENDEDPARTYCELL @"AttendedPartyCell"
+#define THROWBOARDCELL @"ThrowBoardCell"
+#define THROWNPARTYCELL @"ThrownPartyCell"
+#define RANKCELL @"RankCell"
 #define SHIFTNUMBER 3
 #define NUMBEROFROWSINSECTION 1
 
@@ -44,6 +48,7 @@
 #define THROWERCLASS @"Thrower"
 #define ATTENDANCECLASS @"Attendance"
 #define USERCLASS @"_User"
+#define CHECKINCLASS @"Check_In"
 
 #pragma mark - Parse Keys
 #define USER @"user"
@@ -66,7 +71,9 @@
 #define MAYBE @"Maybe"
 
 #define CREATEDAT @"createdAt"
+#define ENDTIME @"endTime"
 
+#pragma mark - Helper Constants
 #define PARSEIMAGEDEFAULTFILENAME @"image.png"
 #define PARTYIMAGEDEFAULT @"step2"
 #define EMPTY @""
@@ -77,6 +84,23 @@
 #define MAPOFFSET 60
 #define MAPDISTANCEFROMDIRBUTTON 16
 #define MAPHEIGHT 388
+#define NOW @". Now"
+#define ATTENDEDPARTYRATINGFORMAT @"Rating: %.1f / 5"
+#define OBJECTTEXTAFTERPERIOD @". %@"
+#define HEADCOUNTTEXT @"Headcount: %d"
+#define YOU @"You"
+#define PARTYTHROWNCOUNT @"Parties Thrown: %d"
+#define PARTYCELLPARTTIMETEXTFORMAT @". In %@"
+#define THROWERPARTYCELLHEADCOUNTTEXTFORMAT @"%ld coming"
+#define BORDERWIDTH 0.05
+#define CELLCORNERRADIUS 10
+#define IMAGECORNERRADIUS 5
+#define FOOTERHEIGHTCONSTANT 5
+#define FONTSIZEFORUSERNAME 17
+#define MAPZOOMCONSTANT 16
+#define MINDISTANCE 1.0
+#define COLLECTIONVIEWBORDER 2.5
+#define ERRORTEXTFORMAT @"Error: %@"
 
 #pragma mark - Query Limits
 #define QUERYLIMIT 20
@@ -123,11 +147,28 @@
 #define ORIGINALYPOSITION 1.f
 #define DEFAULTDURATION 0.3
 #define SIZEMULTIPLIER 2.5
+#define IMAGERESIZECONSTANT 500
 
 #pragma mark - Login/SignUp Animation Constants
 #define TOSIGNUPSANIMATIONDEFAULTDURATION 0.5
 #define SIGNUPBARSCALEFACTOR 25.f
 #define LOGINANIMATIONVIEWSCALEFACTOR 2.f
+
+#pragma mark - Error Handling Constants
+#define CHECKINFAILED @"Check-in failed."
+#define TOOFARFROMPARTY @"Too far from party to check in."
+#define CHECKINEXISTS @"Already checked in."
+#define PARTYENDED @"Party ended."
+#define OK @"Ok"
+#define CANNNOTGETPARTIES @"Cannot Get Parties"
+#define NOINTERNET @"The internet connection appears to be offline."
+#define TRYAGAIN @"Try Again"
+#define MISSINGFIELDS @"Missing Fields"
+#define COMPLETEFIELDS @"Please fill in all fields"
+#define UNHANDLEDEDITINGSTYLE @"Unhandled editing style! %ld"
+#define DATEERRORMESSAGE @"Invalid Date"
+#define STARTDATEERRORMESSAGE @"Set start date later than current date"
+#define ENDDATEERRORMESSAGE @"Set end date later than start date"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface Utility : NSObject

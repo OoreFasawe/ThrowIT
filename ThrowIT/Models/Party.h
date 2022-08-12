@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL maybe;
 @property (nonatomic, strong) PFFileObject *partyPhoto;
 @property (nonatomic) BOOL isPublic;
-@property (nonatomic) int rating;
+@property (nonatomic) float rating;
 @property (nonatomic) double partyCoordinateLongitude;
 @property (nonatomic) double partyCoordinateLatitude;
 @property (nonatomic, strong) NSString *partyLocationName;
@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *distancesFromUser;
 
 + (void) postNewParty:(Party *) party withPartyName:( NSString * _Nullable )partyName withDescription:(NSString * _Nullable)partyDescription withStartTime:(NSDate * _Nullable)startTime withEndTime:(NSDate * _Nullable)endTime withSchoolName:(NSString * _Nullable)school withPartyPhoto:(UIImage* _Nullable)partyPhoto withLocationName:(NSString *)partyLocationName withLocationAddress:(NSString *)partyLocationAddress withLocationCoordinate:(CLLocationCoordinate2D) partyCoordinate withLocationId:(NSString *) partyLocationId withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 -(BOOL)isGoingOn;
 
 @end

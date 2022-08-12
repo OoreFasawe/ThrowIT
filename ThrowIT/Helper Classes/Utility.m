@@ -23,10 +23,10 @@ static int filterRunCount;
 
 +(void)showImageTakeOptionSheetOnViewController:(UIViewController *) viewController withTitleString:(NSString *)titleString{
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:titleString message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
-    [actionSheet addAction:[UIAlertAction actionWithTitle:TAKEPHOTO style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:TAKEPHOTO style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
         [Utility TakeOrChooseImage:viewController withSourceType:UIImagePickerControllerSourceTypeCamera];
     }]];
-    [actionSheet addAction:[UIAlertAction actionWithTitle:CHOOSEFROMLIBRARY style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:CHOOSEFROMLIBRARY style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
         [Utility TakeOrChooseImage:viewController withSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }]];
     [[actionSheet popoverPresentationController] setSourceRect:viewController.view.bounds];
@@ -75,7 +75,7 @@ static int filterRunCount;
     }
     return place_Ids;
 }
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
++ (PFFileObject *)getPFFileFromImage: (UIImage *)image {
     if (!image)
         return nil;
     NSData *imageData = UIImagePNGRepresentation(image);
@@ -123,7 +123,7 @@ static int filterRunCount;
                 }
             else
             {
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(ERRORTEXTFORMAT, error.localizedDescription);
             }
             if(filterRunCount == partyList.count){
                 filterRunCount = 0;

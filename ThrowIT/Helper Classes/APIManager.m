@@ -51,7 +51,7 @@
             completion(MILEDATAPATH);
         }
         else{
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(ERRORTEXTFORMAT, error.localizedDescription);
         }
     }] resume];
 }
