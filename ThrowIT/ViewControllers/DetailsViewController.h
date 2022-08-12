@@ -19,11 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface DetailsViewController : UIViewController
+@interface DetailsViewController : UIViewController 
 @property (nonatomic, strong) Party *party;
 @property (nonatomic, strong) GMSMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIButton *checkInButton;
 @property (nonatomic, weak) id<DetailsViewControllerDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) UIColor *contentViewColor;
+@property (nonatomic) BOOL isFromThrowerAccount;
 @end
 
 NS_ASSUME_NONNULL_END

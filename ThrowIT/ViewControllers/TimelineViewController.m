@@ -76,6 +76,7 @@
         Party *party = self.filteredList[myIndexPath.item];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
+        detailsController.contentViewColor = [UIColor colorWithRed:0.614652 green:0.550665 blue:0.675719 alpha:1];
         detailsController.delegate = (id) self;
     }
     else if([[segue identifier] isEqualToString:DETAILSVIEWCONTROLLERFORTABLECELL]){
@@ -84,6 +85,7 @@
         Party *party = self.filteredList[myIndexPath.section + SHIFTNUMBER];
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.party = party;
+        detailsController.contentViewColor = [UIColor colorWithRed:0.614652 green:0.550665 blue:0.675719 alpha:1];
         detailsController.delegate = (id) self;
     }
     else if([[segue identifier] isEqualToString:FILTERSEGUE]){

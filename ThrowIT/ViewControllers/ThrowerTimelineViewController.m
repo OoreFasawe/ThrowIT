@@ -7,6 +7,7 @@
 
 #import "ThrowerTimelineViewController.h"
 #import "ThrowerDetailsViewController.h"
+#import "DetailsViewController.h"
 #import "CreatePartyViewController.h"
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
@@ -48,6 +49,7 @@
 -(void)fetchThrowerParties{
     PFQuery *query = [PFQuery queryWithClassName:PARTYCLASS];
     [query orderByDescending:CREATEDAT];
+    [query includeKey:PARTYTHROWERKEY];
     [query whereKey:PARTYTHROWERKEY equalTo:[PFUser currentUser]];
     [query whereKey:ENDTIME greaterThan:[NSDate now]];
     query.limit = QUERYLIMIT;
@@ -73,10 +75,11 @@
     else if([[segue identifier] isEqualToString:THROWERDETAILSVIEWCONTROLLER]){
         UITableViewCell *partyCell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:partyCell];
-        // Pass the selected object to the new view controller.
         Party *party = self.throwerPartyList[myIndexPath.section];
-        ThrowerDetailsViewController *throwerDetailsController = [segue destinationViewController];
-        throwerDetailsController.party = party;
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.party = party;
+        detailsViewController.contentViewColor = [UIColor colorWithRed:0.985051 green:0.751466 blue:0.574876 alpha:1];
+        detailsViewController.isFromThrowerAccount = YES;
     }
 }
 #pragma mark - Navigation end
