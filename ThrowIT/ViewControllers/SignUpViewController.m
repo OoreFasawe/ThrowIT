@@ -34,6 +34,7 @@
         newUser.password = self.passwordField.text;
         newUser.email = self.emailField.text;
         newUser[USERISTHROWERKEY] = NOKEYWORD;
+        newUser[PARTIESATTENDEDKEY] = ZERO;
     
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
