@@ -59,6 +59,7 @@
     newUser.email = self.throwerEmailField.text;
     newUser[USERISTHROWERKEY] = YESKEYWORD;
     newUser[PARTIESATTENDEDKEY] = ZERO;
+    newUser[USERPROFILEPHOTOKEY] = [Utility getPFFileFromImage:[UIImage imageNamed:@"APP LAUNCH IMAGE"]];
     Thrower *partyThrower = [Thrower new];
     partyThrower.throwerName = self.throwerNameField.text;
     partyThrower.school = self.throwerSchoolField.text;
