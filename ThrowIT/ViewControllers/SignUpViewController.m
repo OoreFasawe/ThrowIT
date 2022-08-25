@@ -35,6 +35,7 @@
         newUser.email = self.emailField.text;
         newUser[USERISTHROWERKEY] = NOKEYWORD;
         newUser[PARTIESATTENDEDKEY] = ZERO;
+        newUser[USERPROFILEPHOTOKEY] = [Utility getPFFileFromImage:[UIImage imageNamed:@"APP LAUNCH IMAGE"]];
         
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
