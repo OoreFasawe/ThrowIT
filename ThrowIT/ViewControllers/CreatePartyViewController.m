@@ -41,7 +41,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    [self.partyImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(IMAGERESIZECONSTANT, IMAGECORNERRADIUS)]];
+    [self.partyImageView setImage:[Utility resizeImage:editedImage withSize:CGSizeMake(IMAGERESIZECONSTANT, IMAGERESIZECONSTANT)]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
