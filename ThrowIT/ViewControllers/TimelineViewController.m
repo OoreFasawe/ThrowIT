@@ -41,7 +41,6 @@
     self.soundGenerator = [CoreHapticsGenerator initWithEngineOnViewController:self];
     [[APIManager shared] locationManagerInit];
     [self fetchParties];
-    [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
     self.topPartyCellSizes = @[
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height)],
     [NSValue valueWithCGSize:CGSizeMake(self.collectionView.frame.size.width/2.0, self.collectionView.frame.size.height*0.66 - COLLECTIONVIEWBORDER)],
@@ -113,6 +112,7 @@
                     }
                 }];
             }
+            [self setUpcollectionViewWithCHTCollectionViewWaterfallLayout];
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             [self.collectionView reloadData];
