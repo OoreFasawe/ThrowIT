@@ -1296,7 +1296,7 @@
             </objects>
             <point key="canvasLocation" x="-276.1682242990654" y="-568.25053995680355"/>
         </scene>
-        <!--Search Tab View Controller-->
+        <!--Search-->
         <scene sceneID="v3T-pS-NhQ">
             <objects>
                 <viewController id="Wda-Sq-PX8" customClass="SearchTabViewController" sceneMemberID="viewController">
@@ -1356,7 +1356,7 @@
                         <viewLayoutGuide key="safeArea" id="6Yv-UX-tKh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="C98-wJ-mmT"/>
+                    <navigationItem key="navigationItem" title="Search" id="C98-wJ-mmT"/>
                     <connections>
                         <outlet property="searchBar" destination="a5K-mx-M93" id="y3Y-4n-Xyo"/>
                         <outlet property="searchTableView" destination="HAP-8u-YsM" id="24T-5s-vnD"/>

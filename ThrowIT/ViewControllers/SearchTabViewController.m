@@ -27,7 +27,7 @@
 }
 
 - (void)fetchSearchedUsers{
-    PFQuery *usersQuery = [PFQuery queryWithClassName:@"_User"];
+    PFQuery *usersQuery = [PFQuery queryWithClassName:USERCLASS];
     [usersQuery whereKey:USERISTHROWERKEY equalTo:NOKEYWORD];
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray * users, NSError *error) {
         self.usersArray = (NSMutableArray *) users;
@@ -39,7 +39,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchCell *searchCell = [self.searchTableView dequeueReusableCellWithIdentifier:@"SearchCell"];
+    SearchCell *searchCell = [self.searchTableView dequeueReusableCellWithIdentifier:SEARCHCELL];
     PFUser *user = self.filteredUsersArray[indexPath.row];
     searchCell.userProfilePhoto.file = user[USERPROFILEPHOTOKEY];
     [searchCell.userProfilePhoto loadInBackground];
