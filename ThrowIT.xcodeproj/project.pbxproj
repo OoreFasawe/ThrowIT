@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4D4C258FBA169CB066CEAB7B /* Pods_ThrowIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */; };
+		4E3AAD2228BBF9FF007B28AF /* SearchTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3AAD2128BBF9FF007B28AF /* SearchTabViewController.m */; };
+		4E3AAD2828BBFAFC007B28AF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3AAD2728BBFAFC007B28AF /* SearchCell.m */; };
 		890F5C9428822948006E549B /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 890F5C9328822948006E549B /* Keys.plist */; };
 		891EF8AB286E519000F5947E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AA286E519000F5947E /* AppDelegate.m */; };
 		891EF8AE286E519000F5947E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891EF8AD286E519000F5947E /* SceneDelegate.m */; };
@@ -69,6 +71,10 @@
 /* Begin PBXFileReference section */
 		15E14E2E88E61ABD435331DC /* Pods-ThrowIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT.debug.xcconfig"; path = "Target Support Files/Pods-ThrowIT/Pods-ThrowIT.debug.xcconfig"; sourceTree = "<group>"; };
 		23E04F0427BF60B7F4EB2C7A /* Pods-ThrowIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThrowIT.release.xcconfig"; path = "Target Support Files/Pods-ThrowIT/Pods-ThrowIT.release.xcconfig"; sourceTree = "<group>"; };
+		4E3AAD2028BBF9FE007B28AF /* SearchTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTabViewController.h; sourceTree = "<group>"; };
+		4E3AAD2128BBF9FF007B28AF /* SearchTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTabViewController.m; sourceTree = "<group>"; };
+		4E3AAD2628BBFAFC007B28AF /* SearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
+		4E3AAD2728BBFAFC007B28AF /* SearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		887B44304F87030A2BF33DED /* Pods_ThrowIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThrowIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		890F5C9328822948006E549B /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		891EF8A6286E519000F5947E /* ThrowIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThrowIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +266,8 @@
 				891EF8EA287554D300F5947E /* LoginViewController.m */,
 				891EF8E62875530400F5947E /* TimelineViewController.h */,
 				891EF8E72875530400F5947E /* TimelineViewController.m */,
+				4E3AAD2028BBF9FE007B28AF /* SearchTabViewController.h */,
+				4E3AAD2128BBF9FF007B28AF /* SearchTabViewController.m */,
 				891EF8E3287551DD00F5947E /* SignUpViewController.h */,
 				891EF8E4287551DD00F5947E /* SignUpViewController.m */,
 			);
@@ -313,6 +321,8 @@
 				8922000F289EDF8600EDF9A1 /* PartyBoardCell.h */,
 				89220010289EDF8700EDF9A1 /* PartyBoardCell.m */,
 				8970CB3828A1B9FF00963F59 /* ThrownPartyCell.m */,
+				4E3AAD2628BBFAFC007B28AF /* SearchCell.h */,
+				4E3AAD2728BBFAFC007B28AF /* SearchCell.m */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -529,6 +539,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E3AAD2828BBFAFC007B28AF /* SearchCell.m in Sources */,
+				4E3AAD2228BBF9FF007B28AF /* SearchTabViewController.m in Sources */,
 				898244F028779F9300744255 /* Party.m in Sources */,
 				891EF8E5287551DD00F5947E /* SignUpViewController.m in Sources */,
 				8970CB3928A1B9FF00963F59 /* ThrownPartyCell.m in Sources */,

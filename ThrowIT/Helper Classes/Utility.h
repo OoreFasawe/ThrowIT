@@ -40,6 +40,7 @@
 #define THROWBOARDCELL @"ThrowBoardCell"
 #define THROWNPARTYCELL @"ThrownPartyCell"
 #define RANKCELL @"RankCell"
+#define SEARCHCELL @"SearchCell"
 #define SHIFTNUMBER 3
 #define NUMBEROFROWSINSECTION 1
 
