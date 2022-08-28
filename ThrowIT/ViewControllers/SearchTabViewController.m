@@ -11,9 +11,9 @@
 
 @interface SearchTabViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSMutableArray *usersArray;
 @property (strong, nonatomic) NSMutableArray *filteredUsersArray;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @end
 @implementation SearchTabViewController
 
@@ -41,6 +41,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchCell *searchCell = [self.searchTableView dequeueReusableCellWithIdentifier:SEARCHCELL];
     PFUser *user = self.filteredUsersArray[indexPath.row];
+    searchCell.userProfilePhoto.layer.cornerRadius = searchCell.userProfilePhoto.frame.size.height / 2;
+    searchCell.userProfilePhoto.layer.borderWidth = BORDERWIDTH;
     searchCell.userProfilePhoto.file = user[USERPROFILEPHOTOKEY];
     [searchCell.userProfilePhoto loadInBackground];
     searchCell.userUserNameLabel.text = user[USERUSERNAMEKEY];
