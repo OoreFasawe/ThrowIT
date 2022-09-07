@@ -22,25 +22,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchUser];
     self.profileTableView.delegate = self;
     self.profileTableView.dataSource = self;
     self.profileTableView.rowHeight = UITableViewAutomaticDimension;
     self.seenPartiesTableView.delegate = self;
     self.seenPartiesTableView.dataSource = self;
     self.seenPartiesTableView.rowHeight = UITableViewAutomaticDimension;
+    if(!self.currentUser){
+        self.currentUser = [PFUser currentUser];
+    }
+    [self fetchUser];
     [self fetchAttendedParties];
     [self fetchUsers];
 }
 
 - (IBAction)onTapProfilePicture:(id)sender {
-    [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPROFILEPHOTO];
+    if(self.currentUser != [PFUser currentUser]){
+        return;
+    }
+    else{
+        [Utility showImageTakeOptionSheetOnViewController:self withTitleString:ADDPROFILEPHOTO];
+    }
 }
 
 -(void)fetchUser{
     PFQuery *userQuery = [PFQuery queryWithClassName:USERCLASS];
     [userQuery includeKey:PARTIESATTENDEDKEY];
-    [userQuery getObjectInBackgroundWithId:[[PFUser currentUser] objectId] block:^(PFObject *user, NSError *error) {
+    [userQuery getObjectInBackgroundWithId:[self.currentUser objectId] block:^(PFObject *user, NSError *error) {
         if(!error){
             self.profilePicture.file = user[USERPROFILEPHOTOKEY];
             self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width/2;
@@ -70,7 +78,7 @@
 
 -(void)fetchAttendedParties{
     PFQuery *partyQuery = [PFQuery queryWithClassName:CHECKINCLASS];
-    [partyQuery whereKey:USER equalTo:[PFUser currentUser]];
+    [partyQuery whereKey:USER equalTo:self.currentUser];
     [partyQuery includeKey:PARTYKEY];
     [partyQuery orderByDescending:CREATEDAT];
     [partyQuery findObjectsInBackgroundWithBlock:^(NSArray *checkIns, NSError *error) {

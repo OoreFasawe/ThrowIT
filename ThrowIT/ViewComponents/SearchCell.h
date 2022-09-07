@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SearchCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *userProfilePhoto;
 @property (weak, nonatomic) IBOutlet UILabel *userUserNameLabel;
+@property (strong, nonatomic) PFUser *searchedUser;
 @end
 
 NS_ASSUME_NONNULL_END

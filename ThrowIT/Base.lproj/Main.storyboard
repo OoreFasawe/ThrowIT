@@ -1348,6 +1348,7 @@
                                         <connections>
                                             <outlet property="userProfilePhoto" destination="ImK-oH-hfK" id="9iy-Ik-cyx"/>
                                             <outlet property="userUserNameLabel" destination="PVX-wc-fnf" id="8ZB-Ks-asg"/>
+                                            <segue destination="yo9-S4-ASC" kind="show" identifier="toProfileViewController" id="4g7-Rm-wwU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1364,7 +1365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efO-c7-zMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2761.6822429906542" y="-1275.1619870410368"/>
+            <point key="canvasLocation" x="2762" y="-1275"/>
         </scene>
         <!--Party Feed -->
         <scene sceneID="xxl-wq-NPd">
@@ -2010,6 +2011,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1w6-fE-Pac" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="brain.head.profile" catalog="system" id="gAI-Ka-jMx"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="92q-1j-c21"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IuB-JJ-Xfb">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2158,6 +2160,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IOH-Ak-bky"/>
+        <segue reference="4g7-Rm-wwU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
