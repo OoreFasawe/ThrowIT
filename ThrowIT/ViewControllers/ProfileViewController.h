@@ -17,7 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
-
+@property (nonatomic, strong) PFUser *currentUser;
 @end
 
 NS_ASSUME_NONNULL_END

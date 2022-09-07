@@ -6,6 +6,7 @@
 //
 
 #import "SearchTabViewController.h"
+#import "ProfileViewController.h"
 #import "SearchCell.h"
 #import "Utility.h"
 
@@ -41,6 +42,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchCell *searchCell = [self.searchTableView dequeueReusableCellWithIdentifier:SEARCHCELL];
     PFUser *user = self.filteredUsersArray[indexPath.row];
+    searchCell.searchedUser = user;
     searchCell.userProfilePhoto.layer.cornerRadius = searchCell.userProfilePhoto.frame.size.height / 2;
     searchCell.userProfilePhoto.layer.borderWidth = BORDERWIDTH;
     searchCell.userProfilePhoto.file = user[USERPROFILEPHOTOKEY];
@@ -57,5 +59,13 @@
             [self.filteredUsersArray addObject:user];
     }
     [self.searchTableView reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"toProfile"]){
+        SearchCell *searchCell = sender;
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        profileViewController.currentUser = searchCell.searchedUser;
+    }
 }
 @end
