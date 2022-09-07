@@ -28,6 +28,7 @@
 #define THROWERDETAILSVIEWCONTROLLER @"toThrowerDetailsViewController"
 #define CREATEPARTYSEGUE @"createPartySegue"
 #define FILTERSEGUE @"filterSegue"
+#define TOPROFILEVIEWCONTROLLER @"toProfileViewController"
 
 #pragma mark - Models
 #define PARTYCELL @"PartyCell"

@@ -1348,7 +1348,7 @@
                                         <connections>
                                             <outlet property="userProfilePhoto" destination="ImK-oH-hfK" id="9iy-Ik-cyx"/>
                                             <outlet property="userUserNameLabel" destination="PVX-wc-fnf" id="8ZB-Ks-asg"/>
-                                            <segue destination="yo9-S4-ASC" kind="show" identifier="toProfile" id="4g7-Rm-wwU"/>
+                                            <segue destination="yo9-S4-ASC" kind="show" identifier="toProfileViewController" id="4g7-Rm-wwU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

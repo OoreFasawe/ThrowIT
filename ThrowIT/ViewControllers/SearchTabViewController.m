@@ -62,7 +62,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([[segue identifier] isEqualToString:@"toProfile"]){
+    if([[segue identifier] isEqualToString:TOPROFILEVIEWCONTROLLER]){
         SearchCell *searchCell = sender;
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.currentUser = searchCell.searchedUser;
